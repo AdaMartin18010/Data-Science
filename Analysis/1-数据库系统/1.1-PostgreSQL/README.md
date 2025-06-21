@@ -6,7 +6,7 @@
 
 ## 文档结构
 
-本分析分为七个主要部分：
+本分析分为九个主要部分：
 
 1. [**形式模型**](./1.1.1-形式模型.md) - PostgreSQL的理论基础，包括关系代数、事务模型和并发控制的形式化定义。
    - 关系代数基础
@@ -62,6 +62,20 @@
    - 扩展性与集群化
    - 应用场景分析
    - 与其他向量数据库比较
+
+8. [**MVCC高级分析与形式证明**](./1.1.8-MVCC高级分析与形式证明.md) - 深入分析PostgreSQL的MVCC模型，提供严格的形式化证明。
+   - MVCC数据模型的形式化定义与证明
+   - MVCC与其他并发控制模型的深度比较
+   - PostgreSQL MVCC实现的特殊性分析
+   - 分布式MVCC的形式化模型
+   - 系统级优缺点的定量分析
+
+9. [**PostgreSQL分布式架构与系统优缺点**](./1.1.9-PostgreSQL分布式架构与系统优缺点.md) - 分析PostgreSQL的分布式能力和系统级优缺点。
+   - PostgreSQL系统设计原则的形式化分析
+   - PostgreSQL与其他数据库系统的体系结构比较
+   - PostgreSQL分布式架构的理论模型
+   - PostgreSQL分布式解决方案的比较与评价
+   - 系统级优缺点的全面分析
 
 ## 核心概念图示
 
@@ -128,6 +142,38 @@ graph TD
     style N fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
+### PostgreSQL分布式架构
+
+```mermaid
+graph TD
+    subgraph "PostgreSQL分布式架构"
+    A[应用层] -->|读/写请求| B[负载均衡器]
+    
+    B -->|写请求| C[主节点]
+    B -->|读请求| D[只读节点集群]
+    
+    C -->|同步复制| E[同步从节点]
+    C -->|异步复制| F[异步从节点集群]
+    
+    E --> D
+    F --> D
+    
+    G[监控/故障检测] --> C
+    G --> E
+    G --> F
+    
+    H[分布式共识系统<br>etcd/ZooKeeper] <--> G
+    
+    I[备份系统] --> C
+    I --> J[对象存储<br>WAL归档]
+    end
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style H fill:#fbb,stroke:#333,stroke-width:2px
+```
+
 ### 向量数据库架构
 
 ```mermaid
@@ -153,15 +199,17 @@ graph TD
 
 2. **强大的类型系统**：支持丰富的内置类型和自定义类型，包括基本类型、复合类型、枚举类型、数组、范围类型等。
 
-3. **先进的并发控制**：基于多版本并发控制(MVCC)实现高并发性能，避免读写阻塞。
+3. **先进的并发控制**：基于多版本并发控制(MVCC)实现高并发性能，避免读写阻塞，支持各种隔离级别。
 
-4. **灵活的存储模型**：支持表继承、分区表、外部表等多种存储模式，适应不同的数据管理需求。
+4. **分布式能力**：通过多种扩展解决方案（如Citus、Postgres-XL、BDR等）支持不同需求的分布式部署，实现水平扩展。
 
-5. **AI友好**：通过pgvector等扩展提供向量存储和相似度搜索功能，支持现代AI应用开发。
+5. **灵活的存储模型**：支持表继承、分区表、外部表等多种存储模式，适应不同的数据管理需求。
 
-6. **强大的查询优化器**：基于成本的查询优化器能够处理复杂查询，支持多种连接算法和访问方法。
+6. **AI友好**：通过pgvector等扩展提供向量存储和相似度搜索功能，支持现代AI应用开发。
 
-7. **高可靠性**：通过WAL(预写式日志)、复制、PITR(时间点恢复)等机制确保数据安全。
+7. **强大的查询优化器**：基于成本的查询优化器能够处理复杂查询，支持多种连接算法和访问方法。
+
+8. **高可靠性**：通过WAL(预写式日志)、复制、PITR(时间点恢复)等机制确保数据安全。
 
 ## 与AI集成的关键优势
 
@@ -182,3 +230,8 @@ graph TD
 3. Obe, R., & Hsu, L. (2017). *PostgreSQL: Up and Running* (3rd ed.). O'Reilly Media.
 4. pgvector. (2023). *pgvector: Open-source vector similarity search for Postgres*. <https://github.com/pgvector/pgvector>
 5. Malkov, Y. A., & Yashunin, D. A. (2018). *Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs*. IEEE transactions on pattern analysis and machine intelligence.
+6. Stonebraker, M., & Rowe, L. A. (1986). "The Design of POSTGRES". ACM SIGMOD.
+7. Kleppmann, M. (2017). "Designing Data-Intensive Applications". O'Reilly Media.
+8. Bernstein, P. A., & Goodman, N. (1983). "Multiversion Concurrency Control—Theory and Algorithms". ACM Transactions on Database Systems.
+9. Ports, D. R. K., & Grittner, K. (2012). "Serializable Snapshot Isolation in PostgreSQL". VLDB.
+10. Cahill, M. J., et al. (2008). "Serializable Isolation for Snapshot Databases". ACM SIGMOD.
