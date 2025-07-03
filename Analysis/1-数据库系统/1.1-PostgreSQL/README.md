@@ -235,3 +235,44 @@ graph TD
 8. Bernstein, P. A., & Goodman, N. (1983). "Multiversion Concurrency Control—Theory and Algorithms". ACM Transactions on Database Systems.
 9. Ports, D. R. K., & Grittner, K. (2012). "Serializable Snapshot Isolation in PostgreSQL". VLDB.
 10. Cahill, M. J., et al. (2008). "Serializable Isolation for Snapshot Databases". ACM SIGMOD.
+
+# 1.1 PostgreSQL 主题导航与多表征案例
+
+## 目录结构与本地跳转
+
+- [1.1.1 形式模型](./1.1.1-形式模型.md)
+- [1.1.2 系统架构](./1.1.2-系统架构.md)
+- [1.1.3 数据模型](./1.1.3-数据模型.md)
+- [1.1.4 查询优化](./1.1.4-查询优化.md)
+- [1.1.6 AI与PostgreSQL集成](./1.1.6-AI与PostgreSQL集成.md)
+- [1.1.7 向量数据库扩展](./1.1.7-向量数据库扩展.md)
+- [1.1.8 MVCC高级分析与形式证明](./1.1.8-MVCC高级分析与形式证明.md)
+- [1.1.9 PostgreSQL分布式架构与系统优缺点](./1.1.9-PostgreSQL分布式架构与系统优缺点.md)
+- [1.1.10 MVCC与其他并发控制模型对比与极限分析](./1.1.10-MVCC与其他并发控制模型对比与极限分析.md)
+- [1.1.11 PostgreSQL系统设计与现代硬件AI场景适配性分析](./1.1.11-PostgreSQL系统设计与现代硬件AI场景适配性分析.md)
+- [1.1.12 PostgreSQL与主流数据库系统对比分析](./1.1.12-PostgreSQL与主流数据库系统对比分析.md)
+- [1.1.13 未解难题与未来研究方向](./1.1.13-未解难题与未来研究方向.md)
+
+---
+
+## 行业案例与多表征
+
+### 1.1.x 典型行业案例
+- 金融行业：高并发交易与风控、合规审计（详见5.1-金融数据分析、3.3.3-并发控制算法、7-持续集成与演进）
+- AI平台：向量数据库与AI检索、模型数据管理（详见1.1.7-向量数据库扩展、1.1.6-AI与PostgreSQL集成、3.5.7-数据存储与访问）
+- 实时分析：流式数据处理与ETL（详见3.5.5-数据流处理与架构、3.5.2-ETL理论与实践）
+
+### 1.1.x 多表征示例
+- 系统架构图、数据流图、MVCC时序图、SQL执行计划、合规审计流程、Latex公式等
+
+```mermaid
+flowchart TD
+  U[用户请求] --> Q[SQL解析]
+  Q --> E[执行计划]
+  E --> S[存储引擎]
+  S --> R[结果返回]
+```
+
+---
+
+[返回数据库系统导航](../README.md)
