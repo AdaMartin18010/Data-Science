@@ -281,3 +281,8 @@
 - [未解难题与未来研究](./1.1.13-未解难题与未来研究方向.md)
 - [PostgreSQL 2025特性与AI集成](./1.1.21-PostgreSQL-2025最新特性全面分析.md), [./1.1.22-PostgreSQL-2025代码实现与形式证明.md)
 - [向量数据库与推荐系统](./1.1.19-PostgreSQL向量数据库深度集成.md), [./1.1.22-PostgreSQL-2025代码实现与形式证明.md)
+- [1.1.146 PostgreSQL 2025 实验与基准](./1.1.146-PostgreSQL-2025-实验与基准.md)
+
+### 语言与国际化
+
+- [EN: 1.1.144 PostgreSQL 2025 Features Deep Analysis](../../en-US/1-database-systems/1.1-postgresql/1.1.144-postgresql-2025-features-deep-analysis.md)
