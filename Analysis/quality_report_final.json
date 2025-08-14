@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-08-13T17:33:10.238895",
+  "timestamp": "2025-08-14T18:31:36.631315",
   "summary": {
-    "total_files": 448,
-    "average_score": 9.479285714285714,
-    "total_issues": 1809
+    "total_files": 456,
+    "average_score": 9.460350877192983,
+    "total_issues": 1896
   },
   "details": [
     {
@@ -95,9 +95,9 @@
     {
       "file_path": "Analysis\\国际化Wiki标准与知识规范对齐指南.md",
       "scores": {
-        "overall": 9.0,
+        "overall": 8.5,
         "title_hierarchy": 6.0,
-        "code_quality": 9.0,
+        "code_quality": 6.5,
         "math_formulas": 10.0,
         "links": 10.0,
         "format": 10.0
@@ -126,6 +126,36 @@
           "description": "标题层次跳跃: 7.2 质量指标",
           "severity": "warning",
           "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
         },
         {
           "type": "code_quality",
@@ -3312,14 +3342,32 @@
     {
       "file_path": "Analysis\\1-数据库系统\\1.1-PostgreSQL\\1.1.146-PostgreSQL-2025-实验与基准.md",
       "scores": {
-        "overall": 9.459999999999999,
+        "overall": 9.16,
         "title_hierarchy": 10.0,
-        "code_quality": 8.5,
+        "code_quality": 7.0,
         "math_formulas": 9.0,
         "links": 10.0,
         "format": 9.8
       },
       "issues": [
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
         {
           "type": "code_quality",
           "description": "代码缺少注释",
@@ -9711,7 +9759,255 @@
         },
         {
           "type": "format",
-          "description": "第1296行过长",
+          "description": "第1319行过长",
+          "severity": "info",
+          "suggestion": "建议行长度控制在120字符以内"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\4-软件架构与工程\\4.1-架构设计\\4.1.14-云原生架构实践.md",
+      "scores": {
+        "overall": 7.5,
+        "title_hierarchy": 0.0,
+        "code_quality": 7.5,
+        "math_formulas": 10.0,
+        "links": 10.0,
+        "format": 10.0
+      },
+      "issues": [
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.1.2 多阶段构建优化",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.2 Kubernetes深度集成",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.2.2 自定义资源定义 (CRD)",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.3 服务网格 (Service Mesh)",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.4 配置管理",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.1.2 ArgoCD集成",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.2 监控与可观测性",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.2.2 Grafana仪表板",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.1.2 运行时安全",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.2 网络安全",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.1.2 水平Pod自动扩缩容 (HPA)",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.2 缓存策略",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\4-软件架构与工程\\4.1-架构设计\\4.1.15-DevOps与CI-CD.md",
+      "scores": {
+        "overall": 6.380000000000001,
+        "title_hierarchy": 0.0,
+        "code_quality": 7.5,
+        "math_formulas": 5.0,
+        "links": 10.0,
+        "format": 9.400000000000002
+      },
+      "issues": [
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 2.1.2 价值流映射",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.2 容器化架构",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.2.2 Kubernetes部署",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.3 监控与可观测性",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.3.2 日志聚合",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.1.2 监控脚本",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.1.2 密钥管理",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.2 性能优化",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.2.2 水平扩展",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.2.2 服务网格",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.3 持续改进",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: (kubectl get pods -n ",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: APP_NAME -o jsonpath='{.items[*].status.containerStatuses[*].ready}' | tr ' ' '\\n' | grep -c \"true\")\n    local total_pods=",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: (kubectl get endpoints ",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: NAMESPACE -o jsonpath='{.subsets[*].addresses[*].ip}' | wc -w)\n    if [ \"",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: (git rev-parse --short HEAD)}\n    \n    log_info \"开始部署流程，版本: ",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "format",
+          "description": "第7行过长",
+          "severity": "info",
+          "suggestion": "建议行长度控制在120字符以内"
+        },
+        {
+          "type": "format",
+          "description": "第573行过长",
+          "severity": "info",
+          "suggestion": "建议行长度控制在120字符以内"
+        },
+        {
+          "type": "format",
+          "description": "第584行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         }
@@ -10031,6 +10327,129 @@
       "issues": []
     },
     {
+      "file_path": "Analysis\\5-行业应用与场景\\5.1-金融数据分析\\5.1.10-智能制造应用.md",
+      "scores": {
+        "overall": 9.36,
+        "title_hierarchy": 9.0,
+        "code_quality": 9.0,
+        "math_formulas": 9.0,
+        "links": 10.0,
+        "format": 9.8
+      },
+      "issues": [
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.1.10.12 监控告警",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题:  是故障率函数。\n\n## 🏗️ 技术架构\n\n### 5.1.10.3 系统架构\n\n```mermaid\ngraph TB\n    A[生产设备] --> B[数据采集层]\n    B --> C[边缘计算层]\n    C --> D[数据存储层]\n    D --> E[分析处理层]\n    E --> F[决策控制层]\n    F --> A\n    \n    G[数字孪生] --> E\n    H[AI模型] --> E\n    I[预测引擎] --> F\n```\n\n### 5.1.10.4 数据流架构\n\n```rust\n#[derive(Debug)]\npub struct ManufacturingDataFlow {\n    sensors: Vec<Sensor>,\n    edge_processors: Vec<EdgeProcessor>,\n    cloud_storage: CloudStorage,\n    analytics_engine: AnalyticsEngine,\n}\n\nimpl ManufacturingDataFlow {\n    pub async fn process_data_stream(&self) -> Result<(), DataFlowError> {\n        // 1. 传感器数据采集\n        let sensor_data = self.collect_sensor_data().await?;\n        \n        // 2. 边缘预处理\n        let processed_data = self.edge_processors\n            .iter()\n            .map(|processor| processor.process(&sensor_data))\n            .collect::<Result<Vec<_>, _>>()?;\n        \n        // 3. 云端存储\n        self.cloud_storage.store(&processed_data).await?;\n        \n        // 4. 分析处理\n        self.analytics_engine.analyze(&processed_data).await?;\n        \n        Ok(())\n    }\n}\n```\n\n## 📊 数据模型\n\n### 5.1.10.5 生产数据模型\n\n```sql\n-- 设备状态表\nCREATE TABLE equipment_status (\n    equipment_id UUID PRIMARY KEY,\n    timestamp TIMESTAMPTZ NOT NULL,\n    temperature FLOAT,\n    vibration FLOAT,\n    pressure FLOAT,\n    speed FLOAT,\n    status TEXT CHECK (status IN ('running', 'idle', 'maintenance', 'error')),\n    health_score FLOAT,\n    predicted_failure_time TIMESTAMPTZ\n);\n\n-- 生产订单表\nCREATE TABLE production_orders (\n    order_id UUID PRIMARY KEY,\n    product_id UUID REFERENCES products(id),\n    quantity INTEGER,\n    start_time TIMESTAMPTZ,\n    end_time TIMESTAMPTZ,\n    status TEXT,\n    quality_score FLOAT\n);\n\n-- 质量检测表\nCREATE TABLE quality_inspections (\n    inspection_id UUID PRIMARY KEY,\n    product_id UUID,\n    timestamp TIMESTAMPTZ,\n    defect_type TEXT,\n    defect_severity INTEGER,\n    inspector_id UUID,\n    ai_confidence FLOAT\n);\n```\n\n### 5.1.10.6 时序数据模型\n\n```rust\n#[derive(Debug, Clone)]\npub struct TimeSeriesData {\n    timestamp: DateTime<Utc>,\n    values: HashMap<String, f64>,\n    metadata: HashMap<String, String>,\n}\n\n#[derive(Debug)]\npub struct TimeSeriesDatabase {\n    connection: Connection,\n}\n\nimpl TimeSeriesDatabase {\n    pub async fn store_equipment_data(\n        &self,\n        equipment_id: &str,\n        data: TimeSeriesData,\n    ) -> Result<(), DatabaseError> {\n        let query = \"\n            INSERT INTO equipment_metrics (equipment_id, timestamp, metric_name, value)\n            VALUES (",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "format",
+          "description": "第739行过长",
+          "severity": "info",
+          "suggestion": "建议行长度控制在120字符以内"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\5-行业应用与场景\\5.1-金融数据分析\\5.1.11-医疗健康应用.md",
+      "scores": {
+        "overall": 9.16,
+        "title_hierarchy": 9.0,
+        "code_quality": 7.0,
+        "math_formulas": 10.0,
+        "links": 10.0,
+        "format": 9.8
+      },
+      "issues": [
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 5.1.11.12 隐私保护",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "format",
+          "description": "第862行过长",
+          "severity": "info",
+          "suggestion": "建议行长度控制在120字符以内"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\5-行业应用与场景\\5.1-金融数据分析\\5.1.12-教育科技应用.md",
+      "scores": {
+        "overall": 9.7,
+        "title_hierarchy": 10.0,
+        "code_quality": 8.5,
+        "math_formulas": 10.0,
+        "links": 10.0,
+        "format": 10.0
+      },
+      "issues": [
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        }
+      ]
+    },
+    {
       "file_path": "Analysis\\5-行业应用与场景\\5.1-金融数据分析\\5.1.2-量化交易策略深化.md",
       "scores": {
         "overall": 7.92,
@@ -10112,6 +10531,49 @@
           "description": "第952行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\5-行业应用与场景\\5.1-金融数据分析\\5.1.9-金融科技应用.md",
+      "scores": {
+        "overall": 9.4,
+        "title_hierarchy": 10.0,
+        "code_quality": 8.0,
+        "math_formulas": 9.0,
+        "links": 10.0,
+        "format": 10.0
+      },
+      "issues": [
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: 1) AS sim\nFROM user_profile\nORDER BY embedding <=> ",
+          "severity": "warning",
+          "suggestion": ""
         }
       ]
     },
@@ -10595,31 +11057,31 @@
         },
         {
           "type": "format",
-          "description": "第777行过长",
+          "description": "第778行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         },
         {
           "type": "format",
-          "description": "第779行过长",
+          "description": "第780行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         },
         {
           "type": "format",
-          "description": "第781行过长",
+          "description": "第782行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         },
         {
           "type": "format",
-          "description": "第783行过长",
+          "description": "第784行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         },
         {
           "type": "format",
-          "description": "第785行过长",
+          "description": "第786行过长",
           "severity": "info",
           "suggestion": "建议行长度控制在120字符以内"
         }
@@ -11641,6 +12103,31 @@
       ]
     },
     {
+      "file_path": "Analysis\\7-持续集成与演进\\7.2-自动化测试\\7.2.9-自动化测试框架.md",
+      "scores": {
+        "overall": 9.7,
+        "title_hierarchy": 10.0,
+        "code_quality": 9.5,
+        "math_formulas": 9.0,
+        "links": 10.0,
+        "format": 10.0
+      },
+      "issues": [
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: 3 ~ /[0-9]+\\.[0-9]+%/ {sum+=",
+          "severity": "warning",
+          "suggestion": ""
+        }
+      ]
+    },
+    {
       "file_path": "Analysis\\7-持续集成与演进\\7.2-自动化测试\\README.md",
       "scores": {
         "overall": 9.86,
@@ -11955,6 +12442,145 @@
           "description": "代码缺少注释",
           "severity": "info",
           "suggestion": "建议为代码添加适当的注释"
+        }
+      ]
+    },
+    {
+      "file_path": "Analysis\\7-持续集成与演进\\7.5-监控与可观测\\7.5.1-性能监控系统.md",
+      "scores": {
+        "overall": 6.8,
+        "title_hierarchy": 3.0,
+        "code_quality": 3.0,
+        "math_formulas": 8.0,
+        "links": 10.0,
+        "format": 10.0
+      },
+      "issues": [
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.2 数据流设计",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 3.3 存储设计",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.2 告警系统实现",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.2.2 告警通知配置",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 4.3 可视化仪表板",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.2.2 自动化运维",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "title_hierarchy",
+          "description": "标题层次跳跃: 6.3 持续改进",
+          "severity": "warning",
+          "suggestion": "建议保持标题层次连续"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码块过长",
+          "severity": "warning",
+          "suggestion": "建议将长代码块分解为多个小段"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "code_quality",
+          "description": "代码缺少注释",
+          "severity": "info",
+          "suggestion": "建议为代码添加适当的注释"
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: \n\n**告警级别**：\n\n```yaml\nalert_levels:\n  critical:\n    description: \"系统严重故障，需要立即处理\"\n    response_time: \"> 5s\"\n    error_rate: \"> 10%\"\n    cpu_usage: \"> 90%\"\n  \n  warning:\n    description: \"系统性能下降，需要关注\"\n    response_time: \"> 2s\"\n    error_rate: \"> 5%\"\n    cpu_usage: \"> 80%\"\n  \n  info:\n    description: \"系统状态异常，需要监控\"\n    response_time: \"> 1s\"\n    error_rate: \"> 1%\"\n    cpu_usage: \"> 70%\"\n```\n\n## 3. 架构设计\n\n### 3.1 整体架构\n\n#### 3.1.1 分层架构\n\n```mermaid\ngraph TB\n    subgraph \"数据采集层\"\n        A1[应用Agent]\n        A2[系统Agent]\n        A3[业务Agent]\n    end\n    \n    subgraph \"数据传输层\"\n        T1[消息队列]\n        T2[流处理]\n        T3[API网关]\n    end\n    \n    subgraph \"数据处理层\"\n        P1[数据清洗]\n        P2[数据聚合]\n        P3[数据存储]\n    end\n    \n    subgraph \"数据展示层\"\n        V1[仪表板]\n        V2[告警系统]\n        V3[分析工具]\n    end\n    \n    A1 --> T1\n    A2 --> T2\n    A3 --> T3\n    \n    T1 --> P1\n    T2 --> P2\n    T3 --> P3\n    \n    P1 --> V1\n    P2 --> V2\n    P3 --> V3\n```\n\n#### 3.1.2 微服务监控架构\n\n```yaml\n# 微服务监控配置\nmicroservice_monitoring:\n  service_mesh:\n    istio:\n      metrics_collection: true\n      tracing_enabled: true\n      access_logs: true\n  \n  application_monitoring:\n    prometheus:\n      scrape_interval: 15s\n      metrics_path: /metrics\n    \n    jaeger:\n      sampling_rate: 0.1\n      max_trace_duration: 30s\n    \n    elasticsearch:\n      log_retention: 30d\n      index_pattern: \"logs-*\"\n  \n  infrastructure_monitoring:\n    node_exporter:\n      enabled: true\n      port: 9100\n    \n    cadvisor:\n      enabled: true\n      port: 8080\n```\n\n### 3.2 数据流设计\n\n#### 3.2.1 指标数据流\n\n```mermaid\nsequenceDiagram\n    participant App as 应用\n    participant Agent as 监控Agent\n    participant Queue as 消息队列\n    participant Processor as 数据处理器\n    participant Storage as 时序数据库\n    participant Alert as 告警系统\n    \n    App->>Agent: 发送指标数据\n    Agent->>Queue: 批量发送数据\n    Queue->>Processor: 消费数据\n    Processor->>Storage: 存储指标\n    Processor->>Alert: 检查告警条件\n    Alert->>Storage: 查询历史数据\n    Alert->>Alert: 触发告警\n```\n\n#### 3.2.2 日志数据流\n\n```yaml\n# 日志收集配置\nlog_collection:\n  fluentd:\n    input:\n      - type: tail\n        path: /var/log/containers/*.log\n        tag: kubernetes.*\n        parse:\n          type: json\n    \n    filter:\n      - type: kubernetes_metadata\n        tag: kubernetes.**\n    \n    output:\n      - type: elasticsearch\n        host: elasticsearch-master\n        port: 9200\n        logstash_format: true\n        logstash_prefix: k8s\n```\n\n### 3.3 存储设计\n\n#### 3.3.1 时序数据库设计\n\n```sql\n-- Prometheus指标表结构\nCREATE TABLE metrics (\n    timestamp TIMESTAMPTZ NOT NULL,\n    metric_name TEXT NOT NULL,\n    labels JSONB,\n    value DOUBLE PRECISION NOT NULL,\n    PRIMARY KEY (timestamp, metric_name, labels)\n);\n\n-- 创建索引\nCREATE INDEX idx_metrics_timestamp ON metrics (timestamp);\nCREATE INDEX idx_metrics_name ON metrics (metric_name);\nCREATE INDEX idx_metrics_labels ON metrics USING GIN (labels);\n\n-- 分区表\nCREATE TABLE metrics_2025_01 PARTITION OF metrics\nFOR VALUES FROM ('2025-01-01') TO ('2025-02-01');\n\n-- 压缩策略\nSELECT create_compression_policy('metrics', INTERVAL '7 days');\n```\n\n#### 3.3.2 日志存储设计\n\n```yaml\n# Elasticsearch索引模板\nindex_template:\n  name: \"logs-template\"\n  index_patterns: [\"logs-*\"]\n  settings:\n    number_of_shards: 3\n    number_of_replicas: 1\n    refresh_interval: \"30s\"\n    index.lifecycle.name: \"logs-policy\"\n  \n  mappings:\n    properties:\n      timestamp:\n        type: date\n      level:\n        type: keyword\n      message:\n        type: text\n        analyzer: standard\n      service:\n        type: keyword\n      pod:\n        type: keyword\n      namespace:\n        type: keyword\n```\n\n## 4. 工程实现\n\n### 4.1 监控Agent实现\n\n#### 4.1.1 Go语言Agent\n\n```go\npackage main\n\nimport (\n    \"context\"\n    \"encoding/json\"\n    \"log\"\n    \"net/http\"\n    \"time\"\n    \n    \"github.com/prometheus/client_golang/prometheus\"\n    \"github.com/prometheus/client_golang/prometheus/promhttp\"\n    \"go.opentelemetry.io/otel\"\n    \"go.opentelemetry.io/otel/exporters/jaeger\"\n    \"go.opentelemetry.io/otel/sdk/trace\"\n)\n\n// 监控指标定义\nvar (\n    requestCounter = prometheus.NewCounterVec(\n        prometheus.CounterOpts{\n            Name: \"http_requests_total\",\n            Help: \"Total number of HTTP requests\",\n        },\n        []string{\"method\", \"endpoint\", \"status\"},\n    )\n    \n    requestDuration = prometheus.NewHistogramVec(\n        prometheus.HistogramOpts{\n            Name:    \"http_request_duration_seconds\",\n            Help:    \"HTTP request duration in seconds\",\n            Buckets: prometheus.DefBuckets,\n        },\n        []string{\"method\", \"endpoint\"},\n    )\n    \n    activeConnections = prometheus.NewGauge(\n        prometheus.GaugeOpts{\n            Name: \"active_connections\",\n            Help: \"Number of active connections\",\n        },\n    )\n)\n\n// 监控中间件\nfunc monitoringMiddleware(next http.Handler) http.Handler {\n    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n        start := time.Now()\n        \n        // 包装ResponseWriter以捕获状态码\n        wrapped := &responseWriter{ResponseWriter: w, statusCode: 200}\n        \n        next.ServeHTTP(wrapped, r)\n        \n        duration := time.Since(start).Seconds()\n        \n        // 记录指标\n        requestCounter.WithLabelValues(r.Method, r.URL.Path, string(wrapped.statusCode)).Inc()\n        requestDuration.WithLabelValues(r.Method, r.URL.Path).Observe(duration)\n    })\n}\n\n// 自定义ResponseWriter\ntype responseWriter struct {\n    http.ResponseWriter\n    statusCode int\n}\n\nfunc (rw *responseWriter) WriteHeader(code int) {\n    rw.statusCode = code\n    rw.ResponseWriter.WriteHeader(code)\n}\n\n// 应用监控器\ntype ApplicationMonitor struct {\n    tracer trace.Tracer\n    metrics map[string]interface{}\n}\n\nfunc NewApplicationMonitor() *ApplicationMonitor {\n    // 初始化Jaeger追踪器\n    tp, err := jaeger.New(jaeger.WithCollectorEndpoint(\"http://jaeger:14268/api/traces\"))\n    if err != nil {\n        log.Fatal(err)\n    }\n    otel.SetTracerProvider(tp)\n    \n    return &ApplicationMonitor{\n        tracer:  otel.Tracer(\"application-monitor\"),\n        metrics: make(map[string]interface{}),\n    }\n}\n\nfunc (am *ApplicationMonitor) RecordMetric(name string, value interface{}) {\n    am.metrics[name] = value\n}\n\nfunc (am *ApplicationMonitor) GetMetrics() map[string]interface{} {\n    return am.metrics\n}\n\n// 健康检查处理器\nfunc healthCheckHandler(w http.ResponseWriter, r *http.Request) {\n    response := map[string]interface{}{\n        \"status\":    \"healthy\",\n        \"timestamp\": time.Now().Unix(),\n        \"version\":   \"1.0.0\",\n    }\n    \n    w.Header().Set(\"Content-Type\", \"application/json\")\n    json.NewEncoder(w).Encode(response)\n}\n\nfunc main() {\n    // 注册Prometheus指标\n    prometheus.MustRegister(requestCounter)\n    prometheus.MustRegister(requestDuration)\n    prometheus.MustRegister(activeConnections)\n    \n    // 创建监控器\n    monitor := NewApplicationMonitor()\n    \n    // 设置路由\n    http.HandleFunc(\"/health\", healthCheckHandler)\n    http.HandleFunc(\"/metrics\", promhttp.Handler().ServeHTTP)\n    \n    // 启动服务器\n    log.Fatal(http.ListenAndServe(\":8080\", monitoringMiddleware(http.DefaultServeMux)))\n}\n```\n\n#### 4.1.2 Python监控脚本\n\n```python\n#!/usr/bin/env python3\n# monitoring_agent.py\n\nimport os\nimport time\nimport json\nimport psutil\nimport requests\nfrom datetime import datetime\nfrom typing import Dict, List, Optional\nimport logging\nfrom dataclasses import dataclass, asdict\n\n# 配置日志\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\n\n@dataclass\nclass SystemMetrics:\n    cpu_percent: float\n    memory_percent: float\n    disk_usage_percent: float\n    network_io: Dict[str, float]\n    timestamp: str\n\n@dataclass\nclass ApplicationMetrics:\n    response_time: float\n    error_rate: float\n    throughput: float\n    active_connections: int\n    timestamp: str\n\nclass MonitoringAgent:\n    def __init__(self, config: Dict):\n        self.config = config\n        self.metrics_buffer = []\n        self.last_network_io = psutil.net_io_counters()\n        self.last_network_time = time.time()\n    \n    def collect_system_metrics(self) -> SystemMetrics:\n        \"\"\"收集系统指标\"\"\"\n        try:\n            # CPU使用率\n            cpu_percent = psutil.cpu_percent(interval=1)\n            \n            # 内存使用率\n            memory = psutil.virtual_memory()\n            memory_percent = memory.percent\n            \n            # 磁盘使用率\n            disk = psutil.disk_usage('/')\n            disk_usage_percent = disk.percent\n            \n            # 网络IO\n            current_network_io = psutil.net_io_counters()\n            current_time = time.time()\n            \n            time_diff = current_time - self.last_network_time\n            network_io = {\n                'bytes_sent': (current_network_io.bytes_sent - self.last_network_io.bytes_sent) / time_diff,\n                'bytes_recv': (current_network_io.bytes_recv - self.last_network_io.bytes_recv) / time_diff\n            }\n            \n            self.last_network_io = current_network_io\n            self.last_network_time = current_time\n            \n            return SystemMetrics(\n                cpu_percent=cpu_percent,\n                memory_percent=memory_percent,\n                disk_usage_percent=disk_usage_percent,\n                network_io=network_io,\n                timestamp=datetime.now().isoformat()\n            )\n            \n        except Exception as e:\n            logger.error(f\"收集系统指标失败: {e}\")\n            return None\n    \n    def collect_application_metrics(self) -> ApplicationMetrics:\n        \"\"\"收集应用指标\"\"\"\n        try:\n            # 这里可以添加应用特定的指标收集逻辑\n            # 例如：通过API端点获取应用指标\n            \n            response = requests.get(f\"{self.config['app_url']}/metrics\", timeout=5)\n            app_metrics = response.json()\n            \n            return ApplicationMetrics(\n                response_time=app_metrics.get('response_time', 0.0),\n                error_rate=app_metrics.get('error_rate', 0.0),\n                throughput=app_metrics.get('throughput', 0.0),\n                active_connections=app_metrics.get('active_connections', 0),\n                timestamp=datetime.now().isoformat()\n            )\n            \n        except Exception as e:\n            logger.error(f\"收集应用指标失败: {e}\")\n            return None\n    \n    def send_metrics(self, metrics: Dict):\n        \"\"\"发送指标到监控系统\"\"\"\n        try:\n            headers = {'Content-Type': 'application/json'}\n            response = requests.post(\n                self.config['metrics_endpoint'],\n                json=metrics,\n                headers=headers,\n                timeout=10\n            )\n            \n            if response.status_code == 200:\n                logger.debug(\"指标发送成功\")\n            else:\n                logger.warning(f\"指标发送失败: {response.status_code}\")\n                \n        except Exception as e:\n            logger.error(f\"发送指标失败: {e}\")\n    \n    def check_alerts(self, metrics: Dict):\n        \"\"\"检查告警条件\"\"\"\n        alerts = []\n        \n        # CPU告警\n        if metrics.get('system', {}).get('cpu_percent', 0) > 80:\n            alerts.append({\n                'level': 'warning',\n                'message': f\"CPU使用率过高: {metrics['system']['cpu_percent']}%\",\n                'timestamp': datetime.now().isoformat()\n            })\n        \n        # 内存告警\n        if metrics.get('system', {}).get('memory_percent', 0) > 85:\n            alerts.append({\n                'level': 'critical',\n                'message': f\"内存使用率过高: {metrics['system']['memory_percent']}%\",\n                'timestamp': datetime.now().isoformat()\n            })\n        \n        # 应用响应时间告警\n        if metrics.get('application', {}).get('response_time', 0) > 2.0:\n            alerts.append({\n                'level': 'warning',\n                'message': f\"应用响应时间过长: {metrics['application']['response_time']}s\",\n                'timestamp': datetime.now().isoformat()\n            })\n        \n        # 发送告警\n        if alerts:\n            self.send_alerts(alerts)\n    \n    def send_alerts(self, alerts: List[Dict]):\n        \"\"\"发送告警\"\"\"\n        try:\n            headers = {'Content-Type': 'application/json'}\n            response = requests.post(\n                self.config['alerts_endpoint'],\n                json={'alerts': alerts},\n                headers=headers,\n                timeout=10\n            )\n            \n            if response.status_code == 200:\n                logger.info(f\"告警发送成功: {len(alerts)}条\")\n            else:\n                logger.warning(f\"告警发送失败: {response.status_code}\")\n                \n        except Exception as e:\n            logger.error(f\"发送告警失败: {e}\")\n    \n    def run(self):\n        \"\"\"运行监控循环\"\"\"\n        logger.info(\"监控Agent启动\")\n        \n        while True:\n            try:\n                # 收集指标\n                system_metrics = self.collect_system_metrics()\n                app_metrics = self.collect_application_metrics()\n                \n                # 构建指标数据\n                metrics_data = {\n                    'host': self.config['host_name'],\n                    'timestamp': datetime.now().isoformat(),\n                    'system': asdict(system_metrics) if system_metrics else {},\n                    'application': asdict(app_metrics) if app_metrics else {}\n                }\n                \n                # 发送指标\n                self.send_metrics(metrics_data)\n                \n                # 检查告警\n                self.check_alerts(metrics_data)\n                \n                # 等待下次收集\n                time.sleep(self.config.get('collect_interval', 60))\n                \n            except KeyboardInterrupt:\n                logger.info(\"监控Agent停止\")\n                break\n            except Exception as e:\n                logger.error(f\"监控循环异常: {e}\")\n                time.sleep(10)\n\ndef main():\n    # 配置\n    config = {\n        'host_name': os.getenv('HOSTNAME', 'unknown'),\n        'app_url': os.getenv('APP_URL', 'http://localhost:8080'),\n        'metrics_endpoint': os.getenv('METRICS_ENDPOINT', 'http://prometheus:9090/api/v1/write'),\n        'alerts_endpoint': os.getenv('ALERTS_ENDPOINT', 'http://alertmanager:9093/api/v1/alerts'),\n        'collect_interval': int(os.getenv('COLLECT_INTERVAL', '60'))\n    }\n    \n    agent = MonitoringAgent(config)\n    agent.run()\n\nif __name__ == '__main__':\n    main()\n```\n\n### 4.2 告警系统实现\n\n#### 4.2.1 告警规则配置\n\n```yaml\n# Prometheus告警规则\ngroups:\n  - name: application_alerts\n    rules:\n      - alert: HighResponseTime\n        expr: histogram_quantile(0.95, http_request_duration_seconds) > 2\n        for: 5m\n        labels:\n          severity: warning\n        annotations:\n          summary: \"High response time detected\"\n          description: \"95th percentile response time is {{ ",
+          "severity": "warning",
+          "suggestion": ""
+        },
+        {
+          "type": "math_formulas",
+          "description": "LaTeX语法可能有问题: value }}%\"\n```\n\n#### 4.2.2 告警通知配置\n\n```yaml\n# AlertManager配置\nglobal:\n  resolve_timeout: 5m\n  slack_api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'\n\nroute:\n  group_by: ['alertname', 'cluster', 'service']\n  group_wait: 30s\n  group_interval: 5m\n  repeat_interval: 4h\n  receiver: 'web.hook'\n  routes:\n    - match:\n        severity: critical\n      receiver: 'slack.critical'\n      continue: true\n    - match:\n        severity: warning\n      receiver: 'slack.warning'\n\nreceivers:\n  - name: 'web.hook'\n    webhook_configs:\n      - url: 'http://127.0.0.1:5001/'\n  \n  - name: 'slack.critical'\n    slack_configs:\n      - channel: '#alerts-critical'\n        title: 'Critical Alert'\n        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'\n        color: 'danger'\n  \n  - name: 'slack.warning'\n    slack_configs:\n      - channel: '#alerts-warning'\n        title: 'Warning Alert'\n        text: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'\n        color: 'warning'\n\ninhibit_rules:\n  - source_match:\n      severity: 'critical'\n    target_match:\n      severity: 'warning'\n    equal: ['alertname', 'dev', 'instance']\n```\n\n### 4.3 可视化仪表板\n\n#### 4.3.1 Grafana仪表板配置\n\n```json\n{\n  \"dashboard\": {\n    \"id\": null,\n    \"title\": \"Data Science Application Dashboard\",\n    \"tags\": [\"data-science\", \"monitoring\"],\n    \"timezone\": \"browser\",\n    \"panels\": [\n      {\n        \"id\": 1,\n        \"title\": \"Response Time\",\n        \"type\": \"graph\",\n        \"targets\": [\n          {\n            \"expr\": \"histogram_quantile(0.95, http_request_duration_seconds)\",\n            \"legendFormat\": \"95th percentile\"\n          },\n          {\n            \"expr\": \"histogram_quantile(0.50, http_request_duration_seconds)\",\n            \"legendFormat\": \"50th percentile\"\n          }\n        ],\n        \"yAxes\": [\n          {\n            \"label\": \"Response Time (seconds)\",\n            \"min\": 0\n          }\n        ]\n      },\n      {\n        \"id\": 2,\n        \"title\": \"Request Rate\",\n        \"type\": \"graph\",\n        \"targets\": [\n          {\n            \"expr\": \"rate(http_requests_total[5m])\",\n            \"legendFormat\": \"{{method}} {{endpoint}}\"\n          }\n        ],\n        \"yAxes\": [\n          {\n            \"label\": \"Requests per second\",\n            \"min\": 0\n          }\n        ]\n      },\n      {\n        \"id\": 3,\n        \"title\": \"Error Rate\",\n        \"type\": \"graph\",\n        \"targets\": [\n          {\n            \"expr\": \"rate(http_requests_total{status=~\\\"5..\\\"}[5m]) / rate(http_requests_total[5m])\",\n            \"legendFormat\": \"Error Rate\"\n          }\n        ],\n        \"yAxes\": [\n          {\n            \"label\": \"Error Rate\",\n            \"min\": 0,\n            \"max\": 1\n          }\n        ]\n      },\n      {\n        \"id\": 4,\n        \"title\": \"CPU Usage\",\n        \"type\": \"graph\",\n        \"targets\": [\n          {\n            \"expr\": \"100 - (avg by(instance) (irate(node_cpu_seconds_total{mode=\\\"idle\\\"}[5m])) * 100)\",\n            \"legendFormat\": \"CPU Usage\"\n          }\n        ],\n        \"yAxes\": [\n          {\n            \"label\": \"CPU Usage (%)\",\n            \"min\": 0,\n            \"max\": 100\n          }\n        ]\n      }\n    ],\n    \"time\": {\n      \"from\": \"now-1h\",\n      \"to\": \"now\"\n    },\n    \"refresh\": \"30s\"\n  }\n}\n```\n\n## 5. 最佳实践\n\n### 5.1 监控策略\n\n#### 5.1.1 监控指标选择\n\n```yaml\nmonitoring_strategy:\n  golden_signals:\n    - latency: \"响应时间\"\n    - traffic: \"流量\"\n    - errors: \"错误率\"\n    - saturation: \"饱和度\"\n  \n  business_metrics:\n    - user_engagement: \"用户参与度\"\n    - conversion_rate: \"转化率\"\n    - revenue: \"收入\"\n    - customer_satisfaction: \"客户满意度\"\n  \n  technical_metrics:\n    - cpu_usage: \"CPU使用率\"\n    - memory_usage: \"内存使用率\"\n    - disk_io: \"磁盘IO\"\n    - network_io: \"网络IO\"\n```\n\n#### 5.1.2 告警策略\n\n```yaml\nalerting_strategy:\n  alert_thresholds:\n    warning:\n      response_time: \"> 1s\"\n      error_rate: \"> 1%\"\n      cpu_usage: \"> 70%\"\n    \n    critical:\n      response_time: \"> 5s\"\n      error_rate: \"> 10%\"\n      cpu_usage: \"> 90%\"\n  \n  alert_grouping:\n    group_by: [\"alertname\", \"service\", \"instance\"]\n    group_wait: \"30s\"\n    group_interval: \"5m\"\n    repeat_interval: \"4h\"\n```\n\n### 5.2 性能优化\n\n#### 5.2.1 数据存储优化\n\n```sql\n-- 时序数据优化\n-- 1. 分区表\nCREATE TABLE metrics_partitioned (\n    timestamp TIMESTAMPTZ NOT NULL,\n    metric_name TEXT NOT NULL,\n    value DOUBLE PRECISION NOT NULL\n) PARTITION BY RANGE (timestamp);\n\n-- 2. 压缩\nCREATE TABLE metrics_compressed (\n    LIKE metrics_partitioned INCLUDING ALL\n) WITH (compression = true);\n\n-- 3. 索引优化\nCREATE INDEX CONCURRENTLY idx_metrics_time_name \nON metrics_partitioned (timestamp, metric_name);\n\n-- 4. 数据保留策略\nCREATE OR REPLACE FUNCTION cleanup_old_metrics()\nRETURNS void AS ",
+          "severity": "warning",
+          "suggestion": ""
         }
       ]
     },
