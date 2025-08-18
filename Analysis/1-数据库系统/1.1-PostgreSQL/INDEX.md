@@ -12,6 +12,8 @@
 - [1.1.21 PostgreSQL 2025最新特性全面分析](./1.1.21-PostgreSQL-2025最新特性全面分析.md)
 - [1.1.22 PostgreSQL 2025代码实现与形式证明](./1.1.22-PostgreSQL-2025代码实现与形式证明.md)
 - [1.1.144 PostgreSQL 2025年新特性深度分析](./1.1.144-PostgreSQL-2025年新特性深度分析.md)
+- [1.1.145 PostgreSQL 2025特性-落地指南与实操](./1.1.145-PostgreSQL-2025特性-落地指南与实操.md)
+- [1.1.146 PostgreSQL 2025 实验与基准](./1.1.146-PostgreSQL-2025-实验与基准.md)
 - [1.1.25 形式语言与证明：总论](./1.1.25-形式语言与证明-总论.md)
 - [1.1.26 查询语言的形式语义与等价律](./1.1.26-查询语言的形式语义与等价律.md)
 - [1.1.27 事务隔离与MVCC：统一形式模型与完备性证明](./1.1.27-事务隔离与MVCC-统一形式模型与完备性证明.md)
@@ -271,7 +273,7 @@
 - [PostgreSQL 2025性能优化](./1.1.22-PostgreSQL-2025代码实现与形式证明.md#4-性能优化实践)
 - [智能客服系统](./1.1.22-PostgreSQL-2025代码实现与形式证明.md#53-智能客服系统)
 - [混合推荐架构](./1.1.22-PostgreSQL-2025代码实现与形式证明.md#51-推荐系统实现)
-- [实验与基准](./1.1.24-PostgreSQL-2025实验与基准.md)
+- [实验与基准](./1.1.146-PostgreSQL-2025-实验与基准.md)
 - [2025特性落地指南与实操](./1.1.145-PostgreSQL-2025特性-落地指南与实操.md)
 
 ## 交叉主题导航
@@ -286,3 +288,5 @@
 ### 语言与国际化
 
 - [EN: 1.1.144 PostgreSQL 2025 Features Deep Analysis](../../en-US/1-database-systems/1.1-postgresql/1.1.144-postgresql-2025-features-deep-analysis.md)
+- [EN: 1.1.145 PostgreSQL 2025 Features — Deployment Guide and Operations](../../en-US/1-database-systems/1.1-postgresql/1.1.145-postgresql-2025-features-deployment-guide-and-operations.md)
+- [EN: 1.1.146 PostgreSQL 2025 — Experiments and Benchmarks](../../en-US/1-database-systems/1.1-postgresql/1.1.146-postgresql-2025-experiments-and-benchmarks.md)

@@ -1,0 +1,103 @@
+name: Benchmarks and Visualization
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0'
+
+jobs:
+  benchmarks:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" \
+          --health-interval 10s \
+          --health-timeout 5s \
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Wait for Postgres to be ready
+        env:
+          PG_URL: postgres://postgres:postgres@localhost:5432/postgres
+        run: |
+          python - << 'PY'
+          import os, time
+          import psycopg2
+          url = os.environ['PG_URL']
+          deadline = time.time() + 60
+          last_err = None
+          while time.time() < deadline:
+            try:
+              conn = psycopg2.connect(url)
+              conn.close()
+              print('Postgres is ready')
+              break
+            except Exception as e:
+              last_err = e
+              time.sleep(2)
+          else:
+            raise SystemExit(f'Postgres not ready: {last_err}')
+          PY
+
+      - name: Run stream benchmark
+        env:
+          PG_URL: postgres://postgres:postgres@localhost:5432/postgres
+          EVENT_RATE: '1000'
+          DURATION_S: '5'
+          WINDOW_SEC: '30'
+        run: |
+          python benchmarks/bench_stream.py > bench_stream.json
+          cat bench_stream.json
+
+      - name: Run inference benchmark
+        env:
+          PG_URL: postgres://postgres:postgres@localhost:5432/postgres
+          MODEL: sentiment_analyzer
+          NQ: '500'
+          BATCH: '4'
+        run: |
+          python benchmarks/bench_inference.py > bench_infer.json
+          cat bench_infer.json
+
+      - name: Aggregate and plot
+        run: |
+          mkdir -p results
+          python benchmarks/aggregate_results.py results/all.csv bench_stream.json bench_infer.json
+          python benchmarks/plot_results.py bench_stream.json bench_infer.json
+          ls -l . *.html || true
+          ls -l results || true
+
+      - name: Upload benchmark artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmarks-latest
+          path: |
+            bench_stream.json
+            bench_infer.json
+            results/all.csv
+            p50_ms.html
+            p95_ms.html
+            p99_ms.html
+            avg_ms.html
+            throughput_qps.html 

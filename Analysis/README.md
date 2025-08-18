@@ -299,3 +299,19 @@ graph TB
 - [Matter目录](../Matter/)
 - [知识导航索引](知识导航索引.md)
 - [重构成果总结](重构成果总结.md)
+
+## 📊 基准可视化产物
+
+- 运行完成后，可直接在浏览器打开以下文件（仓库根目录）：
+  - [p50_ms.html](../p50_ms.html)
+  - [p95_ms.html](../p95_ms.html)
+  - [p99_ms.html](../p99_ms.html)
+  - [avg_ms.html](../avg_ms.html)
+  - [throughput_qps.html](../throughput_qps.html)
+
+## ⚙️ CI 工作流
+
+- 质量检查：`.github/workflows/quality-check.yml`
+  - 输出：`Analysis/quality_report_latest.json`（并作为构建工件上传）
+- 基准测试与可视化：`.github/workflows/benchmarks.yml`
+  - 输出：根目录 HTML（`p50_ms.html` 等）与 `bench_stream.json`、`bench_infer.json`、`results/all.csv`（作为工件上传）

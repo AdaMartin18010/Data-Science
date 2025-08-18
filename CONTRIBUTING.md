@@ -28,6 +28,21 @@
 - 生成结果：`bench_stream.json`、`bench_infer.json`
 - 汇总：`python benchmarks/aggregate_results.py bench.csv bench_stream.json bench_infer.json`
 
+## 基准CI工作流与产物规范
+
+- 工作流：`.github/workflows/benchmarks.yml`
+- 触发：手动（workflow_dispatch）与每周定时（UTC 周日 03:00）
+- 环境：GitHub Actions ubuntu-latest + `postgres:16` 服务容器
+- 步骤：
+  - 运行 `benchmarks/bench_stream.py` 输出 `bench_stream.json`
+  - 运行 `benchmarks/bench_inference.py` 输出 `bench_infer.json`
+  - `benchmarks/aggregate_results.py` 写入 `results/all.csv`
+  - `benchmarks/plot_results.py` 生成根目录 HTML：`p50_ms.html`、`p95_ms.html`、`p99_ms.html`、`avg_ms.html`、`throughput_qps.html`
+- 产物上传：通过 `actions/upload-artifact` 归档（名称：`benchmarks-latest`）
+- 贡献要求：
+  - 不修改上述产物文件名与生成位置
+  - 新增基准需复用同一聚合与可视化脚本，或在 PR 中同步更新说明与导航链接
+
 ## 提交前检查
 
 - 标题层级连续、无跳跃
