@@ -1,4 +1,33 @@
-# PostgreSQL 知识体系 - 导航
+# 1.1-PostgreSQL 项目导航
+
+## 目录速览
+
+- runbook：运维执行手册
+  - 01-性能调优-变更闭环.md
+  - 02-监控与诊断-落地指南.md
+  - 03-集群与高可用-演练SOP.md
+  - 04-向量检索与混合查询-落地指南.md
+  - 05-图数据库与Cypher-落地指南.md
+- spec：规范与模板
+  - 参数模板与负载画像.md
+- sql：常用SQL脚本
+  - diagnostics.sql
+  - tuning_examples.sql
+  - vector_examples.sql
+  - graph_examples.sql
+- bench：压测模板
+  - pgbench-模板.md
+- cases：案例库
+  - 性能问题-案例库.md
+
+## 交叉引用
+
+- `04-部署运维/04.06-性能调优实践.md`
+- `04-部署运维/04.04-监控与诊断.md`
+- `04-部署运维/04.02-集群部署与高可用.md`
+- `03-高级特性/*`
+
+## PostgreSQL 知识体系 - 导航
 
 ## 项目概览
 
