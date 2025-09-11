@@ -8,17 +8,27 @@
   - 03-集群与高可用-演练SOP.md
   - 04-向量检索与混合查询-落地指南.md
   - 05-图数据库与Cypher-落地指南.md
+  - 06-日志与可观测性-落地指南.md
+  - README.md（索引）
 - spec：规范与模板
   - 参数模板与负载画像.md
+  - 变更票据模板.md
+  - README.md（索引）
 - sql：常用SQL脚本
   - diagnostics.sql
   - tuning_examples.sql
   - vector_examples.sql
   - graph_examples.sql
+  - ha_monitoring.sql
+  - README.md（索引）
 - bench：压测模板
   - pgbench-模板.md
+  - 混合查询-基准模板.md
+  - 复制延迟-基准模板.md
+  - README.md（索引）
 - cases：案例库
   - 性能问题-案例库.md
+  - README.md（索引）
 
 ## 交叉引用
 
