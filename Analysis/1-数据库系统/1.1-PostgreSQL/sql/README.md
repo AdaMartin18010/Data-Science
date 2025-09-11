@@ -5,5 +5,3 @@
 - vector_examples.sql：向量与混合检索示例
 - graph_examples.sql：图与递归示例
 - ha_monitoring.sql：复制与高可用监控
-
-
