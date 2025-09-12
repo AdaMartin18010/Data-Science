@@ -1,3 +1,13 @@
+---
+title: PostgreSQL重构完成报告-2025-09
+slug: PostgreSQL重构完成报告-2025-09
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL 重构完成报告（2025-09）
 
 ## 一、概述

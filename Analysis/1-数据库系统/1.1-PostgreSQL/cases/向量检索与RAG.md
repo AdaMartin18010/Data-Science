@@ -1,3 +1,13 @@
+---
+title: 向量检索与RAG
+slug: 向量检索与RAG
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # 案例：向量检索与 RAG（占位）
 
 ## 架构

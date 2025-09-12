@@ -1,3 +1,13 @@
+---
+title: README
+slug: README
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # Feature Tests (PostgreSQL 17.x)
 
 占位目录：存放 17.x 新特性的示例与回归 SQL。
@@ -8,6 +18,10 @@
 - merge_returning.sql
 - logical_rep_setup.sql
 - explain_memory.sql
+-- 安全相关
+- security_rls.sql
+- security_audit.sql
+- security_crypto.sql
 
 用法建议：
 
@@ -23,4 +37,9 @@ psql -f explain_memory.sql
 
 # 逻辑复制示意（需按环境修改连接串后执行）
 psql -f logical_rep_setup.sql
+
+# 安全特性（示例）
+psql -f security_rls.sql
+psql -f security_audit.sql
+psql -f security_crypto.sql
 ```

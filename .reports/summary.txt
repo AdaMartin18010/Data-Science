@@ -1,0 +1,6 @@
+headings_total_lines=5250
+todos_total_lines=437
+duplicates_total_lines=140
+codeblocks_total_lines=3130
+with_frontmatter_files=313
+missing_frontmatter_files=1

@@ -1,3 +1,13 @@
+---
+title: 05-图数据库与Cypher-落地指南
+slug: 05-图数据库与Cypher-落地指南
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # 图数据库与 Cypher - 落地指南（Runbook）
 
 对齐：`03-高级特性/03.06-图数据库功能.md`

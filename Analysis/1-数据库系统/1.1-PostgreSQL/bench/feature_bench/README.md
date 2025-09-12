@@ -1,3 +1,13 @@
+---
+title: README
+slug: README
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # Feature Benchmarks (PostgreSQL 17.x)
 
 占位目录：记录针对 17.x 特性的微基准方法与观测要点。

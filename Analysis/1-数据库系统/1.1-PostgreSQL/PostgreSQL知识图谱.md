@@ -1,3 +1,13 @@
+---
+title: PostgreSQL知识图谱
+slug: PostgreSQL知识图谱
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL知识图谱
 
 ## 1. 概述

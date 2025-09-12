@@ -1,0 +1,140 @@
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.125-数据库数据编排模型-编排成本与资源优化的形式化.md:24:权衡：冷热分层、预留+按需、压缩与归档、网络跨区成本。
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.125-数据库数据编排模型-编排成本与资源优化的形式化.md:29:- 归档与TTL：降低存储成本；
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.127-数据库数据编排模型-编排创新与前沿技术的形式化.md:35:- `1.1.4-查询优化-增强版.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.133-数据库系统生态总结-开源生态与产业发展的形式化.md:21:- 发行：企业增强版、云RDS；
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.14-实时流处理与CEP-扩充版.md:589:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.14-实时流处理与CEP-扩充版.md:590:- [PostgreSQL性能调优](1.1.16-性能调优与监控-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.149-PostgreSQL-2025全栈特性与部署方式深度分析.md:670:    B --> E[WAL归档]
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署-扩充版.md:1297:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:3:> **注意**：本文档已扩充为详细版本，请查看 [云原生与容器化部署深度指南](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:22:- [理论基础](1.1.15-云原生与容器化部署-扩充版.md#2-理论基础)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:23:- [容器化技术](1.1.15-云原生与容器化部署-扩充版.md#3-容器化技术)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:24:- [Kubernetes部署](1.1.15-云原生与容器化部署-扩充版.md#5-kubernetes部署)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:25:- [高可用架构](1.1.15-云原生与容器化部署-扩充版.md#6-高可用架构)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:26:- [性能优化](1.1.15-云原生与容器化部署-扩充版.md#7-性能优化)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:27:- [行业应用案例](1.1.15-云原生与容器化部署-扩充版.md#10-行业应用案例)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:33:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.15-云原生与容器化部署.md:40:**详细版本**：[云原生与容器化部署深度指南](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控-扩充版.md:1000:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控-扩充版.md:1001:- [PostgreSQL云原生部署](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控-扩充版.md:1002:- [PostgreSQL安全与合规](1.1.17-安全与合规-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:3:> **注意**：本文档已扩充为详细版本，请查看 [性能调优与监控深度指南](1.1.16-性能调优与监控-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:20:- [性能理论基础](1.1.16-性能调优与监控-扩充版.md#2-性能理论基础)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:21:- [参数调优](1.1.16-性能调优与监控-扩充版.md#3-参数调优)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:22:- [索引优化](1.1.16-性能调优与监控-扩充版.md#4-索引优化)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:23:- [查询优化](1.1.16-性能调优与监控-扩充版.md#5-查询优化)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:24:- [监控系统](1.1.16-性能调优与监控-扩充版.md#6-监控系统)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:25:- [性能诊断](1.1.16-性能调优与监控-扩充版.md#7-性能诊断)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:31:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:32:- [PostgreSQL云原生部署](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:33:- [PostgreSQL安全与合规](1.1.17-安全与合规-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.16-性能调优与监控.md:38:**详细版本**：[性能调优与监控深度指南](1.1.16-性能调优与监控-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规-扩充版.md:804:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规-扩充版.md:805:- [PostgreSQL云原生部署](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:3:> **注意**：本文档已扩充为详细版本，请查看 [安全与合规深度指南](1.1.17-安全与合规-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:20:- [安全理论基础](1.1.17-安全与合规-扩充版.md#2-安全理论基础)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:21:- [身份认证与授权](1.1.17-安全与合规-扩充版.md#3-身份认证与授权)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:22:- [数据加密](1.1.17-安全与合规-扩充版.md#4-数据加密)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:23:- [审计与监控](1.1.17-安全与合规-扩充版.md#5-审计与监控)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:24:- [合规标准](1.1.17-安全与合规-扩充版.md#6-合规标准)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:25:- [行业应用](1.1.17-安全与合规-扩充版.md#7-行业应用)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:31:- [PostgreSQL查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:32:- [PostgreSQL云原生部署](1.1.15-云原生与容器化部署-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.17-安全与合规.md:38:**详细版本**：[安全与合规深度指南](1.1.17-安全与合规-扩充版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.2-系统架构.md:29:- 持久化：WAL、检查点、崩溃恢复、归档；
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.4-查询优化-增强版.md:1:# PostgreSQL查询优化器 - 2025增强版
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.86-数据库日志压缩-增量编码与压缩率优化.md:15:- 目标：面向WAL/归档日志，采用增量编码与词典/块压缩提升压缩率与解压性能。
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.86-数据库日志压缩-增量编码与压缩率优化.md:35:- 压缩算法：权衡 gzip/zstd/lz4 的压缩率与CPU开销；归档多用zstd。
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.87-数据库分区策略-负载均衡与查询优化的权衡.md:46:- 选择分区键：首先匹配最高频筛选列（通常为时间），并与归档/冷热分层策略一致。
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.88-数据库备份与恢复-增量备份与时间点恢复的优化.md:27:# 2) 持续归档WAL（postgresql.conf）
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.88-数据库备份与恢复-增量备份与时间点恢复的优化.md:38:- 基线频率：按变更率与存储成本选择（周/双周）；高变更场景提高归档粒度。
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.89-数据库监控与诊断-性能瓶颈检测与根因分析.md:49:- `1.1.4-查询优化-增强版.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.91-数据库审计与合规-完整性约束与审计轨迹的形式化.md:56:- 保留策略：分层留存（热/温/冷）、到期归档与删除；
+Analysis\1-数据库系统\1.1-PostgreSQL\1.1.96-数据库时序数据模型-时间序列分析与预测的形式化.md:39:- 分区与压缩：按时间分区；使用 TOAST/压缩扩展；冷热分层与TTL归档。
+Analysis\1-数据库系统\1.1-PostgreSQL\100%完成执行计划.md:186:**目标**: 完善`1.1.4-查询优化-增强版.md`（当前119KB，需要质量提升）
+Analysis\1-数据库系统\1.1-PostgreSQL\INDEX-重构版.md:223:- ✅ 整合重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL内容质量分析与改进方案.md:28:- **1.1.14-实时流处理与CEP-扩充版.md**：内容较多但结构需要优化
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构完成报告-2025-09.md:24:- 批量归档重复与过时文档至 `99-归档/重复内容`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构完成报告-2025-09.md:27:## 三、合并与归档
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构完成报告-2025-09.md:30:- 已移动文件：11 个代表性重复文件至归档
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构完成报告-2025-09.md:31:- 归档总表：`99-归档/归档计划与映射.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:34:mkdir -p "99-归档/旧版文档"
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:35:mkdir -p "99-归档/重复内容"
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:36:mkdir -p "99-归档/过时文件"
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:128:#### 4.3 归档处理
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:130:- [ ] 将旧版文档移至`99-归档/旧版文档/`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:131:- [ ] 将重复内容移至`99-归档/重复内容/`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:132:- [ ] 将过时文件移至`99-归档/过时文件/`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:136:### 重复内容处理清单
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:169:- [ ] `1.1.4-查询优化-增强版.md` → 合并
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:170:- [ ] `1.1.4-查询优化-增强版.md` → 合并
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL重构实施计划.md:266:1. ✅ 所有重复内容已合并
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:17:1. **文件数量过多**: 122个文件，存在大量重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:23:### 重复内容统计
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:37:4. **内容去重**: 合并重复内容，保留最佳版本
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:102:└── 99-归档/
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:104:    ├── 重复内容/
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:110:### 重复内容处理
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:143:- `1.1.4-查询优化-增强版.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目全面重新梳理方案.md:210:4. **处理重复内容合并**
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目重构完成报告-最终版.md:17:- 整合重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目重构完成报告-最终版.md:159:- **重复消除**: 合并了30%的重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\PostgreSQL项目重构完成报告.md:181:- 识别并消除重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\quality_report.json:89:      "file_path": "1.1.14-实时流处理与CEP-扩充版.md",
+Analysis\1-数据库系统\1.1-PostgreSQL\quality_report.json:145:      "file_path": "1.1.15-云原生与容器化部署-扩充版.md",
+Analysis\1-数据库系统\1.1-PostgreSQL\quality_report.json:167:      "file_path": "1.1.16-性能调优与监控-扩充版.md",
+Analysis\1-数据库系统\1.1-PostgreSQL\quality_report.json:185:      "file_path": "1.1.17-安全与合规-扩充版.md",
+Analysis\1-数据库系统\1.1-PostgreSQL\README.md:168:    I --> J[对象存储<br>WAL归档]
+Analysis\1-数据库系统\1.1-PostgreSQL\README.md:246:- [1.1.4 查询优化](./1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\README.md:289:- [1.1.4-查询优化](1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\README.md:347:├── 1.1.4-查询优化-增强版.md            # PostgreSQL查询优化
+Analysis\1-数据库系统\1.1-PostgreSQL\批判性评价总结报告.md:47:- 1.1.14-实时流处理与CEP-扩充版.md
+Analysis\1-数据库系统\1.1-PostgreSQL\重构方案设计.md:132:### 1. 重复内容处理
+Analysis\1-数据库系统\1.1-PostgreSQL\重构方案设计.md:156:1. 识别和合并重复内容
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\INDEX-入口.md:66:- 查询优化主参阅：[1.1.4-查询优化-增强版.md](../1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\INDEX-重构版.md:14:  - 查询优化（主参阅） → [1.1.4-查询优化-增强版.md](../1.1.4-查询优化-增强版.md)
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\INDEX-重构版.md:68:- 查询优化主参阅：`1.1.4-查询优化-增强版.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\README.md:76:- 归档计划：见 `99-归档/归档计划与映射.md`
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\对齐与升级计划.md:88:   - 金融（账务一致、审计轨迹、分区归档）、电商（促销与并发）、实时流（流式ETL+物化视图）、
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\对齐与升级计划.md:110:- `99-归档/变更记录/`（Changelog 与差异对照）
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\对齐追踪矩阵.md:19:| 优化器 | 代价模型/统计/重写 | `1.1.4-查询优化-增强版.md`、`1.1.49-选择率估计误差-敏感性与上界.md`、`1.1.82-索引选择与代价模型-多目标优化的Pareto最优性.md`、`1.1.80-查询重写等价性-基于同构的充分必要条件.md` | 新特性与 JSON/MERGE 影响 | 待办 |
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\对齐追踪矩阵.md:56:| IN 子句 + B-Tree 优化 | `bench/feature_bench/in_clause_btree.md` | `1.1.4-查询优化-增强版.md`、`1.1.82-索引选择与代价模型-多目标优化的Pareto最优性.md` | 进行中 |
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\对齐追踪矩阵.md:58:| EXPLAIN 扩展（SERIALIZE/MEMORY） | `sql/feature_tests/explain_memory.sql` | `1.1.4-查询优化-增强版.md` | 进行中 |
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\规范-命名与分组.md:38:- 同主题存在“完整版/增强版/规范版”，保留一份为“主参阅”，其余在开头注明“从属/扩展”。
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\规范-命名与分组.md:39:- 重复内容以“主文档 + 附录链接”收敛，避免两处并行维护。
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\课程对齐映射.md:36:| UCB CS186 | Query Optimization | `1.1.4-查询优化-增强版.md`、`1.1.82-索引选择...md` | `bench/in_clause_btree.md` | 增补误差观测模板 |
+Analysis\1-数据库系统\1.1-PostgreSQL\00-项目导航\贡献指南.md:68:- 若与现有内容重叠：整理为“合并来源与映射”，并更新归档计划
+Analysis\1-数据库系统\1.1-PostgreSQL\01-核心基础\01.06-存储管理与数据持久化.md:235:### 5.2 WAL归档
+Analysis\1-数据库系统\1.1-PostgreSQL\01-核心基础\01.06-存储管理与数据持久化.md:238:-- WAL归档配置
+Analysis\1-数据库系统\1.1-PostgreSQL\01-核心基础\01.06-存储管理与数据持久化.md:243:-- 查看归档状态
+Analysis\1-数据库系统\1.1-PostgreSQL\01-核心基础\01.06-存储管理与数据持久化.md:246:-- 手动归档
+Analysis\1-数据库系统\1.1-PostgreSQL\02-查询处理\02.01-查询优化器原理.md:485:- 1.1.4-查询优化-增强版.md
+Analysis\1-数据库系统\1.1-PostgreSQL\02-查询处理\02.01-查询优化器原理.md:486:- 1.1.4-查询优化-增强版.md
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.01-单机部署与配置.md:20:- 1.1.16-性能调优与监控-扩充版.md（相关配置）
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.03-云原生与容器化.md:19:- 1.1.15-云原生与容器化部署-扩充版.md
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.05-备份与恢复.md:16:- 物理备份：`pg_basebackup` + WAL 归档，适合大规模与PITR；
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.05-备份与恢复.md:29:## 3. 物理备份与WAL归档
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.05-备份与恢复.md:32:# 开启归档（postgresql.conf）
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.05-备份与恢复.md:59:- 复位：完成后清理恢复参数，确保后续正常归档。
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.05-备份与恢复.md:78:- 归档堵塞：监控 `archiver` 失败，检查归档目录容量与权限；
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.06-性能调优实践.md:20:- 1.1.16-性能调优与监控-扩充版.md
+Analysis\1-数据库系统\1.1-PostgreSQL\04-部署运维\04.06-性能调优实践.md:131:- 冷热分层：热表热索引置高速盘，历史分区迁移冷盘；归档表使用压缩与只读策略。
+Analysis\1-数据库系统\1.1-PostgreSQL\05-前沿技术\05.02-AI模型深度集成.md:711:- [ ] 安全、审计与合规模块归档到 04.* 交叉
+Analysis\1-数据库系统\1.1-PostgreSQL\06-形式化理论\06.04-查询优化理论.md:21:- 1.1.4-查询优化-增强版.md / 02-查询处理交叉
+Analysis\1-数据库系统\1.1-PostgreSQL\07-应用实践\07.04-内容管理系统.md:24:- 发布工作流：草稿 → 审核 → 发布 → 归档
+Analysis\1-数据库系统\1.1-PostgreSQL\07-应用实践\07.04-内容管理系统.md:70:- 归档：按月份分区或迁移归档表。
+Analysis\1-数据库系统\1.1-PostgreSQL\08-工具资源\08.04-最佳实践总结.md:38:- 备份策略：全量 + WAL 归档 + 演练；
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:2:title: 归档计划与映射
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:3:slug: 归档计划与映射
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:11:# 归档计划与映射
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:15:- 固化“源文档 → 目标整合文档”的映射，分流至：保留/合并/归档。
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:20:- 合并：内容将迁移至目标文档后归档源
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:21:- 归档：过时/重复/被整合的旧文档
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:39:  - 1.1.4 / 1.1.4-增强版 / 1.1.7 / 1.1.148 / 1.1.49
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:49:- 迁移完成后：源文档移动至 `99-归档/重复内容/` 并在首行注明“已合并至 <目标> 于 <日期>”。
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\归档计划与映射.md:50:- 若仅保留少量独特内容：摘录入目标并在源保留短链接，源移至 `99-归档/旧版文档/`。
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\重复内容\1.1.2-系统架构.md:263:- WAL归档：持续归档WAL段用于时间点恢复
+Analysis\1-数据库系统\1.1-PostgreSQL\99-归档\重复内容\1.1.4-查询优化-增强版.md:3:# PostgreSQL查询优化器 - 2025增强版
+Analysis\1-数据库系统\1.1-PostgreSQL\runbook\增量备份与恢复.md:15:利用 `pg_basebackup` 增量能力与归档 WAL，构建可演练的恢复流程。
+Analysis\1-数据库系统\1.1-PostgreSQL\runbook\增量备份与恢复.md:19:- 配置归档（archive_mode、archive_command）、保留策略、监控告警。
+Analysis\1-数据库系统\1.1-PostgreSQL\runbook\增量备份与恢复.md:25:3. 增量备份（占位）：基于起始/结束 LSN 的增量区段与归档 WAL 一并保存

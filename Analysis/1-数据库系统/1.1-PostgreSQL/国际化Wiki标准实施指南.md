@@ -1,3 +1,13 @@
+---
+title: 国际化Wiki标准实施指南
+slug: 国际化Wiki标准实施指南
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL国际化Wiki标准实施指南
 
 ## 1. 概述

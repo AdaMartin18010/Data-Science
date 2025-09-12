@@ -1,3 +1,13 @@
+---
+title: INDEX
+slug: INDEX
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL 数据库系统分析文档全局索引
 
 ## 主题导航

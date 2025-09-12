@@ -1,3 +1,13 @@
+---
+title: PostgreSQL内容质量分析与改进方案
+slug: PostgreSQL内容质量分析与改进方案
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL内容质量分析与改进方案
 
 ## 1. 当前内容质量状况分析

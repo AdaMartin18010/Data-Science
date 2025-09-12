@@ -1,3 +1,13 @@
+---
+title: PostgreSQL改进实施指南
+slug: PostgreSQL改进实施指南
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # PostgreSQL改进实施指南
 
 ## 1. 立即行动项目

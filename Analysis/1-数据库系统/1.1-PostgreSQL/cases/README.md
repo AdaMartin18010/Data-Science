@@ -1,3 +1,13 @@
+---
+title: README
+slug: README
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # 案例库索引
 
 - 性能问题-案例库.md（问题→证据→变更→效果→防再发）

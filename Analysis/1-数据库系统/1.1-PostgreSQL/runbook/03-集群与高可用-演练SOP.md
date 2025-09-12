@@ -1,3 +1,13 @@
+---
+title: 03-集群与高可用-演练SOP
+slug: 03-集群与高可用-演练SOP
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # 集群与高可用-演练SOP（Runbook）
 
 参考：`04-部署运维/04.02-集群部署与高可用.md`

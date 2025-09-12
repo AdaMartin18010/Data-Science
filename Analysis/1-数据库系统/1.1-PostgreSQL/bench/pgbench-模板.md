@@ -1,3 +1,13 @@
+---
+title: pgbench-模板
+slug: pgbench-模板
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # pgbench 压测模板
 
 ## 1. 初始化

@@ -1,3 +1,13 @@
+---
+title: vacuum_memory_throughput
+slug: vacuum_memory_throughput
+tags: []
+pg_version: 16
+status: draft
+last_review: 2025-09-12
+owner: TBD
+---
+
 # VACUUM 内存/吞吐微基准（占位）
 
 ## 目的
