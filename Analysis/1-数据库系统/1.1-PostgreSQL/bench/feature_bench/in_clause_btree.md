@@ -1,13 +1,3 @@
----
-title: in_clause_btree
-slug: in_clause_btree
-tags: []
-pg_version: 16
-status: draft
-last_review: 2025-09-12
-owner: TBD
----
-
 # IN 子句 + B-Tree 优化微基准（占位）
 
 ## 目的

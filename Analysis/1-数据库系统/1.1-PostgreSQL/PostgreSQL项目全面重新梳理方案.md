@@ -1,13 +1,3 @@
----
-title: PostgreSQL项目全面重新梳理方案
-slug: PostgreSQL项目全面重新梳理方案
-tags: []
-pg_version: 16
-status: draft
-last_review: 2025-09-12
-owner: TBD
----
-
 # PostgreSQL项目全面重新梳理方案
 
 ## 🎯 项目现状分析

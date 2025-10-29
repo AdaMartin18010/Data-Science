@@ -9,6 +9,7 @@
 ## 📋 学习目标
 
 完成本指南后，你将能够：
+
 - ✅ 在PostgreSQL中安装pgvector扩展
 - ✅ 创建包含向量列的表
 - ✅ 使用Python生成文本嵌入
@@ -20,11 +21,13 @@
 ## 🎯 前置要求
 
 ### 必需
+
 - PostgreSQL 15+ 或 16+
 - 基础SQL知识
 - Python 3.8+（用于生成嵌入）
 
 ### 可选
+
 - Docker（用于快速环境搭建）
 - 文本编辑器或IDE
 
@@ -57,6 +60,7 @@ docker exec -it postgres-ai psql -U postgres -d vectordb
 如果你已经有PostgreSQL，需要安装pgvector扩展：
 
 **Ubuntu/Debian**:
+
 ```bash
 # 安装编译工具
 sudo apt-get update
@@ -71,11 +75,13 @@ sudo make install
 ```
 
 **macOS (Homebrew)**:
+
 ```bash
 brew install pgvector
 ```
 
 **验证安装**:
+
 ```sql
 -- 连接到数据库
 psql -U postgres -d your_database
@@ -457,13 +463,14 @@ CREATE TABLE docs (
 
 ### Q2: HNSW vs IVFFlat如何选择？
 
-**A**: 
-- **HNSW**: 
+**A**:
+
+- **HNSW**:
   - ✅ 更高的召回率
   - ✅ 适合中小数据集 (<100万向量)
   - ❌ 内存占用较大
 
-- **IVFFlat**: 
+- **IVFFlat**:
   - ✅ 更快的索引构建
   - ✅ 适合大数据集 (>100万向量)
   - ❌ 需要调优`lists`和`probes`参数
@@ -473,12 +480,14 @@ CREATE TABLE docs (
 **可能原因**:
 
 1. **向量未归一化** (余弦相似度需要)
+
    ```python
    from sklearn.preprocessing import normalize
    embedding = normalize(model.encode(text).reshape(1, -1))[0]
    ```
 
 2. **索引参数不当**
+
    ```sql
    -- 增大ef_construction提升质量
    CREATE INDEX ... WITH (m = 16, ef_construction = 128);
@@ -505,6 +514,7 @@ GROUP BY id, title;
 2. **使用物化视图缓存常用查询**
 3. **分区大表**
 4. **监控查询性能**
+
    ```sql
    EXPLAIN ANALYZE
    SELECT ... FROM documents
@@ -517,16 +527,19 @@ GROUP BY id, title;
 ## 📚 参考资源
 
 ### 官方文档
+
 - [pgvector GitHub](https://github.com/pgvector/pgvector)
 - [PostgreSQL文档](https://www.postgresql.org/docs/)
 - [Sentence Transformers](https://www.sbert.net/)
 
 ### 本项目文档
+
 - [向量数据库支持](../03-高级特性/03.05-向量数据库支持.md)
 - [机器学习集成](../03-高级特性/03.04-机器学习集成.md)
 - [批判性评价报告](../PostgreSQL-AI集成批判性评价报告-2025-10.md)
 
 ### 外部资源
+
 - [Hugging Face Model Hub](https://huggingface.co/models) - 查找嵌入模型
 - [pgvector Examples](https://github.com/pgvector/pgvector-python) - Python示例
 - [Vector Database Comparison](https://benchmark.vectorview.ai/) - 向量数据库对比
@@ -538,17 +551,20 @@ GROUP BY id, title;
 ### 遇到问题？
 
 1. **检查环境**:
+
    ```bash
    psql --version  # PostgreSQL版本
    python --version  # Python版本
    ```
 
 2. **查看扩展**:
+
    ```sql
    SELECT * FROM pg_available_extensions WHERE name = 'vector';
    ```
 
 3. **查看日志**:
+
    ```bash
    # Docker
    docker logs postgres-ai
@@ -573,4 +589,3 @@ GROUP BY id, title;
 ---
 
 [返回导航](./README-AI集成评价.md) | [查看改进计划](./AI集成改进行动计划.md)
-

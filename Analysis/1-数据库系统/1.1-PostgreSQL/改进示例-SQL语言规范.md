@@ -1,13 +1,3 @@
----
-title: 改进示例-SQL语言规范
-slug: 改进示例-SQL语言规范
-tags: []
-pg_version: 16
-status: draft
-last_review: 2025-09-12
-owner: TBD
----
-
 # SQL语言规范 - 改进版
 
 ## 1. 定义与形式化

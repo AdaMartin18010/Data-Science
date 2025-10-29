@@ -1,13 +1,3 @@
----
-title: PostgreSQL-2025全栈分析完成报告
-slug: PostgreSQL-2025全栈分析完成报告
-tags: []
-pg_version: 16
-status: draft
-last_review: 2025-09-12
-owner: TBD
----
-
 # PostgreSQL 2025全栈分析完成报告
 
 ## 项目概述

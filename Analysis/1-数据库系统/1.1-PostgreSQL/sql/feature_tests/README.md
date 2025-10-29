@@ -1,13 +1,3 @@
----
-title: README
-slug: README
-tags: []
-pg_version: 16
-status: draft
-last_review: 2025-09-12
-owner: TBD
----
-
 # Feature Tests (PostgreSQL 17.x)
 
 占位目录：存放 17.x 新特性的示例与回归 SQL。
