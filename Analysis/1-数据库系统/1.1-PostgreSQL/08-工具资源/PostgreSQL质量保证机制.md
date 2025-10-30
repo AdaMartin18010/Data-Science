@@ -57,7 +57,7 @@ quality_metrics:
       - implementation: 20%
       - examples: 15%
       - references: 10%
-  
+
   technical_accuracy:
     weight: 0.30
     criteria:
@@ -65,14 +65,14 @@ quality_metrics:
       - theoretical_correctness: 25%
       - code_executability: 25%
       - performance_analysis: 20%
-  
+
   internationalization:
     weight: 0.25
     criteria:
       - bilingual_support: 40%
       - wiki_standards: 30%
       - wikidata_alignment: 30%
-  
+
   practical_value:
     weight: 0.20
     criteria:
@@ -172,17 +172,17 @@ def continuous_quality_monitoring():
     while True:
         # 定期质量检查
         quality_report = run_quality_checks()
-        
+
         # 质量趋势分析
         trend_analysis = analyze_quality_trends()
-        
+
         # 问题预警
         if quality_report.score < threshold:
             send_quality_alert()
-        
+
         # 自动改进建议
         improvement_suggestions = generate_improvement_suggestions()
-        
+
         time.sleep(monitoring_interval)
 ```
 

@@ -1,8 +1,8 @@
 # PostgreSQL AI集成 - 30分钟快速开始
 
-**最后更新**: 2025-10-30  
-**难度**: 🟢 入门  
-**预计时间**: 30分钟  
+**最后更新**: 2025-10-30
+**难度**: 🟢 入门
+**预计时间**: 30分钟
 
 ---
 
@@ -111,7 +111,7 @@ CREATE TABLE documents (
 );
 
 -- 创建向量索引（HNSW算法，余弦相似度）
-CREATE INDEX ON documents 
+CREATE INDEX ON documents
 USING hnsw (embedding vector_cosine_ops)
 WITH (m = 16, ef_construction = 64);
 
@@ -126,12 +126,12 @@ WITH (m = 16, ef_construction = 64);
 -- 注意：这些向量是随机的，仅用于测试语法
 
 INSERT INTO documents (title, content, embedding) VALUES
-('PostgreSQL简介', 
+('PostgreSQL简介',
  'PostgreSQL是一个强大的开源关系型数据库管理系统，支持SQL查询和ACID事务。',
  -- 384维随机向量（实际使用时应该由模型生成）
  array_fill(0.1, ARRAY[384])::vector(384)
 ),
-('向量数据库', 
+('向量数据库',
  '向量数据库用于存储和检索高维向量数据，广泛应用于AI和机器学习领域。',
  array_fill(0.2, ARRAY[384])::vector(384)
 ),
@@ -141,7 +141,7 @@ INSERT INTO documents (title, content, embedding) VALUES
 );
 
 -- 验证插入
-SELECT id, title, substring(content, 1, 50) as content_preview 
+SELECT id, title, substring(content, 1, 50) as content_preview
 FROM documents;
 ```
 
@@ -157,7 +157,7 @@ WITH query AS (
     SELECT array_fill(0.12, ARRAY[384])::vector(384) AS q_vec
 )
 -- 查找最相似的3个文档
-SELECT 
+SELECT
     d.id,
     d.title,
     d.content,
@@ -174,14 +174,14 @@ pgvector提供三种距离操作符：
 
 ```sql
 -- <-> : L2 距离（欧几里得距离）
--- <#> : 内积距离（负内积）  
+-- <#> : 内积距离（负内积）
 -- <=> : 余弦距离
 
 -- 示例：比较不同距离度量
 WITH query AS (
     SELECT array_fill(0.12, ARRAY[384])::vector(384) AS q_vec
 )
-SELECT 
+SELECT
     id,
     title,
     embedding <-> query.q_vec AS l2_distance,
@@ -244,14 +244,14 @@ def add_document(title, content):
     """添加文档并自动生成嵌入"""
     # 生成嵌入向量
     embedding = model.encode(content).tolist()
-    
+
     with conn.cursor() as cur:
         cur.execute("""
             INSERT INTO documents (title, content, embedding)
             VALUES (%s, %s, %s)
             RETURNING id
         """, (title, content, embedding))
-        
+
         doc_id = cur.fetchone()[0]
         conn.commit()
         print(f"✅ 添加文档 ID={doc_id}: {title}")
@@ -261,19 +261,19 @@ def search(query_text, top_k=5):
     """语义搜索"""
     # 生成查询向量
     query_embedding = model.encode(query_text).tolist()
-    
+
     with conn.cursor() as cur:
         cur.execute("""
-            SELECT 
-                id, 
-                title, 
+            SELECT
+                id,
+                title,
                 content,
                 1 - (embedding <=> %s::vector) AS similarity
             FROM documents
             ORDER BY embedding <=> %s::vector
             LIMIT %s
         """, (query_embedding, query_embedding, top_k))
-        
+
         results = cur.fetchall()
         return results
 
@@ -305,7 +305,7 @@ queries = [
 for query in queries:
     print(f"🔍 搜索: '{query}'")
     results = search(query, top_k=3)
-    
+
     for idx, (doc_id, title, content, similarity) in enumerate(results, 1):
         print(f"  {idx}. [{similarity:.3f}] {title}")
         print(f"     {content[:60]}...")
@@ -350,12 +350,12 @@ python vector_search_demo.py
 WITH query AS (
     SELECT array_fill(0.12, ARRAY[384])::vector(384) AS q_vec
 )
-SELECT 
+SELECT
     d.id,
     d.title,
     1 - (d.embedding <=> query.q_vec) AS similarity
 FROM documents d, query
-WHERE 
+WHERE
     d.created_at >= NOW() - INTERVAL '7 days'  -- 只搜索最近7天
     AND 1 - (d.embedding <=> query.q_vec) > 0.5  -- 相似度阈值
 ORDER BY d.embedding <=> query.q_vec
@@ -369,11 +369,11 @@ def batch_add_documents(documents_list, batch_size=32):
     """批量添加文档"""
     for i in range(0, len(documents_list), batch_size):
         batch = documents_list[i:i+batch_size]
-        
+
         # 批量生成嵌入
         contents = [doc[1] for doc in batch]
         embeddings = model.encode(contents)
-        
+
         # 批量插入
         with conn.cursor() as cur:
             for (title, content), embedding in zip(batch, embeddings):
@@ -394,12 +394,12 @@ DROP INDEX IF EXISTS documents_embedding_idx;
 -- 创建优化的HNSW索引
 -- m: 每层最大连接数（越大召回率越高，但索引越大）
 -- ef_construction: 构建时的搜索深度（越大质量越高，但构建越慢）
-CREATE INDEX documents_embedding_idx ON documents 
+CREATE INDEX documents_embedding_idx ON documents
 USING hnsw (embedding vector_cosine_ops)
 WITH (m = 32, ef_construction = 128);
 
 -- 或使用IVFFlat索引（适合超大数据集）
-CREATE INDEX documents_embedding_ivf_idx ON documents 
+CREATE INDEX documents_embedding_ivf_idx ON documents
 USING ivfflat (embedding vector_cosine_ops)
 WITH (lists = 100);
 ```
@@ -568,7 +568,7 @@ GROUP BY id, title;
    ```bash
    # Docker
    docker logs postgres-ai
-   
+
    # 本地
    tail -f /var/log/postgresql/postgresql-16-main.log
    ```
@@ -581,9 +581,9 @@ GROUP BY id, title;
 
 ---
 
-**最后更新**: 2025-10-30  
-**版本**: v1.0  
-**预计学习时间**: 30-45分钟  
+**最后更新**: 2025-10-30
+**版本**: v1.0
+**预计学习时间**: 30-45分钟
 **难度**: 🟢 入门
 
 ---

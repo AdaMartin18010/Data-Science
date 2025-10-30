@@ -67,7 +67,7 @@ concept:
     - Durability（持久性）
   mathematical_definition: |
     设事务 T = {op₁, op₂, ..., opₙ}，则：
-    
+
     Atomicity: ∀T, T要么完全执行，要么完全不执行
     Consistency: ∀T, 执行前后数据库状态满足完整性约束
     Isolation: ∀T₁,T₂, T₁的执行对T₂不可见
@@ -139,75 +139,75 @@ erDiagram
     TRANSACTION ||--o{ OPERATION : contains
     USER ||--o{ ROLE : has
     ROLE ||--o{ PERMISSION : grants
-    
+
     DATABASE {
         string name
         string version
         timestamp created_at
         string encoding
     }
-    
+
     SCHEMA {
         string name
         string owner
         timestamp created_at
     }
-    
+
     TABLE {
         string name
         string schema_name
         bigint row_count
         bigint size_bytes
     }
-    
+
     COLUMN {
         string name
         string data_type
         boolean nullable
         string default_value
     }
-    
+
     INDEX {
         string name
         string index_type
         string[] columns
         boolean unique
     }
-    
+
     CONSTRAINT {
         string name
         string constraint_type
         string definition
     }
-    
+
     TRANSACTION {
         bigint xid
         timestamp start_time
         string status
         string isolation_level
     }
-    
+
     OPERATION {
         string operation_type
         string table_name
         timestamp timestamp
         string sql_statement
     }
-    
+
     USER {
         string username
         string email
         timestamp created_at
         boolean active
     }
-    
+
     ROLE {
         string name
         string description
         boolean login
         boolean superuser
     }
-    
+
     PERMISSION {
         string privilege
         string object_type
@@ -236,7 +236,7 @@ data_type_mapping:
       mathematical_type: "ℤ ∩ [-9223372036854775808, 9223372036854775807]"
       storage_size: "8 bytes"
       range: "[-9223372036854775808, 9223372036854775807]"
-  
+
   decimal_types:
     DECIMAL(p,s):
       mathematical_type: "ℚ ∩ [10^(-p+s), 10^p - 10^(-s)]"
@@ -248,7 +248,7 @@ data_type_mapping:
       storage_size: "variable"
       precision: "p digits"
       scale: "s decimal places"
-  
+
   text_types:
     VARCHAR(n):
       mathematical_type: "Σ* ∩ {s | |s| ≤ n}"
@@ -258,7 +258,7 @@ data_type_mapping:
       mathematical_type: "Σ*"
       storage_size: "variable"
       max_length: "unlimited"
-  
+
   date_time_types:
     TIMESTAMP:
       mathematical_type: "ℝ (Unix timestamp)"
@@ -353,27 +353,27 @@ inference_rules:
     premise: ["P → Q", "P"]
     conclusion: "Q"
     description: "如果P蕴含Q且P为真，则Q为真"
-  
+
   modus_tollens:
     premise: ["P → Q", "¬Q"]
     conclusion: "¬P"
     description: "如果P蕴含Q且Q为假，则P为假"
-  
+
   hypothetical_syllogism:
     premise: ["P → Q", "Q → R"]
     conclusion: "P → R"
     description: "如果P蕴含Q且Q蕴含R，则P蕴含R"
-  
+
   disjunctive_syllogism:
     premise: ["P ∨ Q", "¬P"]
     conclusion: "Q"
     description: "如果P或Q为真且P为假，则Q为真"
-  
+
   conjunction:
     premise: ["P", "Q"]
     conclusion: "P ∧ Q"
     description: "如果P为真且Q为真，则P且Q为真"
-  
+
   simplification:
     premise: ["P ∧ Q"]
     conclusion: "P"
@@ -394,38 +394,38 @@ terminology_mapping:
       en: "Database"
       definition_zh: "存储、管理和检索数据的系统"
       definition_en: "A system for storing, managing, and retrieving data"
-    
+
     关系:
       en: "Relation"
       definition_zh: "数学意义上的关系，在数据库中表示为表"
       definition_en: "Mathematical relation, represented as table in database"
-    
+
     事务:
       en: "Transaction"
       definition_zh: "数据库操作的原子单位"
       definition_en: "Atomic unit of database operations"
-    
+
     索引:
       en: "Index"
       definition_zh: "提高查询性能的数据结构"
       definition_en: "Data structure to improve query performance"
-  
+
   sql_operations:
     选择:
       en: "SELECT"
       definition_zh: "从表中检索数据"
       definition_en: "Retrieve data from table"
-    
+
     插入:
       en: "INSERT"
       definition_zh: "向表中添加新记录"
       definition_en: "Add new records to table"
-    
+
     更新:
       en: "UPDATE"
       definition_zh: "修改表中的现有记录"
       definition_en: "Modify existing records in table"
-    
+
     删除:
       en: "DELETE"
       definition_zh: "从表中移除记录"
@@ -481,14 +481,14 @@ wikidata_mapping:
       P277: "Q193321" # programmed in: C
       P348: "15.5"    # software version: 15.5
       P856: "https://www.postgresql.org" # official website
-  
+
   acid_properties:
     wikidata_id: "Q193078"
     wikidata_label: "ACID"
     properties:
       P31: "Q186929"  # instance of: database transaction property
       P279: "Q193078" # subclass of: database concept
-  
+
   sql:
     wikidata_id: "Q193321"
     wikidata_label: "SQL"
@@ -550,7 +550,7 @@ quality_standards:
       - factual_accuracy: "事实和数据的准确性"
       - logical_consistency: "逻辑推理的一致性"
     evaluation_method: "同行评审、自动化测试"
-  
+
   completeness:
     definition: "内容的完整性和全面性"
     criteria:
@@ -558,7 +558,7 @@ quality_standards:
       - depth: "内容深度的充分性"
       - references: "参考文献的完整性"
     evaluation_method: "内容审计、覆盖率分析"
-  
+
   clarity:
     definition: "内容的清晰性和可理解性"
     criteria:
@@ -566,7 +566,7 @@ quality_standards:
       - structure: "结构组织的清晰性"
       - examples: "示例和说明的充分性"
     evaluation_method: "可读性测试、用户反馈"
-  
+
   consistency:
     definition: "内容的一致性和统一性"
     criteria:
@@ -586,28 +586,28 @@ class PostgreSQLQualityChecker:
     def __init__(self):
         self.standards = self.load_standards()
         self.rules = self.load_rules()
-    
+
     def check_mathematical_formulas(self, content):
         """检查数学公式的正确性"""
         formulas = self.extract_formulas(content)
         for formula in formulas:
             if not self.validate_formula(formula):
                 yield QualityIssue("数学公式错误", formula)
-    
+
     def check_terminology_consistency(self, content):
         """检查术语使用的一致性"""
         terms = self.extract_terms(content)
         for term in terms:
             if not self.is_consistent(term):
                 yield QualityIssue("术语不一致", term)
-    
+
     def check_references(self, content):
         """检查参考文献的完整性"""
         refs = self.extract_references(content)
         for ref in refs:
             if not self.is_valid_reference(ref):
                 yield QualityIssue("参考文献无效", ref)
-    
+
     def generate_quality_report(self, content):
         """生成质量报告"""
         issues = []
@@ -654,17 +654,17 @@ success_metrics:
     target: "100%"
     current: "85%"
     measurement: "核心概念覆盖率"
-  
+
   multilingual_support:
     target: "中英文100%"
     current: "中文100%，英文60%"
     measurement: "双语内容比例"
-  
+
   quality_score:
     target: "95%"
     current: "88%"
     measurement: "质量检查通过率"
-  
+
   community_engagement:
     target: "100+ contributors"
     current: "25 contributors"

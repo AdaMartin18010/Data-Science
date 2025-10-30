@@ -1,8 +1,8 @@
 # PostgreSQL AI集成改进行动计划
 
-**制定日期**: 2025年10月30日  
-**计划周期**: 2025年11月 - 2026年4月 (6个月)  
-**负责人**: [待指派]  
+**制定日期**: 2025年10月30日
+**计划周期**: 2025年11月 - 2026年4月 (6个月)
+**负责人**: [待指派]
 **状态**: 🟡 待启动
 
 ---
@@ -69,13 +69,13 @@
 ## 在每个文档开头添加免责声明
 
 > **⚠️ 文档性质说明**
-> 
+>
 > 本文档包含以下类型的内容：
 > - ✅ **[可运行]**: 可在PostgreSQL 15+直接运行的代码
 > - ⚠️ **[需扩展]**: 需要安装特定扩展（如pgvector）的代码
 > - 📚 **[概念设计]**: 理论探索和提案，非实际可用特性
 > - 🔬 **[研究方向]**: 学术研究，暂无生产实现
-> 
+>
 > 请根据标签选择适合您需求的内容。
 
 ## 为代码块添加标签
@@ -165,9 +165,9 @@ CREATE INDEX ON documents USING hnsw (embedding vector_cosine_ops);
 
 -- 插入示例数据（使用预计算的嵌入向量）
 INSERT INTO documents (title, content, embedding) VALUES
-('PostgreSQL简介', 'PostgreSQL是一个强大的开源关系型数据库...', 
+('PostgreSQL简介', 'PostgreSQL是一个强大的开源关系型数据库...',
  '[0.1, 0.2, 0.3, ...]'::vector(384)),
-('向量数据库', '向量数据库用于存储和检索高维向量数据...', 
+('向量数据库', '向量数据库用于存储和检索高维向量数据...',
  '[0.4, 0.5, 0.6, ...]'::vector(384));
 \`\`\`
 
@@ -179,7 +179,7 @@ WITH query AS (
     SELECT '[0.15, 0.25, 0.35, ...]'::vector(384) AS q_vec
 )
 -- 查找最相似的5个文档
-SELECT 
+SELECT
     d.id,
     d.title,
     1 - (d.embedding <=> query.q_vec) AS similarity
@@ -211,7 +211,7 @@ conn = psycopg2.connect(
 # 生成并存储嵌入
 def add_document(title, content):
     embedding = model.encode(content).tolist()
-    
+
     with conn.cursor() as cur:
         cur.execute(
             "INSERT INTO documents (title, content, embedding) VALUES (%s, %s, %s)",
@@ -222,7 +222,7 @@ def add_document(title, content):
 # 搜索
 def search(query, top_k=5):
     query_embedding = model.encode(query).tolist()
-    
+
     with conn.cursor() as cur:
         cur.execute("""
             SELECT id, title, 1 - (embedding <=> %s::vector) AS similarity
@@ -230,7 +230,7 @@ def search(query, top_k=5):
             ORDER BY embedding <=> %s::vector
             LIMIT %s
         """, (query_embedding, query_embedding, top_k))
-        
+
         return cur.fetchall()
 
 # 测试
@@ -255,7 +255,7 @@ A: 取决于嵌入模型：
 - `BAAI/bge-large-en-v1.5`: 1024维
 
 ### Q2: HNSW vs IVFFlat如何选择？
-A: 
+A:
 - **HNSW**: 更高的召回率，适合中小数据集(<100万向量)
 - **IVFFlat**: 更快的索引构建，适合大数据集
 
@@ -306,12 +306,12 @@ SELECT * FROM pg_extension WHERE extname = 'azure_ai';
 \`\`\`sql
 -- 配置Azure OpenAI
 SELECT azure_ai.set_setting(
-    'azure_openai.endpoint', 
+    'azure_openai.endpoint',
     'https://your-resource.openai.azure.com/'
 );
 
 SELECT azure_ai.set_setting(
-    'azure_openai.subscription_key', 
+    'azure_openai.subscription_key',
     'your-api-key'
 );
 \`\`\`
@@ -349,7 +349,7 @@ WITH query_embedding AS (
         '如何优化PostgreSQL性能'
     )::vector(1536) AS embedding
 )
-SELECT 
+SELECT
     d.id,
     d.title,
     d.content,
@@ -404,7 +404,7 @@ BEGIN
         'text-embedding-ada-002',
         NEW.content
     )::vector(1536);
-    
+
     -- 情感分析
     NEW.sentiment_score = (
         azure_cognitive.analyze_sentiment(
@@ -413,13 +413,13 @@ BEGIN
             'auto'
         )->>'score'
     )::float;
-    
+
     -- 语言检测
     NEW.language = azure_cognitive.detect_language(
         'your-service',
         NEW.content
     )->>'language';
-    
+
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -449,15 +449,15 @@ BEGIN
             d.content
         )::vector(1536)
         WHERE d.id IN (
-            SELECT id FROM documents 
-            WHERE embedding IS NULL 
-            ORDER BY id 
+            SELECT id FROM documents
+            WHERE embedding IS NULL
+            ORDER BY id
             LIMIT batch_size OFFSET offset_val
         );
-        
+
         EXIT WHEN NOT FOUND;
         offset_val := offset_val + batch_size;
-        
+
         -- 避免API限流
         PERFORM pg_sleep(1);
     END LOOP;
@@ -623,16 +623,16 @@ $$ LANGUAGE plpgsql;
 
    ```markdown
    # 简化后的文档结构
-   
+
    1.1.6-AI与PostgreSQL集成.md (2000字)
    - 概述和导航
    - 快速链接到其他文档
-   
+
    05.02-AI模型深度集成-理论.md (5000字)
    - 理论模型
    - 形式化定义
    - 未来研究方向
-   
+
    03.04-机器学习集成-实战.md (4000字)
    - 实际可用技术
    - 生产部署
@@ -914,6 +914,6 @@ cases/ai-applications/02-rag-knowledge-base/
 
 ---
 
-**最后更新**: 2025-10-30  
-**版本**: v1.0  
+**最后更新**: 2025-10-30
+**版本**: v1.0
 **下次审查**: 每周五

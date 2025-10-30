@@ -42,7 +42,7 @@ SQL语言在表达能力上等价于关系代数，即：
 
 \begin{proof}
 1. SELECT对应投影操作 \pi
-2. WHERE对应选择操作 \sigma  
+2. WHERE对应选择操作 \sigma
 3. JOIN对应连接操作 \bowtie
 4. UNION对应并集操作 \cup
 5. INTERSECT对应交集操作 \cap
@@ -102,12 +102,12 @@ CREATE UNIQUE INDEX idx_emp_name ON employees(name);
 ALTER TABLE employees ADD CONSTRAINT pk_employees PRIMARY KEY (emp_id);
 
 -- 外键约束
-ALTER TABLE employees ADD CONSTRAINT fk_emp_dept 
+ALTER TABLE employees ADD CONSTRAINT fk_emp_dept
     FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
     ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- 检查约束
-ALTER TABLE employees ADD CONSTRAINT chk_salary 
+ALTER TABLE employees ADD CONSTRAINT chk_salary
     CHECK (salary >= 0 AND salary <= 1000000);
 ```
 
@@ -117,7 +117,7 @@ ALTER TABLE employees ADD CONSTRAINT chk_salary
 
 ```sql
 -- 单行插入
-INSERT INTO employees (emp_id, name, dept_id, salary) 
+INSERT INTO employees (emp_id, name, dept_id, salary)
 VALUES (1001, '张三', 1, 50000);
 
 -- 多行插入
@@ -128,8 +128,8 @@ INSERT INTO employees (emp_id, name, dept_id, salary) VALUES
 
 -- 从查询结果插入
 INSERT INTO employees (emp_id, name, dept_id, salary)
-SELECT emp_id, name, dept_id, salary 
-FROM temp_employees 
+SELECT emp_id, name, dept_id, salary
+FROM temp_employees
 WHERE hire_date >= '2024-01-01';
 ```
 
@@ -137,20 +137,20 @@ WHERE hire_date >= '2024-01-01';
 
 ```sql
 -- 条件更新
-UPDATE employees 
-SET salary = salary * 1.1 
+UPDATE employees
+SET salary = salary * 1.1
 WHERE dept_id = 1 AND hire_date < '2023-01-01';
 
 -- 基于子查询的更新
-UPDATE employees 
+UPDATE employees
 SET salary = (
-    SELECT AVG(salary) 
-    FROM employees e2 
+    SELECT AVG(salary)
+    FROM employees e2
     WHERE e2.dept_id = employees.dept_id
 ) * 1.05
 WHERE salary < (
-    SELECT AVG(salary) 
-    FROM employees e3 
+    SELECT AVG(salary)
+    FROM employees e3
     WHERE e3.dept_id = employees.dept_id
 );
 ```
@@ -159,14 +159,14 @@ WHERE salary < (
 
 ```sql
 -- 条件删除
-DELETE FROM employees 
+DELETE FROM employees
 WHERE hire_date < '2020-01-01';
 
 -- 基于子查询的删除
-DELETE FROM employees 
+DELETE FROM employees
 WHERE dept_id IN (
-    SELECT dept_id 
-    FROM departments 
+    SELECT dept_id
+    FROM departments
     WHERE dept_name = '已关闭部门'
 );
 ```
@@ -177,14 +177,14 @@ WHERE dept_id IN (
 
 ```sql
 -- 简单查询
-SELECT emp_id, name, salary 
-FROM employees 
-WHERE salary > 50000 
+SELECT emp_id, name, salary
+FROM employees
+WHERE salary > 50000
 ORDER BY salary DESC;
 
 -- 连接查询
 SELECT e.name, d.dept_name, e.salary
-FROM employees e 
+FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id
 WHERE e.salary > 50000
 ORDER BY e.salary DESC;
@@ -194,12 +194,12 @@ ORDER BY e.salary DESC;
 
 ```sql
 -- 基本聚合
-SELECT dept_id, 
+SELECT dept_id,
        COUNT(*) as emp_count,
        AVG(salary) as avg_salary,
        MAX(salary) as max_salary,
        MIN(salary) as min_salary
-FROM employees 
+FROM employees
 GROUP BY dept_id
 HAVING AVG(salary) > 50000;
 
@@ -217,11 +217,11 @@ FROM employees;
 WITH RECURSIVE emp_hierarchy AS (
     -- 基础查询：找到所有经理
     SELECT emp_id, name, manager_id, 1 as level
-    FROM employees 
+    FROM employees
     WHERE manager_id IS NULL
-    
+
     UNION ALL
-    
+
     -- 递归查询：找到每个经理的下属
     SELECT e.emp_id, e.name, e.manager_id, eh.level + 1
     FROM employees e
@@ -247,7 +247,7 @@ FROM departments d;
 CREATE INDEX idx_emp_dept_salary ON employees(dept_id, salary);
 
 -- 创建部分索引
-CREATE INDEX idx_emp_high_salary ON employees(salary) 
+CREATE INDEX idx_emp_high_salary ON employees(salary)
 WHERE salary > 50000;
 
 -- 创建表达式索引
@@ -261,17 +261,17 @@ CREATE INDEX idx_emp_name_lower ON employees(LOWER(name));
 SELECT emp_id, name, dept_id, salary FROM employees;
 
 -- 使用EXISTS代替IN（对于大表）
-SELECT d.dept_name 
-FROM departments d 
+SELECT d.dept_name
+FROM departments d
 WHERE EXISTS (
-    SELECT 1 FROM employees e 
+    SELECT 1 FROM employees e
     WHERE e.dept_id = d.dept_id AND e.salary > 50000
 );
 
 -- 使用LIMIT限制结果集
-SELECT emp_id, name, salary 
-FROM employees 
-ORDER BY salary DESC 
+SELECT emp_id, name, salary
+FROM employees
+ORDER BY salary DESC
 LIMIT 10;
 ```
 
@@ -288,7 +288,7 @@ COMMIT;
 BEGIN;
     UPDATE employees SET salary = salary * 1.1 WHERE dept_id = 1;
     SAVEPOINT salary_update;
-    
+
     UPDATE departments SET budget = budget * 1.1 WHERE dept_id = 1;
     -- 如果预算更新失败，回滚到保存点
     ROLLBACK TO SAVEPOINT salary_update;
@@ -311,11 +311,11 @@ CREATE TABLE user_profiles (
 INSERT INTO user_profiles (user_id, profile) VALUES
 (1, '{"name": "张三", "age": 30, "skills": ["SQL", "Python"]}');
 
-SELECT user_id, 
+SELECT user_id,
        profile->>'name' as name,
        profile->>'age' as age,
        profile->'skills' as skills
-FROM user_profiles 
+FROM user_profiles
 WHERE profile @> '{"skills": ["SQL"]}';
 ```
 
@@ -334,7 +334,7 @@ CREATE TABLE projects (
 INSERT INTO projects (project_id, name, tags, team_members) VALUES
 (1, '数据库优化项目', ARRAY['PostgreSQL', '性能优化'], ARRAY[1001, 1002, 1003]);
 
-SELECT * FROM projects 
+SELECT * FROM projects
 WHERE 'PostgreSQL' = ANY(tags);
 ```
 
@@ -360,7 +360,7 @@ CREATE POLICY emp_dept_policy ON employees
     FOR ALL
     TO analyst_role
     USING (dept_id IN (
-        SELECT dept_id FROM user_departments 
+        SELECT dept_id FROM user_departments
         WHERE user_id = current_user_id()
     ));
 ```
@@ -376,13 +376,13 @@ SET log_min_duration_statement = 1000; -- 记录执行时间超过1秒的查询
 
 -- 查看慢查询
 SELECT query, mean_time, calls, total_time
-FROM pg_stat_statements 
-ORDER BY mean_time DESC 
+FROM pg_stat_statements
+ORDER BY mean_time DESC
 LIMIT 10;
 
 -- 分析表统计信息
 SELECT schemaname, tablename, attname, n_distinct, correlation
-FROM pg_stats 
+FROM pg_stats
 WHERE tablename = 'employees';
 ```
 
@@ -391,12 +391,12 @@ WHERE tablename = 'employees';
 ```sql
 -- 查看索引使用情况
 SELECT schemaname, tablename, indexname, idx_scan, idx_tup_read, idx_tup_fetch
-FROM pg_stat_user_indexes 
+FROM pg_stat_user_indexes
 ORDER BY idx_scan DESC;
 
 -- 查找未使用的索引
 SELECT schemaname, tablename, indexname
-FROM pg_stat_user_indexes 
+FROM pg_stat_user_indexes
 WHERE idx_scan = 0;
 ```
 

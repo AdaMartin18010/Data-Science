@@ -26,32 +26,32 @@ graph TD
     A --> E[事务管理]
     A --> F[存储管理]
     A --> G[安全机制]
-    
+
     B --> B1[进程模型]
     B --> B2[内存管理]
     B --> B3[存储系统]
     B --> B4[网络协议]
-    
+
     C --> C1[关系数据模型]
     C --> C2[SQL语言]
     C --> C3[索引结构]
     C --> C4[扩展系统]
-    
+
     D --> D1[查询优化]
     D --> D2[执行计划]
     D --> D3[并发控制]
     D --> D4[流式处理]
-    
+
     E --> E1[ACID性质]
     E --> E2[隔离级别]
     E --> E3[分布式事务]
     E --> E4[故障恢复]
-    
+
     F --> F1[缓冲区管理]
     F --> F2[WAL日志]
     F --> F3[检查点]
     F --> F4[备份恢复]
-    
+
     G --> G1[访问控制]
     G --> G2[数据加密]
     G --> G3[审计日志]
@@ -67,7 +67,7 @@ graph LR
     C --> D[执行引擎]
     D --> E[存储引擎]
     E --> F[文件系统]
-    
+
     G[事务管理器] --> D
     H[锁管理器] --> D
     I[WAL管理器] --> E
@@ -129,7 +129,7 @@ CREATE TABLE concept_scenario_mapping (
 -- 查询概念依赖关系
 WITH RECURSIVE concept_dependencies AS (
     -- 基础查询：直接依赖
-    SELECT 
+    SELECT
         c1.concept_name as source,
         c2.concept_name as target,
         cr.relation_type,
@@ -139,11 +139,11 @@ WITH RECURSIVE concept_dependencies AS (
     JOIN concepts c1 ON cr.source_concept_id = c1.concept_id
     JOIN concepts c2 ON cr.target_concept_id = c2.concept_id
     WHERE c1.concept_name = '查询优化'
-    
+
     UNION ALL
-    
+
     -- 递归查询：间接依赖
-    SELECT 
+    SELECT
         cd.source,
         c3.concept_name,
         cr2.relation_type,
@@ -165,7 +165,7 @@ ORDER BY depth, target;
 ```sql
 -- 基于概念相似性的推荐
 WITH concept_similarity AS (
-    SELECT 
+    SELECT
         c1.concept_id as concept1,
         c2.concept_id as concept2,
         COUNT(DISTINCT cr1.target_concept_id) as common_dependencies,
@@ -178,7 +178,7 @@ WITH concept_similarity AS (
     GROUP BY c1.concept_id, c2.concept_id
     HAVING COUNT(DISTINCT cr1.target_concept_id) > 0
 )
-SELECT 
+SELECT
     c1.concept_name as source_concept,
     c2.concept_name as recommended_concept,
     cs.common_dependencies::DECIMAL / cs.total_dependencies as similarity_score
@@ -197,7 +197,7 @@ LIMIT 10;
 ```sql
 -- 基于复杂度的学习路径
 WITH learning_path AS (
-    SELECT 
+    SELECT
         concept_id,
         concept_name,
         complexity_level,
@@ -205,11 +205,11 @@ WITH learning_path AS (
     FROM concepts
     WHERE concept_type = 'core'
 )
-SELECT 
+SELECT
     learning_order,
     concept_name,
     complexity_level,
-    CASE 
+    CASE
         WHEN complexity_level <= 2 THEN '基础概念'
         WHEN complexity_level <= 3 THEN '进阶概念'
         ELSE '高级概念'
@@ -222,7 +222,7 @@ ORDER BY learning_order;
 
 ```sql
 -- 基于应用场景的性能优化建议
-SELECT 
+SELECT
     cs.scenario_name,
     c.concept_name,
     csm.relevance_score,
@@ -248,17 +248,17 @@ import matplotlib.pyplot as plt
 def create_concept_graph():
     """创建概念关系图"""
     G = nx.DiGraph()
-    
+
     # 添加节点
     concepts = [
         'PostgreSQL', '系统架构', '数据模型', '查询处理',
         '事务管理', '存储管理', '安全机制', '索引结构',
         '查询优化', '并发控制', 'WAL日志', '缓冲区管理'
     ]
-    
+
     for concept in concepts:
         G.add_node(concept)
-    
+
     # 添加边
     edges = [
         ('PostgreSQL', '系统架构'),
@@ -273,13 +273,13 @@ def create_concept_graph():
         ('存储管理', 'WAL日志'),
         ('存储管理', '缓冲区管理')
     ]
-    
+
     G.add_edges_from(edges)
-    
+
     # 绘制图形
     plt.figure(figsize=(12, 8))
     pos = nx.spring_layout(G, k=1, iterations=50)
-    nx.draw(G, pos, with_labels=True, node_color='lightblue', 
+    nx.draw(G, pos, with_labels=True, node_color='lightblue',
             node_size=2000, font_size=10, font_weight='bold',
             arrows=True, edge_color='gray', arrowsize=20)
     plt.title('PostgreSQL概念关系图')
@@ -294,17 +294,17 @@ def analyze_dependencies():
     # 计算入度和出度
     in_degrees = dict(G.in_degree())
     out_degrees = dict(G.out_degree())
-    
+
     # 找出核心概念（高入度）
     core_concepts = sorted(in_degrees.items(), key=lambda x: x[1], reverse=True)[:5]
-    
+
     # 找出基础概念（高出度）
     foundational_concepts = sorted(out_degrees.items(), key=lambda x: x[1], reverse=True)[:5]
-    
+
     print("核心概念（被依赖最多）:")
     for concept, degree in core_concepts:
         print(f"  {concept}: {degree}")
-    
+
     print("\n基础概念（依赖最多）:")
     for concept, degree in foundational_concepts:
         print(f"  {concept}: {degree}")
@@ -319,13 +319,13 @@ def intelligent_qa(question):
     """智能问答系统"""
     # 概念识别
     concepts = extract_concepts(question)
-    
+
     # 关系查询
     relationships = query_relationships(concepts)
-    
+
     # 答案生成
     answer = generate_answer(concepts, relationships)
-    
+
     return answer
 
 def extract_concepts(question):
@@ -345,13 +345,13 @@ def plan_learning_path(target_concept, current_knowledge):
     """规划学习路径"""
     # 计算知识差距
     knowledge_gap = calculate_knowledge_gap(target_concept, current_knowledge)
-    
+
     # 生成学习路径
     learning_path = generate_learning_path(knowledge_gap)
-    
+
     # 优化学习顺序
     optimized_path = optimize_learning_order(learning_path)
-    
+
     return optimized_path
 ```
 
@@ -364,13 +364,13 @@ def update_knowledge_graph():
     """更新知识图谱"""
     # 检测新概念
     new_concepts = detect_new_concepts()
-    
+
     # 更新关系
     updated_relations = update_relations()
-    
+
     # 验证一致性
     validate_consistency()
-    
+
     # 生成更新报告
     generate_update_report()
 ```
@@ -386,7 +386,7 @@ def monitor_knowledge_quality():
         'accuracy': calculate_accuracy(),
         'coverage': calculate_coverage()
     }
-    
+
     return metrics
 ```
 
