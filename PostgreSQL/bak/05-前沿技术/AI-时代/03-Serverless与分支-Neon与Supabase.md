@@ -47,7 +47,7 @@ neon branch merge rag-emb-v3 main
 - Supabase Docs（Database/Branching）：`https://supabase.com/docs`
 - PostgreSQL 文档：`https://www.postgresql.org/docs/`
 
-# 03 Serverless 与分支（Neon 与 Supabase）
+## 03 Serverless 与分支（Neon 与 Supabase）
 
 > 最后更新：2025-10-31 · 核验来源：Neon Docs、Supabase Docs/Blog
 
