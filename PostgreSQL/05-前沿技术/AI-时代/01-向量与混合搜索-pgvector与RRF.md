@@ -10,45 +10,45 @@
 
 - [01 向量与混合搜索（pgvector + RRF）](#01-向量与混合搜索pgvector--rrf)
   - [📋 目录](#-目录)
-  - [🎯 核心结论](#-核心结论)
-  - [🔧 pgvector 扩展详解](#-pgvector-扩展详解)
-    - [数据类型支持](#数据类型支持)
-    - [距离度量操作符](#距离度量操作符)
-    - [基本使用示例](#基本使用示例)
-  - [📊 索引类型与选择](#-索引类型与选择)
-    - [HNSW 索引（Hierarchical Navigable Small World）](#hnsw-索引hierarchical-navigable-small-world)
-    - [IVFFlat 索引（Inverted File with Flat compression）](#ivfflat-索引inverted-file-with-flat-compression)
-    - [SP-GiST 索引](#sp-gist-索引)
-    - [索引选择决策树](#索引选择决策树)
-  - [🔀 混合搜索实现](#-混合搜索实现)
-    - [全文检索基础](#全文检索基础)
-    - [二阶段检索（候选召回 + 精排）](#二阶段检索候选召回--精排)
-  - [🧮 RRF 算法详解](#-rrf-算法详解)
-    - [算法原理](#算法原理)
-    - [完整 RRF 实现](#完整-rrf-实现)
-    - [RRF 函数封装](#rrf-函数封装)
-  - [⚡ 性能优化实践](#-性能优化实践)
-    - [索引参数调优](#索引参数调优)
-    - [查询优化](#查询优化)
-    - [PostgreSQL 18 性能增强](#postgresql-18-性能增强)
-  - [🚀 PostgreSQL 18 增强](#-postgresql-18-增强)
-    - [异步 I/O 子系统 ⭐⭐⭐](#异步-io-子系统-)
-    - [虚拟生成列 ⭐⭐](#虚拟生成列-)
-    - [UUID v7 原生支持 ⭐](#uuid-v7-原生支持-)
-  - [📈 应用案例](#-应用案例)
-    - [案例 1：电商商品搜索（Supabase 实践）](#案例-1电商商品搜索supabase-实践)
-    - [案例 2：语义搜索系统](#案例-2语义搜索系统)
-  - [📚 参考资源](#-参考资源)
-    - [官方文档](#官方文档)
-    - [社区实践](#社区实践)
-    - [性能基准](#性能基准)
-    - [工具与库](#工具与库)
-  - [✅ 最佳实践总结](#-最佳实践总结)
+  - [1. 核心结论](#1-核心结论)
+  - [2. pgvector 扩展详解](#2-pgvector-扩展详解)
+    - [2.1 数据类型支持](#21-数据类型支持)
+    - [2.2 距离度量操作符](#22-距离度量操作符)
+    - [2.3 基本使用示例](#23-基本使用示例)
+  - [3. 索引类型与选择](#3-索引类型与选择)
+    - [3.1 HNSW 索引（Hierarchical Navigable Small World）](#31-hnsw-索引hierarchical-navigable-small-world)
+    - [3.2 IVFFlat 索引（Inverted File with Flat compression）](#32-ivfflat-索引inverted-file-with-flat-compression)
+    - [3.3 SP-GiST 索引](#33-sp-gist-索引)
+    - [3.4 索引选择决策树](#34-索引选择决策树)
+  - [4. 混合搜索实现](#4-混合搜索实现)
+    - [4.1 全文检索基础](#41-全文检索基础)
+    - [4.2 二阶段检索（候选召回 + 精排）](#42-二阶段检索候选召回--精排)
+  - [5. RRF 算法详解](#5-rrf-算法详解)
+    - [5.1 算法原理](#51-算法原理)
+    - [5.2 完整 RRF 实现](#52-完整-rrf-实现)
+    - [5.3 RRF 函数封装](#53-rrf-函数封装)
+  - [6. 性能优化实践](#6-性能优化实践)
+    - [6.1 索引参数调优](#61-索引参数调优)
+    - [6.2 查询优化](#62-查询优化)
+    - [6.3 PostgreSQL 18 性能增强](#63-postgresql-18-性能增强)
+  - [7. PostgreSQL 18 增强](#7-postgresql-18-增强)
+    - [7.1 异步 I/O 子系统 ⭐⭐⭐](#71-异步-io-子系统-)
+    - [7.2 虚拟生成列 ⭐⭐](#72-虚拟生成列-)
+    - [7.3 UUID v7 原生支持 ⭐](#73-uuid-v7-原生支持-)
+  - [8. 应用案例](#8-应用案例)
+    - [8.1 案例 1：电商商品搜索（Supabase 实践）](#81-案例-1电商商品搜索supabase-实践)
+    - [8.2 案例 2：语义搜索系统](#82-案例-2语义搜索系统)
+  - [9. 参考资源](#9-参考资源)
+    - [9.1 官方文档](#91-官方文档)
+    - [9.2 社区实践](#92-社区实践)
+    - [9.3 性能基准](#93-性能基准)
+    - [9.4 工具与库](#94-工具与库)
+  - [10. 最佳实践总结](#10-最佳实践总结)
 
 
 ---
 
-## 🎯 核心结论
+## 1. 核心结论
 
 - **pgvector 2.0**（2025年10月发布）已并入官方发行版，新增 `sparsevec` 稀疏向量类型
 - PostgreSQL 通过 `pgvector` 提供向量相似搜索；索引与运算由扩展实现
@@ -59,9 +59,9 @@
 
 ---
 
-## 🔧 pgvector 扩展详解
+## 2. pgvector 扩展详解
 
-### 数据类型支持
+### 2.1 数据类型支持
 
 **pgvector 2.0**（2025年10月发布）支持多种向量数据类型：
 
@@ -96,7 +96,7 @@ ORDER BY tfidf_vector <=> $1::sparsevec
 LIMIT 10;
 ```
 
-### 距离度量操作符
+### 2.2 距离度量操作符
 
 ```sql
 -- L2 距离（欧几里得距离）
@@ -112,7 +112,7 @@ SELECT embedding <=> $1::vector AS cosine_distance;
 SELECT embedding <~> $1::bit AS hamming_distance;
 ```
 
-### 基本使用示例
+### 2.3 基本使用示例
 
 ```sql
 -- 1. 创建扩展
@@ -143,9 +143,9 @@ LIMIT 10;
 
 ---
 
-## 📊 索引类型与选择
+## 3. 索引类型与选择
 
-### HNSW 索引（Hierarchical Navigable Small World）
+### 3.1 HNSW 索引（Hierarchical Navigable Small World）
 
 **特点**：
 
@@ -177,7 +177,7 @@ SET hnsw.ef_search = 100;  -- 提升召回率，但会增加查询时间
 | 10万-100万 | 32 | 128 | 100 |
 | 100万-1000万 | 64 | 200 | 200 |
 
-### IVFFlat 索引（Inverted File with Flat compression）
+### 3.2 IVFFlat 索引（Inverted File with Flat compression）
 
 **特点**：
 
@@ -210,7 +210,7 @@ SET ivfflat.probes = 10;  -- 平衡召回率和性能
 -- 例如：lists = 1000，probes = 100 到 200
 ```
 
-### SP-GiST 索引
+### 3.3 SP-GiST 索引
 
 **特点**：
 
@@ -225,7 +225,7 @@ CREATE INDEX idx_docs_spgist ON documents
 USING spgist (embedding vector_cosine_ops);
 ```
 
-### 索引选择决策树
+### 3.4 索引选择决策树
 
 ```text
 数据集规模
@@ -240,9 +240,9 @@ USING spgist (embedding vector_cosine_ops);
 
 ---
 
-## 🔀 混合搜索实现
+## 4. 混合搜索实现
 
-### 全文检索基础
+### 4.1 全文检索基础
 
 PostgreSQL 原生支持全文检索：
 
@@ -264,7 +264,7 @@ ORDER BY text_rank DESC
 LIMIT 10;
 ```
 
-### 二阶段检索（候选召回 + 精排）
+### 4.2 二阶段检索（候选召回 + 精排）
 
 ```sql
 -- 第一阶段：向量召回 Top-N 候选
@@ -299,9 +299,9 @@ LIMIT 10;
 
 ---
 
-## 🧮 RRF 算法详解
+## 5. RRF 算法详解
 
-### 算法原理
+### 5.1 算法原理
 
 RRF（Reciprocal Rank Fusion）通过倒数排名融合多个检索结果，公式为：
 
@@ -315,7 +315,7 @@ RRF_score(d) = Σ(1 / (k + rank_i(d)))
 - `rank_i(d)` 是文档 `d` 在第 `i` 个检索结果中的排名
 - 多个检索结果的 RRF 分数相加得到最终分数
 
-### 完整 RRF 实现
+### 5.2 完整 RRF 实现
 
 ```sql
 -- 步骤1：向量相似度检索（带排名）
@@ -380,7 +380,7 @@ ORDER BY rrf_score DESC
 LIMIT 20;
 ```
 
-### RRF 函数封装
+### 5.3 RRF 函数封装
 
 ```sql
 -- 创建 RRF 融合函数
@@ -429,9 +429,9 @@ LIMIT 20;
 
 ---
 
-## ⚡ 性能优化实践
+## 6. 性能优化实践
 
-### 索引参数调优
+### 6.1 索引参数调优
 
 ```sql
 -- HNSW 索引参数选择
@@ -444,7 +444,7 @@ LIMIT 20;
 -- 查询时：SET ivfflat.probes = lists / 10; （平衡召回率和性能）
 ```
 
-### 查询优化
+### 6.2 查询优化
 
 ```sql
 -- 设置查询参数（IVFFlat 索引）
@@ -457,7 +457,7 @@ ORDER BY embedding <=> $1::vector
 LIMIT 10;
 ```
 
-### PostgreSQL 18 性能增强
+### 6.3 PostgreSQL 18 性能增强
 
 PostgreSQL 18 的异步 I/O 子系统自动优化向量检索：
 
@@ -476,9 +476,9 @@ PostgreSQL 18 的异步 I/O 子系统自动优化向量检索：
 
 ---
 
-## 🚀 PostgreSQL 18 增强
+## 7. PostgreSQL 18 增强
 
-### 异步 I/O 子系统 ⭐⭐⭐
+### 7.1 异步 I/O 子系统 ⭐⭐⭐
 
 PostgreSQL 18 引入异步 I/O（AIO）子系统，对向量检索性能有显著提升：
 
@@ -495,7 +495,7 @@ PostgreSQL 18 引入异步 I/O（AIO）子系统，对向量检索性能有显�
 
 **实际效果**：对于包含 1 亿条 768 维向量的表，使用 PostgreSQL 18 的异步 I/O，top-100 查询延迟从 15ms 降低到 **<10ms**。
 
-### 虚拟生成列 ⭐⭐
+### 7.2 虚拟生成列 ⭐⭐
 
 PostgreSQL 18 支持虚拟生成列，可用于动态计算相似度，无需存储冗余数据：
 
@@ -528,7 +528,7 @@ CREATE TABLE search_results (
 );
 ```
 
-### UUID v7 原生支持 ⭐
+### 7.3 UUID v7 原生支持 ⭐
 
 PostgreSQL 18 新增 `uuidv7()` 函数，生成按时间戳排序的 UUID：
 
@@ -554,9 +554,9 @@ ORDER BY id;
 
 ---
 
-## 📈 应用案例
+## 8. 应用案例
 
-### 案例 1：电商商品搜索（Supabase 实践）
+### 8.1 案例 1：电商商品搜索（Supabase 实践）
 
 **技术栈**：
 
@@ -575,7 +575,7 @@ ORDER BY id;
 > 参考：Supabase Blog - "Hybrid Search with PostgreSQL and pgvector"
 > 链接：<https://supabase.com/blog/hybrid-search>
 
-### 案例 2：语义搜索系统
+### 8.2 案例 2：语义搜索系统
 
 **场景**：企业知识库语义搜索
 
@@ -635,9 +635,9 @@ LIMIT 10;
 
 ---
 
-## 📚 参考资源
+## 9. 参考资源
 
-### 官方文档
+### 9.1 官方文档
 
 - **pgvector GitHub**：<https://github.com/pgvector/pgvector>
   - 最新版本：v0.7.0+（2025）
@@ -649,7 +649,7 @@ LIMIT 10;
   - GIN 索引：<https://www.postgresql.org/docs/current/gin.html>
   - PostgreSQL 18 异步 I/O：<https://www.postgresql.org/docs/18/release-18.html>
 
-### 社区实践
+### 9.2 社区实践
 
 - **Supabase Hybrid Search**：
   - 博客：<https://supabase.com/blog/hybrid-search>
@@ -659,12 +659,12 @@ LIMIT 10;
   - "Reciprocal Rank Fusion outperforms condorcet and individual rank learning methods" (2009)
   - 作者：Cormack, G. V., Clarke, C. L., & Buettcher, S.
 
-### 性能基准
+### 9.3 性能基准
 
 - **pgvector 性能测试**：<https://github.com/pgvector/pgvector#benchmarks>
 - **向量数据库对比**：<https://benchmark.vectorview.ai/>
 
-### 工具与库
+### 9.4 工具与库
 
 - **Python**：`pgvector` Python 客户端
 - **Node.js**：`@pgvector/pgvector`
@@ -672,7 +672,7 @@ LIMIT 10;
 
 ---
 
-## ✅ 最佳实践总结
+## 10. 最佳实践总结
 
 1. **索引选择**：
    - 中小数据集（< 1000万）：HNSW
