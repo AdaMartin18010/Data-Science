@@ -83,7 +83,7 @@ docker-compose down
 
 **RRF（Reciprocal Rank Fusion）公式**：
 
-```
+```text
 RRF_score = Σ(1 / (60 + rank_i))
 ```
 
