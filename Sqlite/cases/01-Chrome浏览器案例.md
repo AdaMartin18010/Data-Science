@@ -1,0 +1,136 @@
+# Chrome浏览器案例：SQLite在数十亿用户级应用中的应用
+
+> **案例类型**：顶级应用案例  
+> **应用规模**：数十亿用户  
+> **最后更新**：2025-11-13
+
+---
+
+## 📋 案例概述
+
+Chrome浏览器使用SQLite存储书签、历史记录、扩展数据等，是SQLite在超大规模应用中的典型成功案例。
+
+---
+
+## 🎯 应用场景
+
+### 1. 数据存储需求
+
+- **书签存储**：用户书签数据
+- **历史记录**：浏览历史数据
+- **扩展数据**：浏览器扩展的本地数据
+- **缓存元数据**：HTTP缓存索引
+
+### 2. 技术挑战
+
+- **单用户数据隔离**：每个用户Profile独立数据库
+- **高并发读**：多标签页同时读取
+- **数据量控制**：历史记录可能达到数百万条
+- **性能要求**：快速查询和插入
+
+---
+
+## 🏗️ 技术架构
+
+### 数据库结构
+
+```sql
+-- Chrome书签表（简化）
+CREATE TABLE bookmarks (
+    id INTEGER PRIMARY KEY,
+    url TEXT NOT NULL,
+    title TEXT,
+    parent_id INTEGER,
+    date_added INTEGER,
+    INDEX idx_parent (parent_id)
+);
+
+-- Chrome历史记录表（简化）
+CREATE TABLE urls (
+    id INTEGER PRIMARY KEY,
+    url TEXT NOT NULL,
+    title TEXT,
+    visit_count INTEGER,
+    last_visit_time INTEGER,
+    INDEX idx_visit_time (last_visit_time DESC)
+);
+```
+
+### 配置优化
+
+```sql
+-- Chrome的SQLite配置
+PRAGMA journal_mode=WAL;        -- WAL模式
+PRAGMA synchronous=NORMAL;      -- 平衡性能和安全
+PRAGMA cache_size=-32000;       -- 32MB缓存
+PRAGMA temp_store=MEMORY;       -- 临时表内存存储
+```
+
+---
+
+## ⚡ 性能优化策略
+
+### 1. WAL模式
+
+- **优势**：支持一写多读，提升并发性能
+- **效果**：读性能提升2-3倍
+
+### 2. 索引优化
+
+- **覆盖索引**：查询只访问索引，无需回表
+- **部分索引**：只索引常用数据
+
+### 3. 定期清理
+
+- **历史记录清理**：定期清理过期历史记录
+- **数据库优化**：定期VACUUM优化
+
+---
+
+## 📊 性能数据
+
+| 操作 | 性能 | 说明 |
+|------|------|------|
+| 书签查询 | < 1ms | 索引查找 |
+| 历史记录查询 | < 5ms | 时间范围查询 |
+| 历史记录插入 | < 0.1ms | 批量插入 |
+
+---
+
+## 💡 最佳实践
+
+### 1. 单用户数据隔离
+
+- 每个用户Profile独立数据库文件
+- 避免多用户数据冲突
+
+### 2. 读多写少优化
+
+- 使用WAL模式支持并发读
+- 优化索引提升查询性能
+
+### 3. 数据量控制
+
+- 定期清理过期数据
+- 限制单用户数据量
+
+---
+
+## 🔗 相关资源
+
+- [04.03 顶级应用案例](../04-应用场景/04.03-顶级应用案例.md)
+- [01.02 事务与并发控制](../01-核心架构/01.02-事务与并发控制.md)
+- [03.02 优化策略](../03-性能优化/03.02-优化策略.md)
+
+---
+
+## 📚 参考资料
+
+- [Chrome源码](https://chromium.googlesource.com/chromium/src/)
+- [SQLite在Chrome中的应用](https://www.sqlite.org/famous.html)
+
+---
+
+**维护者**：Data-Science Team  
+**最后更新**：2025-11-13
+

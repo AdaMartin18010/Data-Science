@@ -1,6 +1,6 @@
 # SQLite 代码示例库
 
-> **状态**：📋 规划中
+> **状态**：✅ 基础示例已完成
 
 ---
 
@@ -8,17 +8,17 @@
 
 ### 基础操作
 
-- [01-basic-operations/](./01-basic-operations/) - 📋 待创建
-  - 数据库创建和连接
-  - 表创建和数据操作
-  - 基本查询示例
+- [01-basic-operations/](./01-basic-operations/) - ✅ 已完成
+  - ✅ 数据库创建和连接示例
+  - ✅ 表创建和数据操作示例
+  - ✅ 基本查询示例
 
 ### WAL模式
 
-- [02-wal-mode/](./02-wal-mode/) - 📋 待创建
-  - WAL模式配置
-  - 并发读写示例
-  - Checkpoint操作
+- [02-wal-mode/](./02-wal-mode/) - ✅ 已完成
+  - ✅ WAL模式配置示例
+  - ✅ 并发读写示例
+  - ✅ Checkpoint操作
 
 ### JSON扩展
 

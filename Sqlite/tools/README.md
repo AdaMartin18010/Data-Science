@@ -1,6 +1,6 @@
 # SQLite 工具和脚本
 
-> **状态**：📋 规划中
+> **状态**：✅ 核心工具已完成
 
 ---
 
@@ -8,24 +8,24 @@
 
 ### 性能测试
 
-- [performance-test/](./performance-test/) - 📋 待创建
-  - WAL vs DELETE模式对比
-  - 批量事务性能测试
-  - 索引效果测试
-
-### 基准测试
-
-- [benchmark/](./benchmark/) - 📋 待创建
-  - 标准基准测试套件
-  - 自定义测试场景
-  - 性能报告生成
+- [performance-test/](./performance-test/) - ✅ 已完成
+  - ✅ WAL vs DELETE模式对比
+  - ✅ 批量事务性能测试
+  - ✅ 索引效果测试
 
 ### 诊断工具
 
-- [diagnostics/](./diagnostics/) - 📋 待创建
-  - 数据库完整性检查
-  - 索引使用分析
-  - 查询计划分析
+- [diagnostics/](./diagnostics/) - ✅ 已完成
+  - ✅ 数据库完整性检查
+  - ✅ 索引使用分析
+  - ✅ 查询计划分析
+
+### 基准测试
+
+- [benchmark/](./benchmark/) - 📋 待创建（可选）
+  - 标准基准测试套件
+  - 自定义测试场景
+  - 性能报告生成
 
 ---
 
