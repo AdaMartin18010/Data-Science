@@ -40,14 +40,14 @@
 
 如果您在学术论文、技术文档或其他作品中引用本知识库，请使用以下格式：
 
-```
+```text
 SQLite 知识库 (2025). Data-Science Team.
 https://github.com/your-repo/Sqlite
 ```
 
 ### 引用特定文档
 
-```
+```text
 SQLite 知识库 - [文档名称] (2025). Data-Science Team.
 https://github.com/your-repo/Sqlite/[文档路径]
 ```
