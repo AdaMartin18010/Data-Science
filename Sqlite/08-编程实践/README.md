@@ -8,6 +8,7 @@
 ## 📑 目录
 
 - [第八部分：编程技巧与实践](#第八部分编程技巧与实践)
+  - [📑 目录](#-目录)
   - [📋 内容概览](#-内容概览)
   - [📚 文档列表](#-文档列表)
   - [🎯 学习目标](#-学习目标)
@@ -53,6 +54,34 @@
   - 崩溃恢复机制
   - 最佳实践
 
+- [08.06 Python使用指南](./08.06-Python使用指南.md) - ✅ 已完成
+  - 标准库sqlite3使用
+  - 异步库aiosqlite
+  - ORM框架SQLAlchemy
+  - 高级特性和最佳实践
+
+- [08.07 JavaScript/TypeScript使用指南](./08.07-JavaScript-TypeScript使用指南.md) - ✅ 已完成
+  - better-sqlite3（推荐）
+  - node-sqlite3（异步）
+  - sql.js（浏览器/WebAssembly）
+  - TypeScript支持和ORM框架
+
+- [08.08 Go使用指南](./08.08-Go使用指南.md) - ✅ 已完成
+  - database/sql + go-sqlite3
+  - modernc.org/sqlite（纯Go）
+  - crawshaw.io/sqlite（低级API）
+  - GORM集成
+
+- [08.09 Rust使用指南](./08.09-Rust使用指南.md) - ✅ 已完成
+  - rusqlite（推荐）
+  - sqlx（异步）
+  - 高级特性和ORM框架
+
+- [08.10 C/C++使用指南](./08.10-C-C++使用指南.md) - ✅ 已完成
+  - C语言原生API
+  - C++封装和RAII
+  - 高级特性和性能优化
+
 ---
 
 ## 🎯 学习目标
@@ -63,6 +92,9 @@
 2. 编写高效的SQL查询
 3. 配置PRAGMA参数优化性能
 4. 处理错误和异常情况
+5. 在您熟悉的编程语言中使用SQLite（Python、JavaScript/TypeScript、Go、Rust、C/C++）
+6. 选择合适的库和ORM框架
+7. 应用最佳实践优化性能
 
 ---
 

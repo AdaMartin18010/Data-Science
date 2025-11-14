@@ -5,6 +5,65 @@
 
 ---
 
+## [1.9.0] - 2025-11-13
+
+### 📚 编程语言使用指南全面创建
+
+**新增5个编程语言使用指南文档**：
+
+- ✅ **08.06-Python使用指南.md**
+  - 标准库sqlite3完整使用
+  - 异步库aiosqlite
+  - ORM框架SQLAlchemy（Core和ORM）
+  - 自定义函数、聚合函数、行工厂
+  - 性能优化和最佳实践
+
+- ✅ **08.07-JavaScript-TypeScript使用指南.md**
+  - better-sqlite3（推荐，同步API）
+  - node-sqlite3（异步API）
+  - sql.js（浏览器/WebAssembly）
+  - TypeScript类型安全支持
+  - TypeORM、Sequelize、Prisma集成
+
+- ✅ **08.08-Go使用指南.md**
+  - database/sql + go-sqlite3（CGO驱动）
+  - modernc.org/sqlite（纯Go实现）
+  - crawshaw.io/sqlite（低级API）
+  - GORM集成和高级查询
+
+- ✅ **08.09-Rust使用指南.md**
+  - rusqlite（推荐，类型安全）
+  - sqlx（异步，编译时SQL检查）
+  - 自定义函数和聚合函数
+  - Diesel和Sea-ORM集成
+
+- ✅ **08.10-C-C++使用指南.md**
+  - C语言原生API使用
+  - C++封装和RAII资源管理
+  - 现代C++特性应用
+  - 自定义函数、回调函数、备份恢复
+
+**文档统计**：
+
+- 新增文档：5个
+- 总行数：约4754行
+- 代码示例：110+个
+- 覆盖语言：Python、JavaScript/TypeScript、Go、Rust、C/C++
+- 覆盖库/框架：15+个主流库和ORM框架
+
+**相关文档更新**：
+
+- ✅ 更新08-编程实践/README.md，添加所有新文档描述和学习目标
+- ✅ 更新INDEX.md，添加编程语言使用指南索引
+- ✅ 更新readme.md，更新项目描述和统计信息（35个文档）
+- ✅ 更新README-EN.md，更新英文版本和项目状态
+- ✅ 更新NAVIGATION-按角色.md，在开发者部分添加编程语言指南
+- ✅ 更新NAVIGATION-按场景.md，在移动应用场景添加编程语言指南
+- ✅ 更新QUICK-START.md，添加快速链接
+- ✅ 更新examples/README.md，添加编程语言使用指南引用
+
+---
+
 ## [1.8.0] - 2025-11-13
 
 ### 📚 SQL标准对齐文档重大完善

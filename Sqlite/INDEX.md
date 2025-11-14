@@ -85,6 +85,16 @@
 - [08.03 查询优化](./08-编程实践/08.03-查询优化.md) - ✅ 已完成
 - [08.04 PRAGMA配置](./08-编程实践/08.04-PRAGMA配置.md) - ✅ 已完成
 - [08.05 错误处理](./08-编程实践/08.05-错误处理.md) - ✅ 已完成
+- [08.06 Python使用指南](./08-编程实践/08.06-Python使用指南.md) - ✅ 已完成
+  - 标准库sqlite3、异步库aiosqlite、ORM框架SQLAlchemy
+- [08.07 JavaScript/TypeScript使用指南](./08-编程实践/08.07-JavaScript-TypeScript使用指南.md) - ✅ 已完成
+  - better-sqlite3、node-sqlite3、sql.js、TypeScript支持
+- [08.08 Go使用指南](./08-编程实践/08.08-Go使用指南.md) - ✅ 已完成
+  - go-sqlite3、modernc.org/sqlite、GORM集成
+- [08.09 Rust使用指南](./08-编程实践/08.09-Rust使用指南.md) - ✅ 已完成
+  - rusqlite、sqlx、Diesel、Sea-ORM
+- [08.10 C/C++使用指南](./08-编程实践/08.10-C-C++使用指南.md) - ✅ 已完成
+  - C语言原生API、C++封装、高级特性
 
 ### 🔄 第九部分：最新特性（2024-2025）
 

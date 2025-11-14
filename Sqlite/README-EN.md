@@ -60,7 +60,7 @@ Build a systematic SQLite knowledge base covering complete content from core arc
 
 ### Core Content
 
-- ✅ **26 core documents**: 100% complete
+- ✅ **35 core documents**: 100% complete (including 5 programming language guides)
 - ✅ **All documents formatted uniformly**: Include table of contents, numbering, consistent structure
 - ✅ **Cross-references complete**: 100% link correctness
 
@@ -118,13 +118,18 @@ Build a systematic SQLite knowledge base covering complete content from core arc
 - [07.03 University Course Alignment](./07-标准对齐/07.03-大学课程对齐.md)
 - [07.04 Academic Research Reference](./07-标准对齐/07.04-学术研究参考.md)
 
-### Part 8: Programming Practice (5 documents)
+### Part 8: Programming Practice (10 documents)
 
 - [08.01 Connection Management](./08-编程实践/08.01-连接管理.md)
 - [08.02 Transaction Management](./08-编程实践/08.02-事务管理.md)
 - [08.03 Query Optimization](./08-编程实践/08.03-查询优化.md)
 - [08.04 PRAGMA Configuration](./08-编程实践/08.04-PRAGMA配置.md)
 - [08.05 Error Handling](./08-编程实践/08.05-错误处理.md)
+- [08.06 Python Guide](./08-编程实践/08.06-Python使用指南.md) - sqlite3, aiosqlite, SQLAlchemy
+- [08.07 JavaScript/TypeScript Guide](./08-编程实践/08.07-JavaScript-TypeScript使用指南.md) - better-sqlite3, node-sqlite3, sql.js
+- [08.08 Go Guide](./08-编程实践/08.08-Go使用指南.md) - go-sqlite3, GORM
+- [08.09 Rust Guide](./08-编程实践/08.09-Rust使用指南.md) - rusqlite, sqlx
+- [08.10 C/C++ Guide](./08-编程实践/08.10-C-C++使用指南.md) - Native C API, C++ wrappers
 
 ### Part 9: Latest Features (2 documents)
 
