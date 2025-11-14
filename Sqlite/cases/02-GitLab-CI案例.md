@@ -9,6 +9,7 @@
 ## 📑 目录
 
 - [GitLab CI案例：SQLite在CI/CD Pipeline中的应用](#gitlab-ci案例sqlite在cicd-pipeline中的应用)
+  - [📑 目录](#-目录)
   - [📋 案例概述](#-案例概述)
   - [🎯 应用场景](#-应用场景)
     - [1. 数据存储需求](#1-数据存储需求)
