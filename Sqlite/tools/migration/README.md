@@ -5,24 +5,48 @@
 
 ---
 
+## 📑 目录
+
+- [SQLite 迁移工具](#sqlite-迁移工具)
+  - [📋 工具列表](#-工具列表)
+    - [迁移辅助工具](#迁移辅助工具)
+  - [🎯 使用说明](#-使用说明)
+    - [运行迁移前检查](#运行迁移前检查)
+    - [分析数据类型](#分析数据类型)
+    - [生成迁移脚本](#生成迁移脚本)
+    - [执行数据迁移](#执行数据迁移)
+  - [🔧 工具使用流程](#-工具使用流程)
+  - [📚 相关资源](#-相关资源)
+
+---
+
 ## 📋 工具列表
 
 ### 迁移辅助工具
 
-- [01-迁移前检查.py](./01-迁移前检查.py) - ✅ 已创建
+- [01-迁移前检查.py](./01-迁移前检查.py) - ✅ 已完成
   - 检查SQLite数据库结构
   - 识别迁移风险点
   - 生成迁移报告
+  - 计算兼容性评分
 
-- [02-数据类型分析.py](./02-数据类型分析.py) - ✅ 已创建
+- [02-数据类型分析.py](./02-数据类型分析.py) - ✅ 已完成
   - 分析SQLite数据类型使用情况
+  - 分析实际存储类型
   - 生成PostgreSQL类型映射建议
   - 识别类型转换风险
 
-- [03-迁移脚本生成器.py](./03-迁移脚本生成器.py) - ✅ 已创建
+- [03-迁移脚本生成器.py](./03-迁移脚本生成器.py) - ✅ 已完成
   - 自动生成PostgreSQL DDL
-  - 生成数据迁移脚本
+  - 生成数据迁移脚本（COPY和INSERT）
   - 生成索引和约束脚本
+  - 支持自定义类型映射配置
+
+- [04-数据迁移工具.py](./04-数据迁移工具.py) - ✅ 已完成
+  - 全量数据迁移
+  - 批量迁移支持
+  - 数据验证
+  - 进度报告和统计
 
 ---
 
@@ -44,6 +68,15 @@ python 02-数据类型分析.py database.db
 
 ```bash
 python 03-迁移脚本生成器.py database.db --output migration.sql
+python 03-迁移脚本生成器.py database.db --output migration.sql --config type_mapping.json
+```
+
+### 执行数据迁移
+
+```bash
+python 04-数据迁移工具.py database.db postgresql://user:pass@host/db
+python 04-数据迁移工具.py database.db postgresql://user:pass@host/db --table users --table orders
+python 04-数据迁移工具.py database.db postgresql://user:pass@host/db --batch-size 5000 --verify
 ```
 
 ---
@@ -51,7 +84,36 @@ python 03-迁移脚本生成器.py database.db --output migration.sql
 ## 📚 相关资源
 
 - [10.01 SQLite到PostgreSQL迁移指南](../../10-迁移指南/10.01-SQLite到PostgreSQL迁移指南.md)
+- [10.02 SQL兼容性深度分析](../../10-迁移指南/10.02-SQL兼容性深度分析.md)
+- [10.03 二进制复制与增量迁移](../../10-迁移指南/10.03-二进制复制与增量迁移.md)
+- [10.04 数据迁移与语义模型兼容性](../../10-迁移指南/10.04-数据迁移与语义模型兼容性.md)
 - [02.01 数据类型系统](../../02-数据模型/02.01-数据类型系统.md)
+
+## 🔧 工具使用流程
+
+1. **迁移前检查**
+
+   ```bash
+   python 01-迁移前检查.py database.db --output precheck.json
+   ```
+
+2. **数据类型分析**
+
+   ```bash
+   python 02-数据类型分析.py database.db --output type_analysis.json
+   ```
+
+3. **生成迁移脚本**
+
+   ```bash
+   python 03-迁移脚本生成器.py database.db --output migration.sql
+   ```
+
+4. **执行数据迁移**
+
+   ```bash
+   python 04-数据迁移工具.py database.db postgresql://user:pass@host/db --verify
+   ```
 
 ---
 

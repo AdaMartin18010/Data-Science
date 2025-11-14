@@ -112,6 +112,8 @@ Build a systematic SQLite knowledge base covering complete content from core arc
 ### Part 7: Standard Alignment (4 documents)
 
 - [07.01 SQL Standard Alignment](./07-标准对齐/07.01-SQL标准对齐.md)
+  - SQL-92/SQL:1999/SQL:2003/SQL:2008/SQL:2011/SQL:2016/SQL:2023 support
+  - SQL function comparison tables, compatibility test cases, migration guides, best practices, quick reference tables
 - [07.02 Wikipedia Concept Alignment](./07-标准对齐/07.02-Wikipedia概念对齐.md)
 - [07.03 University Course Alignment](./07-标准对齐/07.03-大学课程对齐.md)
 - [07.04 Academic Research Reference](./07-标准对齐/07.04-学术研究参考.md)
