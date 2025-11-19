@@ -44,20 +44,35 @@
 
 ### JSON扩展
 
-- [04-json-extensions/](./04-json-extensions/) - 📋 待创建
+- [04-json-extensions/](./04-json-extensions/) - ✅ 已完成
   - JSON1扩展使用
   - JSON路径查询
   - JSON索引创建
 
 ### 高级特性
 
-- [05-generated-columns/](./05-generated-columns/) - 📋 待创建
+- [05-generated-columns/](./05-generated-columns/) - ✅ 已完成
   - 生成列示例
   - STORED vs VIRTUAL
 
-- [06-recursive-cte/](./06-recursive-cte/) - 📋 待创建
+- [06-recursive-cte/](./06-recursive-cte/) - ✅ 已完成
   - 递归CTE示例
   - 树形结构查询
+
+- [07-fts5-fulltext-search/](./07-fts5-fulltext-search/) - ✅ 已完成
+  - FTS5全文搜索基础
+  - 高级搜索功能
+  - 外部内容表使用
+
+- [08-virtual-tables/](./08-virtual-tables/) - ✅ 已完成
+  - 虚拟表基础使用
+  - 自定义虚拟表实现
+  - 虚拟表应用案例
+
+- [09-custom-functions/](./09-custom-functions/) - ✅ 已完成
+  - 自定义标量函数
+  - 自定义聚合函数
+  - 表值函数概念
 
 ---
 
