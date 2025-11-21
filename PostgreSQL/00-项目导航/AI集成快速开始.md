@@ -544,6 +544,7 @@ GROUP BY id, title;
 
 - [Hugging Face Model Hub](https://huggingface.co/models) - 查找嵌入模型
 - [pgvector Examples](https://github.com/pgvector/pgvector-python) - Python示例
+- [本地可运行示例](../examples/README.md) ⭐ - 8个完整的Docker Compose示例项目
 - [Vector Database Comparison](https://benchmark.vectorview.ai/) - 向量数据库对比
 
 ---
