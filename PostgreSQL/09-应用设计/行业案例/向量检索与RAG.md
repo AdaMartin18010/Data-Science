@@ -1062,6 +1062,25 @@ LIMIT 10;
 
 ---
 
+## 十一、交叉引用
+
+### 相关文档
+
+- ⭐⭐⭐ [向量数据库支持](../../03-高级特性/03.05-向量数据库支持.md) - pgvector详细说明
+- ⭐⭐ [数据分析完整指南](../数据模型设计/09.01-数据分析完整指南.md) - 向量数据分析
+- ⭐⭐ [数据建模完整指南](../数据模型设计/09.02-数据建模完整指南.md) - RAG数据建模
+- ⭐ [索引结构与优化](../../03-查询与优化/02.02-索引结构与优化.md) - 向量索引优化
+- ⭐ [PostgreSQL 18新特性](../../02-版本特性/02.01-PostgreSQL-18-新特性.md) - 异步I/O优化
+
+### 外部资源
+
+- [pgvector官方文档](https://github.com/pgvector/pgvector)
+- [PostgreSQL全文搜索文档](https://www.postgresql.org/docs/current/textsearch.html)
+- [RAG架构最佳实践](https://www.pinecone.io/learn/retrieval-augmented-generation/)
+
+---
+
+**文档版本**: v1.0
+**最后更新**: 2025-11-22
+**PostgreSQL版本**: 18.x (推荐) ⭐ | 17.x (推荐) | 16.x (兼容)
 **维护者**: Data-Science Team
-**最后更新**: 2025-01-15
-**版本**: 1.0
