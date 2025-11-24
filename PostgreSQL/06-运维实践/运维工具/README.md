@@ -485,6 +485,7 @@ SELECT * FROM performance_summary;
 ### 工具安装优先级
 
 **生产环境必备**:
+
 1. `pg_stat_statements` - 查询性能分析
 2. `pg_activity` 或 `pg_top` - 实时监控
 3. `pgBadger` - 日志分析
