@@ -27,6 +27,9 @@
     - [2. 读多写少优化](#2-读多写少优化)
     - [3. 数据量控制](#3-数据量控制)
   - [🔗 相关资源](#-相关资源)
+  - [🔗 交叉引用](#-交叉引用)
+    - [理论模型 🆕](#理论模型-)
+    - [设计模型 🆕](#设计模型-)
   - [📚 参考资料](#-参考资料)
 
 ---
@@ -100,6 +103,68 @@ PRAGMA temp_store=MEMORY;       -- 临时表内存存储
 - **优势**：支持一写多读，提升并发性能
 - **效果**：读性能提升2-3倍
 
+**实际代码示例**：
+
+```python
+import sqlite3
+import threading
+from concurrent.futures import ThreadPoolExecutor
+
+class ChromeHistoryManager:
+    """Chrome历史记录管理器（模拟）"""
+
+    def __init__(self, db_path):
+        self.db_path = db_path
+        self._init_database()
+
+    def _init_database(self):
+        """初始化数据库（Chrome风格配置）"""
+        conn = sqlite3.connect(self.db_path)
+        conn.execute('PRAGMA journal_mode=WAL')
+        conn.execute('PRAGMA synchronous=NORMAL')
+        conn.execute('PRAGMA cache_size=-32000')  # 32MB缓存
+        conn.execute('PRAGMA temp_store=MEMORY')
+        conn.execute('''
+            CREATE TABLE IF NOT EXISTS urls (
+                id INTEGER PRIMARY KEY,
+                url TEXT NOT NULL,
+                title TEXT,
+                visit_count INTEGER DEFAULT 1,
+                last_visit_time INTEGER NOT NULL
+            )
+        ''')
+        conn.execute('''
+            CREATE INDEX IF NOT EXISTS idx_urls_visit_time
+            ON urls(last_visit_time DESC)
+        ''')
+        conn.commit()
+        conn.close()
+
+    def add_visit(self, url, title):
+        """添加访问记录（高并发写）"""
+        visit_time = int(time.time() * 1000000)
+        conn = sqlite3.connect(self.db_path, check_same_thread=False)
+        with conn:
+            cursor = conn.execute('SELECT id FROM urls WHERE url = ?', (url,))
+            url_row = cursor.fetchone()
+            if url_row:
+                conn.execute('''
+                    UPDATE urls
+                    SET visit_count = visit_count + 1, last_visit_time = ?
+                    WHERE id = ?
+                ''', (visit_time, url_row[0]))
+            else:
+                conn.execute('''
+                    INSERT INTO urls (url, title, last_visit_time)
+                    VALUES (?, ?, ?)
+                ''', (url, title, visit_time))
+        conn.close()
+
+# 使用示例
+manager = ChromeHistoryManager('chrome_history.db')
+manager.add_visit('https://example.com', 'Example Domain')
+```
+
 ### 2. 索引优化
 
 - **覆盖索引**：查询只访问索引，无需回表
@@ -149,6 +214,21 @@ PRAGMA temp_store=MEMORY;       -- 临时表内存存储
 
 ---
 
+## 🔗 交叉引用
+
+### 理论模型 🆕
+
+- ⭐⭐ [并发控制理论](../11-理论模型/11.04-并发控制理论.md) - WAL模式并发读理论
+- ⭐⭐ [存储理论](../11-理论模型/11.05-存储理论.md) - 索引理论、缓存理论
+- ⭐ [算法复杂度理论](../11-理论模型/11.03-算法复杂度理论.md) - 查询操作复杂度
+
+### 设计模型 🆕
+
+- ⭐⭐ [设计模式](../12-设计模型/12.03-设计模式.md) - 单用户数据隔离模式
+- ⭐ [设计决策](../12-设计模型/12.04-设计决策.md) - 单文件数据库决策
+
+---
+
 ## 📚 参考资料
 
 - [Chrome源码](https://chromium.googlesource.com/chromium/src/)
@@ -157,4 +237,4 @@ PRAGMA temp_store=MEMORY;       -- 临时表内存存储
 ---
 
 **维护者**：Data-Science Team
-**最后更新**：2025-11-13
+**最后更新**：2025-01-15
