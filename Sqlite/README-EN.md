@@ -26,6 +26,9 @@ Build a systematic SQLite knowledge base covering complete content from core arc
 - **[07-Standard Alignment](./07-标准对齐/)** - SQL standards, Wikipedia, university courses
 - **[08-Programming Practice](./08-编程实践/)** - Connection management, transactions, query optimization, PRAGMA configuration
 - **[09-Latest Features](./09-最新特性/)** - SQLite 3.45+ new features, future directions
+- **[10-Migration Guide](./10-迁移指南/)** - Migration guides from SQLite to other databases 🆕
+- **[11-Theoretical Models](./11-理论模型/)** 🆕 - System theory, data model theory, algorithm complexity theory, concurrency control theory, storage theory
+- **[12-Design Models](./12-设计模型/)** 🆕 - Architectural design models, design principles, design patterns, design decisions, system evolution
 
 ### 🛠️ Practical Resources
 

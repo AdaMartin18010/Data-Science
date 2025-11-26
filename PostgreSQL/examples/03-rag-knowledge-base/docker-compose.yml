@@ -1,5 +1,13 @@
 version: '3.8'
 
+# RAG知识库基础模式 - 仅PostgreSQL和Redis
+# 最后更新: 2025-01-15
+#
+# 使用说明:
+#   - 基础模式: docker-compose up -d (仅数据库和缓存)
+#   - 完整模式: docker-compose -f docker-compose.full.yml up -d (所有服务)
+#   - 启动脚本: ./start.sh (交互式选择模式)
+
 services:
   # PostgreSQL 18 + pgvector 2.0 ⭐
   postgres:
@@ -28,12 +36,14 @@ services:
     networks:
       - ai-network
 
-  # Redis缓存（可选，用于缓存查询结果）
+  # Redis缓存（用于缓存查询结果和任务队列）
   redis:
     image: redis:7-alpine
     container_name: rag-redis
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -44,6 +54,7 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
 
 networks:
   ai-network:

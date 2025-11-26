@@ -9,7 +9,8 @@ SQLite JSON扩展示例 - 路径查询
 - JSON数组索引访问
 - 复杂JSON结构查询
 
-适用版本：SQLite 3.31+
+适用版本：SQLite 3.31+ 至 3.47.x
+最后更新：2025-01-15
 """
 
 import sqlite3

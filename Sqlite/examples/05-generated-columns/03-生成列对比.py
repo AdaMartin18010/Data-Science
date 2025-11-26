@@ -8,7 +8,8 @@ SQLite 生成列示例 - STORED vs VIRTUAL对比
 - 存储空间对比
 - 使用场景选择
 
-适用版本：SQLite 3.31+
+适用版本：SQLite 3.31+ 至 3.47.x
+最后更新：2025-01-15
 """
 
 import sqlite3

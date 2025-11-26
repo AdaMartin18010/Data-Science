@@ -33,9 +33,12 @@
 
 ### 案例示例
 
-1. **RAG 知识库** (`03-rag-knowledge-base/`) ✅
+1. **RAG 知识库** (`03-rag-knowledge-base/`) ✅ 🆕
    - pgvector + 混合检索 + RRF融合
    - 适合：知识库问答系统
+   - **完整容器化部署**：包含后端、前端、监控等所有服务
+   - **启动脚本**：支持基础模式和完整模式
+   - 📖 [完整部署文档](./03-rag-knowledge-base/README.full.md)
 
 2. **智能推荐系统** (`04-recommendation-system/`) ✅
    - pgvector + 虚拟生成列 + 交互历史
@@ -99,11 +102,35 @@ docker-compose down
 
 ## 🔄 更新计划
 
-- [ ] 完成所有8个案例的Docker Compose配置
+- [x] 完成所有8个案例的Docker Compose配置 ✅
+- [x] RAG知识库完整容器化部署 ✅ (2025-01-15)
 - [ ] 添加性能测试脚本
 - [ ] 添加监控和日志收集
 - [ ] 添加CI/CD配置
 
 ---
 
-**最后更新**：2025-11-11
+## 🆕 最新更新（2025-01-15）
+
+### RAG知识库完整容器化部署 ✅
+
+- ✅ 创建完整的docker-compose配置（`docker-compose.full.yml`）
+  - 包含所有服务：PostgreSQL、Redis、Backend、Frontend、Celery、Nginx、Prometheus、Grafana
+- ✅ 创建启动脚本（`start.sh`）
+  - 支持基础模式（仅数据库）和完整模式（所有服务）
+  - 自动检查环境和创建配置文件
+- ✅ 创建完整部署文档（`README.full.md`）
+  - 详细的部署说明、配置指南、故障排查
+- ✅ 创建环境变量示例（`env.example`）
+- ✅ 更新README.md添加完整部署说明
+
+**使用方式**：
+
+```bash
+cd examples/03-rag-knowledge-base
+./start.sh  # 交互式选择启动模式
+```
+
+---
+
+**最后更新**：2025-01-15

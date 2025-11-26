@@ -9,7 +9,8 @@ SQLite 生成列示例 - VIRTUAL生成列
 - 存储空间节省
 - 性能考虑
 
-适用版本：SQLite 3.31+
+适用版本：SQLite 3.31+ 至 3.47.x
+最后更新：2025-01-15
 """
 
 import sqlite3

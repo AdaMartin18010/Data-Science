@@ -11,6 +11,7 @@
 本示例展示如何构建一个完整的RAG（Retrieval-Augmented Generation）知识库系统，使用PostgreSQL存储文档和向量，实现语义检索和混合搜索。
 
 **适用场景**：
+
 - 企业知识库
 - 文档问答系统
 - 智能客服
@@ -127,7 +128,7 @@ results = execute_query("""
 
 ## 📊 架构说明
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │        应用层（FastAPI/Flask）           │
 │  - 接收用户查询                          │
@@ -137,11 +138,11 @@ results = execute_query("""
 └──────────────┬──────────────────────────┘
                │
 ┌──────────────▼──────────────────────────┐
-│      PostgreSQL + pgvector                │
-│  - 知识库表（文档+向量）                    │
-│  - 向量索引（HNSW）                       │
-│  - 全文索引（GIN）                        │
-│  - RRF融合函数                            │
+│      PostgreSQL + pgvector              │
+│  - 知识库表（文档+向量）                  │
+│  - 向量索引（HNSW）                      │
+│  - 全文索引（GIN）                       │
+│  - RRF融合函数                           │
 └─────────────────────────────────────────┘
 ```
 
@@ -213,4 +214,37 @@ def generate_answer(context_docs, user_query):
 
 ---
 
-**最后更新**：2025-11-11
+**最后更新**：2025-01-15
+
+---
+
+## 🐳 完整容器化部署
+
+本示例还提供了**完整的容器化部署方案**，包含后端、前端、监控等所有服务：
+
+- 📖 [完整部署文档](./README.full.md) - 详细部署说明
+- 🚀 [启动脚本](./start.sh) - 一键启动脚本
+- 🐳 [完整docker-compose](./docker-compose.full.yml) - 所有服务配置
+
+### 快速启动完整系统
+
+```bash
+# 使用启动脚本（推荐）
+chmod +x start.sh
+./start.sh
+
+# 或手动启动
+docker-compose -f docker-compose.full.yml up -d
+```
+
+**完整系统包含**：
+
+- ✅ PostgreSQL 18 + pgvector 2.0
+- ✅ Redis缓存
+- ✅ FastAPI后端
+- ✅ React前端
+- ✅ Celery异步任务
+- ✅ Nginx反向代理
+- ✅ Prometheus + Grafana监控
+
+---

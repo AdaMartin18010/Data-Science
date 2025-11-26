@@ -9,7 +9,8 @@ SQLite JSON扩展示例 - 基础操作
 - json_extract()函数使用
 - JSON数据类型验证
 
-适用版本：SQLite 3.31+
+适用版本：SQLite 3.31+ 至 3.47.x
+最后更新：2025-01-15
 """
 
 import sqlite3

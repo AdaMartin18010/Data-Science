@@ -8,7 +8,8 @@ SQLite 虚拟表示例 - 基础使用
 - 使用内置虚拟表（FTS5、rtree）
 - 虚拟表查询
 
-适用版本：SQLite 3.31+
+适用版本：SQLite 3.31+ 至 3.47.x
+最后更新：2025-01-15
 """
 
 import sqlite3
