@@ -6,7 +6,7 @@ This document provides international standard definition examples for core Neo4j
 
 ## 2. Core Concept Definitions
 
-### 2.1 Neo4j DBMS
+### 2.1. Neo4j DBMS
 
 ```yaml
 # Neo4j DBMS concept definition
@@ -89,7 +89,7 @@ graph TB
     PropertyGraph --> Property[Property]
 ```
 
-### 2.2 Node
+## 3. Node
 
 ```yaml
 # Node concept definition
@@ -167,7 +167,7 @@ graph LR
     Properties --> City[city]
 ```
 
-### 2.3 Edge
+## 4. Edge
 
 ```yaml
 # Edge concept definition
@@ -250,7 +250,7 @@ graph LR
     Properties --> Position[position]
 ```
 
-### 2.4 Label
+## 5. Label
 
 ```yaml
 # Label concept definition
@@ -331,7 +331,7 @@ graph TB
     Optimization --> Aggregation[Aggregation]
 ```
 
-### 2.5 Property
+## 6. Property
 
 ```yaml
 # Property concept definition
@@ -426,7 +426,7 @@ graph LR
     DataType --> Object[Object]
 ```
 
-### 2.6 Cypher
+## 7. Cypher
 
 ```yaml
 # Cypher concept definition
@@ -517,7 +517,7 @@ graph TB
     GraphSpecific --> REMOVE[REMOVE Clause]
 ```
 
-## 3. Bilingual Terminology Mapping Table
+## 8. Bilingual Terminology Mapping Table
 
 | English Term | Chinese Term | Definition | Wikidata ID |
 |-------------|-------------|------------|-------------|
@@ -534,7 +534,7 @@ graph TB
 | Relationship Type | 关系类型 | Semantic type of edges | Q118357_RelationshipType |
 | Pattern Matching | 模式匹配 | Query method for matching graph patterns | Q118357_PatternMatching |
 
-## 4. RDF Triples (Turtle Format)
+## 9. RDF Triples (Turtle Format)
 
 ```turtle
 # Neo4j Knowledge Graph RDF Triples
@@ -613,7 +613,7 @@ cypher: wdt:P279 wd:Q118357_DeclarativeLanguage ;
         wdt:P31 wd:Q118357_QueryLanguage .
 ```
 
-## 5. Concept Mapping Relations
+## 10. Concept Mapping Relations
 
 ```yaml
 # Neo4j concept mapping relations
@@ -681,12 +681,12 @@ concept_mapping_relations:
       - "neo4j"
 ```
 
-## 6. Quality Standards and Validation Checklist
+## 11. Quality Standards and Validation Checklist
 
 ```yaml
 # Neo4j concept definition quality standards
 quality_standards:
-  # Definition completeness
+# Definition completeness
   definition_completeness:
     required_elements:
       - "English definition"
@@ -699,7 +699,7 @@ quality_standards:
       - "Wikidata ID"
       - "Related concepts"
   
-  # Multi-representation completeness
+# Multi-representation completeness
   multi_representation_completeness:
     required_forms:
       - "Text description"
@@ -707,7 +707,7 @@ quality_standards:
       - "Code examples"
       - "Diagram representation"
   
-  # Bilingual correspondence
+# Bilingual correspondence
   bilingual_correspondence:
     required_mappings:
       - "Term correspondence"
@@ -715,7 +715,7 @@ quality_standards:
       - "Property correspondence"
       - "Example correspondence"
   
-  # Wikidata alignment
+# Wikidata alignment
   wikidata_alignment:
     required_elements:
       - "Entity ID mapping"
@@ -763,7 +763,7 @@ validation_checklist:
     - "Is terminology consistent"
 ```
 
-## 7. Summary
+## 12. Summary
 
 This document provides international standard definition examples for core Neo4j graph database concepts, including:
 

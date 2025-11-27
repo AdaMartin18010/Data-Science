@@ -4,7 +4,7 @@
 
 本文档为MongoDB数据库系统建立国际化Wiki标准，确保知识内容的学术严谨性、一致性和可访问性，支持多语言环境下的知识传播和协作。
 
-### 1.1 目标
+### 1.1. 目标
 
 - 建立MongoDB概念的标准定义体系
 - 实现多语言支持和术语映射
@@ -12,7 +12,7 @@
 - 确保内容质量和学术规范
 - 支持自动化和工具化处理
 
-### 1.2 适用范围
+### 1.2. 适用范围
 
 - MongoDB核心概念和架构
 - 文档数据库理论
@@ -22,7 +22,7 @@
 
 ## 2. 概念定义标准
 
-### 2.1 核心概念定义
+### 2.1. 核心概念定义
 
 ```yaml
 # MongoDB核心概念定义
@@ -87,7 +87,7 @@ concepts:
     wikidata: "Q193207"
 ```
 
-### 2.2 数学符号定义
+## 3. 数学符号定义
 
 ```latex
 % MongoDB数学符号定义
@@ -117,9 +117,9 @@ concepts:
 \newcommand{\GeoIntersects}{\text{geoIntersects}}
 ```
 
-## 3. 多表示形式
+## 4. 多表示形式
 
-### 3.1 文本描述
+### 4.1. 文本描述
 
 ```markdown
 MongoDB是一个面向文档的NoSQL数据库管理系统，它使用BSON（Binary JSON）格式存储数据。MongoDB的设计理念是提供高性能、高可用性和易扩展性的数据存储解决方案。
@@ -132,7 +132,7 @@ MongoDB是一个面向文档的NoSQL数据库管理系统，它使用BSON（Bina
 - 丰富的查询语言：支持复杂的查询和聚合操作
 ```
 
-### 3.2 数学公式
+### 4.2. 数学公式
 
 ```latex
 % MongoDB架构数学表示
@@ -163,7 +163,7 @@ C_{process} &= N_{documents} \times C_{processing\_per\_doc}
 \end{align}
 ```
 
-### 3.3 代码示例
+### 4.3. 代码示例
 
 ```javascript
 // MongoDB连接和基本操作
@@ -178,7 +178,7 @@ async function basicOperations() {
         await client.connect();
         const database = client.db("test");
         const collection = database.collection("documents");
-        
+
         // 插入文档
         const insertResult = await collection.insertOne({
             name: "张三",
@@ -190,19 +190,19 @@ async function basicOperations() {
             },
             hobbies: ["读书", "编程", "旅行"]
         });
-        
+
         // 查询文档
         const findResult = await collection.findOne({ name: "张三" });
-        
+
         // 更新文档
         const updateResult = await collection.updateOne(
             { name: "张三" },
             { $set: { age: 31 } }
         );
-        
+
         // 删除文档
         const deleteResult = await collection.deleteOne({ name: "张三" });
-        
+
     } finally {
         await client.close();
     }
@@ -211,31 +211,31 @@ async function basicOperations() {
 // 聚合管道示例
 async function aggregationExample() {
     const collection = client.db("sales").collection("orders");
-    
+
     const pipeline = [
         // 匹配阶段
         { $match: { status: "completed" } },
-        
+
         // 分组阶段
         { $group: {
             _id: "$customer_id",
             totalAmount: { $sum: "$amount" },
             orderCount: { $sum: 1 }
         }},
-        
+
         // 排序阶段
         { $sort: { totalAmount: -1 } },
-        
+
         // 限制结果
         { $limit: 10 }
     ];
-    
+
     const result = await collection.aggregate(pipeline).toArray();
     return result;
 }
 ```
 
-### 3.4 图表表示
+### 4.4. 图表表示
 
 ```mermaid
 %% MongoDB架构图
@@ -245,23 +245,23 @@ graph TB
     Mongos --> Shard1[分片1]
     Mongos --> Shard2[分片2]
     Mongos --> Shard3[分片3]
-    
+
     Shard1 --> RS1[副本集1]
     Shard2 --> RS2[副本集2]
     Shard3 --> RS3[副本集3]
-    
+
     RS1 --> Primary1[主节点]
     RS1 --> Secondary1[从节点]
     RS1 --> Secondary2[从节点]
-    
+
     RS2 --> Primary2[主节点]
     RS2 --> Secondary3[从节点]
     RS2 --> Secondary4[从节点]
-    
+
     RS3 --> Primary3[主节点]
     RS3 --> Secondary5[从节点]
     RS3 --> Secondary6[从节点]
-    
+
     ConfigServer --> Config1[配置节点1]
     ConfigServer --> Config2[配置节点2]
     ConfigServer --> Config3[配置节点3]
@@ -273,19 +273,19 @@ graph LR
     Database[数据库] --> Collection1[集合1]
     Database --> Collection2[集合2]
     Database --> Collection3[集合3]
-    
+
     Collection1 --> Doc1[文档1]
     Collection1 --> Doc2[文档2]
     Collection1 --> Doc3[文档3]
-    
+
     Doc1 --> Field1[字段1]
     Doc1 --> Field2[字段2]
     Doc1 --> Field3[字段3]
-    
+
     Field1 --> Value1[值1]
     Field2 --> Value2[值2]
     Field3 --> Value3[值3]
-    
+
     Value3 --> Array1[数组]
     Array1 --> Item1[元素1]
     Array1 --> Item2[元素2]
@@ -301,7 +301,7 @@ graph LR
     Stage3 --> Stage4[排序阶段]
     Stage4 --> Stage5[限制阶段]
     Stage5 --> Output[输出结果]
-    
+
     Stage1 --> Filter[过滤条件]
     Stage2 --> Projection[字段选择]
     Stage3 --> GroupBy[分组字段]
@@ -309,9 +309,9 @@ graph LR
     Stage5 --> LimitNum[限制数量]
 ```
 
-## 4. 多语言术语映射
+## 5. 多语言术语映射
 
-### 4.1 核心概念术语
+### 5.1. 核心概念术语
 
 ```yaml
 # MongoDB核心概念双语映射
@@ -332,7 +332,7 @@ terminology_mapping:
     主节点: "Primary"
     从节点: "Secondary"
     仲裁节点: "Arbiter"
-    
+
   data_types:
     字符串: "String"
     数字: "Number"
@@ -344,7 +344,7 @@ terminology_mapping:
     空值: "Null"
     正则表达式: "Regular Expression"
     二进制数据: "Binary Data"
-    
+
   operations:
     插入: "Insert"
     查询: "Find"
@@ -357,7 +357,7 @@ terminology_mapping:
     文本搜索: "Text Search"
 ```
 
-### 4.2 查询操作术语
+## 6. 查询操作术语
 
 ```yaml
 # MongoDB查询操作双语映射
@@ -373,24 +373,24 @@ query_terminology:
     不在数组中: "$nin"
     存在: "$exists"
     类型匹配: "$type"
-    
+
   logical_operators:
     与: "$and"
     或: "$or"
     非: "$not"
     也不: "$nor"
-    
+
   element_operators:
     数组大小: "$size"
     数组元素匹配: "$elemMatch"
     数组位置: "$positional"
-    
+
   evaluation_operators:
     正则表达式: "$regex"
     文本搜索: "$text"
     表达式: "$expr"
     模运算: "$mod"
-    
+
   aggregation_operators:
     求和: "$sum"
     平均值: "$avg"
@@ -402,9 +402,9 @@ query_terminology:
     替换: "$replaceAll"
 ```
 
-## 5. Wikidata知识图谱集成
+## 7. Wikidata知识图谱集成
 
-### 5.1 实体映射
+### 7.1. 实体映射
 
 ```yaml
 # MongoDB Wikidata实体映射
@@ -428,28 +428,28 @@ wikidata_mapping:
       - property: "P856"
         value: "https://www.mongodb.com"
         label: "official website"
-  
+
   document_database:
     entity_id: "Q176165"
     label_en: "Document-oriented database"
     label_zh: "文档数据库"
     description_en: "Database that stores data in document format"
     description_zh: "以文档格式存储数据的数据库"
-    
+
   nosql:
     entity_id: "Q176165"
     label_en: "NoSQL"
     label_zh: "NoSQL"
     description_en: "Database that does not use SQL"
     description_zh: "不使用SQL的数据库"
-    
+
   bson:
     entity_id: "Q193207"
     label_en: "BSON"
     label_zh: "BSON"
     description_en: "Binary JSON format"
     description_zh: "二进制JSON格式"
-    
+
   aggregation_pipeline:
     entity_id: "Q193207"
     label_en: "Aggregation Pipeline"
@@ -458,7 +458,7 @@ wikidata_mapping:
     description_zh: "MongoDB中的数据处理管道"
 ```
 
-### 5.2 RDF三元组
+## 8. RDF三元组
 
 ```turtle
 # MongoDB知识图谱RDF表示
@@ -519,7 +519,7 @@ wd:Q193207_MongoDB_ReplicaSet wdt:P31 wd:Q193207 ;
     rdfs:description "Group of MongoDB processes for high availability"@en, "用于高可用性的MongoDB进程组"@zh .
 ```
 
-## 6. 总结
+## 9. 总结
 
 本文档建立了MongoDB数据库系统的国际化Wiki标准，包括：
 

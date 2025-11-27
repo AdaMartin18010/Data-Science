@@ -13,17 +13,17 @@
 
 ## 3. 主流数据可视化技术与工具
 
-### 3.1 图表类型
+### 3.1. 图表类型
 
 - 柱状图、折线图、饼图、散点图、热力图、雷达图、桑基图、地理地图等
 - 适用场景与数据类型
 
-### 3.2 交互式可视化
+### 3.2. 交互式可视化
 
 - 缩放、筛选、联动、钻取、动态刷新
 - 典型工具：Tableau、Power BI、ECharts、D3.js、Plotly、Matplotlib、Seaborn
 
-#### 3.2.1 Python可视化代码示例
+#### 3.2.1. Python可视化代码示例
 
 ```python
 import matplotlib.pyplot as plt
@@ -36,7 +36,7 @@ plt.title('柱状图示例')
 plt.show()
 ```
 
-#### 3.2.2 Web可视化代码示例
+#### 3.2.2. Web可视化代码示例
 
 ```javascript
 // ECharts示例
@@ -49,7 +49,7 @@ var option = {
 chart.setOption(option);
 ```
 
-### 3.3 仪表板与大屏设计
+### 3.3. 仪表板与大屏设计
 
 - 多图联动、实时刷新、指标监控
 - 典型平台：Tableau、Power BI、FineBI、Superset

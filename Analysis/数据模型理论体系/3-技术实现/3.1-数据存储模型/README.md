@@ -12,13 +12,13 @@
 
 ## 3. 主流数据存储技术
 
-### 3.1 关系型数据库（RDBMS）
+### 3.1. 关系型数据库（RDBMS）
 
 - 结构化数据、表结构、SQL查询
 - 事务（ACID）、主外键、索引、视图
 - 典型产品：MySQL、PostgreSQL、Oracle、SQL Server
 
-#### 3.1.1 关系型数据库建模示例
+#### 3.1.1. 关系型数据库建模示例
 
 ```python
 import sqlite3
@@ -29,13 +29,13 @@ cursor.execute('''INSERT INTO user (name, age) VALUES ('Alice', 30)''')
 conn.commit()
 ```
 
-### 3.2 NoSQL数据库
+### 3.2. NoSQL数据库
 
 - 键值型、文档型、列族型、图数据库
 - 弱一致性、灵活扩展、高可用
 - 典型产品：Redis、MongoDB、Cassandra、Neo4j
 
-#### 3.2.1 文档型数据库建模示例
+#### 3.2.1. 文档型数据库建模示例
 
 ```python
 from pymongo import MongoClient
@@ -44,13 +44,13 @@ db = client['testdb']
 db.user.insert_one({'name': 'Bob', 'age': 25})
 ```
 
-### 3.3 图数据库
+### 3.3. 图数据库
 
 - 节点、边、属性、图遍历
 - 适用于社交网络、知识图谱、推荐系统
 - 典型产品：Neo4j、JanusGraph
 
-#### 3.3.1 图数据库建模示例
+#### 3.3.1. 图数据库建模示例
 
 ```python
 from py2neo import Graph, Node, Relationship
@@ -61,13 +61,13 @@ friend = Relationship(alice, 'FRIEND', bob)
 graph.create(alice | bob | friend)
 ```
 
-### 3.4 时序数据库
+### 3.4. 时序数据库
 
 - 时间序列数据、高效写入、压缩存储
 - 适用于物联网、监控、金融行情
 - 典型产品：InfluxDB、TimescaleDB、OpenTSDB
 
-#### 3.4.1 时序数据库建模示例
+#### 3.4.1. 时序数据库建模示例
 
 ```python
 from influxdb import InfluxDBClient

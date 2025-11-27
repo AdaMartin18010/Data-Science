@@ -6,7 +6,7 @@ This document demonstrates how to define Cassandra core concepts according to in
 
 ## 2. Core Concept Definitions
 
-### 2.1 Cassandra Database Management System
+### 2.1. Cassandra Database Management System
 
 ```yaml
 # Cassandra DBMS Concept Definition
@@ -88,7 +88,7 @@ graph TB
     LinearlyScalable --> TokenRing[Token Ring]
 ```
 
-### 2.2 Keyspace
+## 3. Keyspace
 
 ```yaml
 # Keyspace Concept Definition
@@ -162,7 +162,7 @@ graph LR
     CF3 --> Products[Products Table]
 ```
 
-### 2.3 Column Family
+## 4. Column Family
 
 ```yaml
 # Column Family Concept Definition
@@ -244,7 +244,7 @@ graph TB
     RegularColumns --> IsActive[is_active]
 ```
 
-### 2.4 Partition Key
+## 5. Partition Key
 
 ```yaml
 # Partition Key Concept Definition
@@ -324,7 +324,7 @@ graph LR
     Data3 --> UserData3[User Data 3]
 ```
 
-### 2.5 Clustering Key
+## 6. Clustering Key
 
 ```yaml
 # Clustering Key Concept Definition
@@ -409,9 +409,9 @@ graph TB
     EfficientRetrieval --> SequentialAccess[Sequential Access]
 ```
 
-## 3. Bilingual Terminology Mapping Tables
+## 7. Bilingual Terminology Mapping Tables
 
-### 3.1 Core Concept Terminology Mapping
+### 7.1. Core Concept Terminology Mapping
 
 | English Term | Chinese Term | Definition | Wikidata ID |
 |-------------|-------------|------------|-------------|
@@ -426,7 +426,7 @@ graph TB
 | MemTable | 内存表 | In-memory write buffer | Q118356_MemTable |
 | Commit Log | 提交日志 | Persistent write log | Q118356_CommitLog |
 
-### 3.2 Consistency Level Terminology Mapping
+### 7.2. Consistency Level Terminology Mapping
 
 | English Term | Chinese Term | Description | Node Requirements |
 |-------------|-------------|-------------|-------------------|
@@ -436,7 +436,7 @@ graph TB
 | LOCAL_QUORUM | LOCAL_QUORUM | Local datacenter majority response | ceil(RF_local/2) + 1 |
 | EACH_QUORUM | EACH_QUORUM | Each datacenter majority response | Majority in each datacenter |
 
-### 3.3 Replication Strategy Terminology Mapping
+### 7.3. Replication Strategy Terminology Mapping
 
 | English Term | Chinese Term | Description | Use Case |
 |-------------|-------------|-------------|----------|
@@ -444,7 +444,7 @@ graph TB
 | Network Topology Strategy | 网络拓扑策略 | Multi-datacenter replication | Production environment |
 | Old Network Topology Strategy | 旧网络拓扑策略 | Backward compatibility | Migration scenarios |
 
-## 4. RDF Knowledge Graph Representation
+## 8. RDF Knowledge Graph Representation
 
 ```turtle
 # Cassandra Concept Knowledge Graph
@@ -525,7 +525,7 @@ wd:Q118356_CommitLog rdfs:label "Commit Log"@en, "提交日志"@zh ;
     wdt:P527 wd:Q118356_ColumnFamily .
 ```
 
-## 5. Concept Mapping Relations
+## 9. Concept Mapping Relations
 
 ```yaml
 # Cassandra Concept Mapping Relations
@@ -590,7 +590,7 @@ concept_mapping_relations:
       - recovery: "used_for_recovery"
 ```
 
-## 6. Content Quality Standards and Validation Checklist
+## 10. Content Quality Standards and Validation Checklist
 
 ```yaml
 # Cassandra Concept Definition Quality Standards
@@ -682,7 +682,7 @@ validation_checklist:
     - "Are concept mappings complete"
 ```
 
-## 7. Summary
+## 11. Summary
 
 This document demonstrates Cassandra concept definition international Wiki standards, including:
 

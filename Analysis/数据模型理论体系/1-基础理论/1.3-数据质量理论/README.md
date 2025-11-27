@@ -7,7 +7,7 @@
 
 ## 2. 数据质量维度
 
-### 2.1 核心质量维度
+### 2.1. 核心质量维度
 
 - **准确性（Accuracy）**：数据值与真实值的符合程度
 - **完整性（Completeness）**：数据记录的完整程度，无缺失值
@@ -17,7 +17,7 @@
 - **有效性（Validity）**：数据符合预定义格式和规则的程度
 - **可用性（Availability）**：数据可访问和使用的程度
 
-### 2.2 扩展质量维度
+### 2.2. 扩展质量维度
 
 - **可理解性（Understandability）**：数据的可读性和可解释性
 - **可追溯性（Traceability）**：数据来源和变更的可追踪性
@@ -26,9 +26,9 @@
 
 ## 3. 数据质量评估方法
 
-### 3.1 质量指标体系
+### 3.1. 质量指标体系
 
-#### 3.1.1 定量指标
+#### 3.1.1. 定量指标
 
 ```python
 class DataQualityMetrics:
@@ -65,7 +65,7 @@ class DataQualityMetrics:
     
     def timeliness_score(self, expected_frequency):
         """计算及时性得分"""
-        # 基于数据更新频率计算
+# 基于数据更新频率计算
         return self._calculate_timeliness(expected_frequency)
     
     def _validate_record(self, record, rules):
@@ -83,7 +83,7 @@ class DataQualityMetrics:
         return True
 ```
 
-#### 3.1.2 质量评分模型
+## 4. 质量评分模型
 
 ```python
 class QualityScoringModel:
@@ -127,9 +127,9 @@ class QualityScoringModel:
         return report
 ```
 
-### 3.2 评估流程
+### 4.1. 评估流程
 
-#### 3.2.1 自动化评估流程
+#### 4.1.1. 自动化评估流程
 
 ```python
 class DataQualityAssessment:
@@ -141,28 +141,28 @@ class DataQualityAssessment:
     
     def run_assessment(self):
         """执行质量评估"""
-        # 1. 数据采集
+# 1. 数据采集
         data = self._collect_data()
         
-        # 2. 指标计算
+# 2. 指标计算
         self.metrics = DataQualityMetrics(data)
         
-        # 3. 质量评分
+# 3. 质量评分
         quality_report = self.scoring_model.generate_quality_report(self.metrics)
         
-        # 4. 结果分析
+# 4. 结果分析
         self._analyze_results(quality_report)
         
         return quality_report
     
     def _collect_data(self):
         """采集评估数据"""
-        # 根据数据源类型采集数据
+# 根据数据源类型采集数据
         if isinstance(self.data_source, str):
-            # 文件数据源
+# 文件数据源
             return self._load_from_file(self.data_source)
         else:
-            # 数据库数据源
+# 数据库数据源
             return self._load_from_database(self.data_source)
     
     def _analyze_results(self, report):
@@ -178,11 +178,11 @@ class DataQualityAssessment:
                 print(f"  - {rec}")
 ```
 
-## 4. 数据清洗与提升
+## 5. 数据清洗与提升
 
-### 4.1 数据清洗技术
+### 5.1. 数据清洗技术
 
-#### 4.1.1 缺失值处理
+#### 5.1.1. 缺失值处理
 
 ```python
 class MissingValueHandler:
@@ -238,7 +238,7 @@ class MissingValueHandler:
         return data.dropna(subset=columns)
 ```
 
-#### 4.1.2 异常值检测与处理
+#### 5.1.2. 异常值检测与处理
 
 ```python
 class OutlierDetector:
@@ -284,7 +284,7 @@ class OutlierDetector:
         return series[predictions == -1]
 ```
 
-#### 4.1.3 数据标准化
+#### 5.1.3. 数据标准化
 
 ```python
 class DataStandardizer:
@@ -325,7 +325,7 @@ class DataStandardizer:
         return data
 ```
 
-### 4.2 数据质量提升流程
+### 5.2. 数据质量提升流程
 
 ```python
 class DataQualityEnhancer:
@@ -338,29 +338,29 @@ class DataQualityEnhancer:
         """提升数据质量"""
         enhanced_data = data.copy()
         
-        # 1. 处理缺失值
+# 1. 处理缺失值
         if 'missing_columns' in config:
             enhanced_data = self.missing_handler.handle_missing_values(
                 enhanced_data, config['missing_columns']
             )
         
-        # 2. 处理异常值
+# 2. 处理异常值
         if 'outlier_columns' in config:
             outliers = self.outlier_detector.detect_outliers(
                 enhanced_data, config['outlier_columns']
             )
-            # 可以选择删除或修正异常值
+# 可以选择删除或修正异常值
             for col, outlier_indices in outliers.items():
                 if config.get('remove_outliers', False):
                     enhanced_data = enhanced_data.drop(outlier_indices.index)
         
-        # 3. 数据标准化
+# 3. 数据标准化
         if 'standardize_columns' in config:
             enhanced_data = self.standardizer.standardize_numeric(
                 enhanced_data, config['standardize_columns']
             )
         
-        # 4. 编码分类数据
+# 4. 编码分类数据
         if 'encode_columns' in config:
             enhanced_data = self.standardizer.encode_categorical(
                 enhanced_data, config['encode_columns']
@@ -369,9 +369,9 @@ class DataQualityEnhancer:
         return enhanced_data
 ```
 
-## 5. 数据治理
+## 6. 数据治理
 
-### 5.1 数据治理框架
+### 6.1. 数据治理框架
 
 ```python
 class DataGovernanceFramework:
@@ -405,7 +405,7 @@ class DataGovernanceFramework:
         return True
 ```
 
-### 5.2 元数据管理
+### 6.2. 元数据管理
 
 ```python
 class MetadataManager:
@@ -441,7 +441,7 @@ class MetadataManager:
         return True
 ```
 
-### 5.3 数据血缘追踪
+### 6.3. 数据血缘追踪
 
 ```python
 class DataLineageTracker:
@@ -483,14 +483,14 @@ class DataLineageTracker:
             tree[data_id]['sources'].append(lineage['source'])
             tree[data_id]['transformations'].append(lineage['transformation'])
             
-            # 递归追踪源数据
+# 递归追踪源数据
             if lineage['source'] not in tree:
                 self._trace_recursive(lineage['source'], tree, depth + 1, max_depth)
 ```
 
-## 6. 工程实践
+## 7. 工程实践
 
-### 6.1 数据质量监控平台
+### 7.1. 数据质量监控平台
 
 ```python
 class DataQualityMonitor:
@@ -520,7 +520,7 @@ class DataQualityMonitor:
     
     def _start_realtime_monitoring(self):
         """启动实时监控"""
-        # 实现实时数据流监控
+# 实现实时数据流监控
         pass
     
     def _run_quality_check(self):
@@ -528,13 +528,13 @@ class DataQualityMonitor:
         try:
             report = self.assessment.run_assessment()
             
-            # 检查是否需要告警
+# 检查是否需要告警
             if report['overall_score'] < 0.8:
                 self.alert_system.send_alert(
                     f"数据质量下降: {report['overall_score']:.2f}"
                 )
             
-            # 保存质量报告
+# 保存质量报告
             self._save_quality_report(report)
             
         except Exception as e:
@@ -549,7 +549,7 @@ class DataQualityMonitor:
             json.dump(report, f, ensure_ascii=False, indent=2)
 ```
 
-### 6.2 自动化质量检测与告警
+## 8. 自动化质量检测与告警
 
 ```python
 class AlertSystem:
@@ -583,21 +583,21 @@ class AlertSystem:
     
     def _send_email(self, message, level):
         """发送邮件告警"""
-        # 实现邮件发送逻辑
+# 实现邮件发送逻辑
         pass
     
     def _send_slack(self, message, level):
         """发送Slack告警"""
-        # 实现Slack发送逻辑
+# 实现Slack发送逻辑
         pass
     
     def _send_webhook(self, message, level):
         """发送Webhook告警"""
-        # 实现Webhook发送逻辑
+# 实现Webhook发送逻辑
         pass
 ```
 
-### 6.3 数据质量报告自动生成
+## 9. 数据质量报告自动生成
 
 ```python
 class QualityReportGenerator:
@@ -664,18 +664,18 @@ class QualityReportGenerator:
     
     def _generate_pdf_report(self, quality_data):
         """生成PDF报告"""
-        # 使用reportlab或其他PDF库生成PDF报告
+# 使用reportlab或其他PDF库生成PDF报告
         pass
     
     def _generate_excel_report(self, quality_data):
         """生成Excel报告"""
-        # 使用openpyxl或其他Excel库生成Excel报告
+# 使用openpyxl或其他Excel库生成Excel报告
         pass
 ```
 
-## 7. 案例分析
+## 10. 案例分析
 
-### 7.1 电商数据质量治理案例
+### 10.1. 电商数据质量治理案例
 
 ```python
 # 电商数据质量治理示例
@@ -715,7 +715,7 @@ class EcommerceDataQuality:
         """提升电商数据质量"""
         enhancer = DataQualityEnhancer()
         
-        # 配置数据提升参数
+# 配置数据提升参数
         config = {
             'missing_columns': ['user_id', 'order_id', 'product_id'],
             'outlier_columns': ['amount', 'price'],
@@ -731,7 +731,7 @@ class EcommerceDataQuality:
         return enhanced_users, enhanced_orders, enhanced_products
 ```
 
-### 7.2 金融数据质量监控案例
+## 11. 金融数据质量监控案例
 
 ```python
 # 金融数据质量监控示例
@@ -758,7 +758,7 @@ class FinancialDataQualityMonitor:
     
     def setup_monitoring(self):
         """设置监控"""
-        # 添加告警通道
+# 添加告警通道
         self.monitor.alert_system.add_alert_channel('email', {
             'min_level': 'warning',
             'recipients': ['data-team@company.com']
@@ -769,67 +769,67 @@ class FinancialDataQualityMonitor:
             'channel': '#data-quality-alerts'
         })
         
-        # 启动监控
+# 启动监控
         self.monitor.start_monitoring(schedule='daily')
 ```
 
-## 8. 学习路径
+## 12. 学习路径
 
-### 8.1 理论基础学习
+### 12.1. 理论基础学习
 
 1. **数据质量概念与维度**：理解数据质量的核心概念和评估维度
 2. **质量评估方法**：掌握定量和定性评估方法
 3. **统计分析方法**：学习描述性统计和推断性统计
 4. **数据清洗技术**：掌握缺失值、异常值处理方法
 
-### 8.2 技术技能学习
+### 12.2. 技术技能学习
 
 1. **编程语言**：Python、R、SQL
 2. **数据处理工具**：Pandas、NumPy、Scikit-learn
 3. **数据可视化**：Matplotlib、Seaborn、Plotly
 4. **大数据技术**：Spark、Hadoop、Kafka
 
-### 8.3 工程实践学习
+### 12.3. 工程实践学习
 
 1. **数据治理框架**：DAMA-DMBOK、DCAM
 2. **质量监控平台**：Apache Griffin、Great Expectations
 3. **数据血缘工具**：Apache Atlas、DataHub
 4. **元数据管理**：Apache Atlas、Amundsen
 
-### 8.4 行业应用学习
+### 12.4. 行业应用学习
 
 1. **金融行业**：监管合规、风险控制
 2. **电商行业**：用户行为、交易数据
 3. **制造业**：生产数据、质量控制
 4. **医疗健康**：患者数据、临床数据
 
-## 9. 前沿方向
+## 13. 前沿方向
 
-### 9.1 智能数据质量管理
+### 13.1. 智能数据质量管理
 
 - **AI驱动的质量检测**：使用机器学习自动识别数据质量问题
 - **智能数据修复**：基于AI的数据修复和增强技术
 - **预测性质量分析**：预测数据质量趋势和潜在问题
 
-### 9.2 数据质量与AI模型性能关联
+### 13.2. 数据质量与AI模型性能关联
 
 - **数据质量对模型性能的影响**：研究数据质量与AI模型准确性的关系
 - **质量感知的模型训练**：在模型训练中考虑数据质量因素
 - **自适应数据清洗**：根据模型性能反馈调整数据清洗策略
 
-### 9.3 大数据环境下的质量治理
+### 13.3. 大数据环境下的质量治理
 
 - **分布式质量检测**：在大数据环境中进行高效的质量检测
 - **流式数据质量监控**：实时监控流式数据的质量
 - **多源数据质量融合**：处理多源异构数据的质量问题
 
-### 9.4 数据质量自动化
+### 13.4. 数据质量自动化
 
 - **自动化质量检测流水线**：端到端的数据质量检测自动化
 - **智能告警系统**：基于机器学习的智能告警和异常检测
 - **自动化数据修复**：自动修复常见的数据质量问题
 
-## 10. 总结
+## 14. 总结
 
 数据质量理论为数据治理和数据工程提供了科学依据和工程方法。高质量数据是数据驱动决策和智能分析的前提，直接影响业务决策的准确性和可靠性。
 

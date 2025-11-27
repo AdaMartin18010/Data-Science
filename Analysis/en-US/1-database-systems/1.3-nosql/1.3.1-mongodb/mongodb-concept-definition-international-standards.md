@@ -6,7 +6,7 @@ This document demonstrates how to define MongoDB core concepts according to inte
 
 ## 2. Core Concept Definitions
 
-### 2.1 MongoDB Database Management System
+### 2.1. MongoDB Database Management System
 
 ```yaml
 # MongoDB DBMS Concept Definition
@@ -87,7 +87,7 @@ graph TB
     Available --> ReplicaSet[Replica Sets]
 ```
 
-### 2.2 Document
+## 3. Document
 
 ```yaml
 # Document Concept Definition
@@ -167,7 +167,7 @@ graph LR
     Hobbies --> Hobby3[traveling]
 ```
 
-### 2.3 Collection
+## 4. Collection
 
 ```yaml
 # Collection Concept Definition
@@ -246,7 +246,7 @@ graph TB
     Collection3 --> Product3[Product Document 3]
 ```
 
-### 2.4 BSON Data Format
+## 5. BSON Data Format
 
 ```yaml
 # BSON Concept Definition
@@ -327,9 +327,9 @@ graph LR
     Extended --> Regex[Regular Expression]
 ```
 
-## 3. Bilingual Terminology Mapping Tables
+## 6. Bilingual Terminology Mapping Tables
 
-### 3.1 Core Concept Terminology Mapping
+### 6.1. Core Concept Terminology Mapping
 
 | English Term | Chinese Term | Definition | Wikidata ID |
 |-------------|-------------|------------|-------------|
@@ -344,7 +344,7 @@ graph LR
 | Sharding | 分片 | Horizontal data partitioning | Q193207_Sharding |
 | Replica Set | 副本集 | High availability configuration | Q193207_ReplicaSet |
 
-### 3.2 Data Type Terminology Mapping
+### 6.2. Data Type Terminology Mapping
 
 | English Term | Chinese Term | BSON Type | Example |
 |-------------|-------------|-----------|---------|
@@ -359,7 +359,7 @@ graph LR
 | Regular Expression | 正则表达式 | regex | /pattern/ |
 | Binary Data | 二进制数据 | binData | new Binary() |
 
-### 3.3 Operator Terminology Mapping
+### 6.3. Operator Terminology Mapping
 
 | English Term | Chinese Term | Operator | Description |
 |-------------|-------------|----------|-------------|
@@ -374,7 +374,7 @@ graph LR
 | Exists | 存在 | $exists | Field existence check |
 | Type Match | 类型匹配 | $type | Data type matching |
 
-## 4. RDF Knowledge Graph Representation
+## 7. RDF Knowledge Graph Representation
 
 ```turtle
 # MongoDB Concept Knowledge Graph
@@ -449,7 +449,7 @@ wd:Q193207_ReplicaSet rdfs:label "Replica Set"@en, "副本集"@zh ;
     wdt:P527 wd:Q193207_Node .
 ```
 
-## 5. Concept Mapping Relations
+## 8. Concept Mapping Relations
 
 ```yaml
 # MongoDB Concept Mapping Relations
@@ -497,7 +497,7 @@ concept_mapping_relations:
       - result: "produces"
 ```
 
-## 6. Content Quality Standards and Validation Checklist
+## 9. Content Quality Standards and Validation Checklist
 
 ```yaml
 # MongoDB Concept Definition Quality Standards
@@ -589,7 +589,7 @@ validation_checklist:
     - "Are concept mappings complete"
 ```
 
-## 7. Summary
+## 10. Summary
 
 This document demonstrates MongoDB concept definition international Wiki standards, including:
 

@@ -12,12 +12,12 @@
 
 ## 3. 主流数据流处理技术
 
-### 3.1 批处理模型
+### 3.1. 批处理模型
 
 - 离线大规模数据处理
 - 典型技术：Hadoop MapReduce、Spark
 
-#### 3.1.1 批处理代码示例
+#### 3.1.1. 批处理代码示例
 
 ```python
 from pyspark.sql import SparkSession
@@ -26,12 +26,12 @@ df = spark.read.csv('data.csv', header=True)
 df.groupBy('category').count().show()
 ```
 
-### 3.2 流处理模型
+### 3.2. 流处理模型
 
 - 实时数据流、事件驱动、低延迟
 - 典型技术：Apache Flink、Spark Streaming、Kafka Streams、Storm
 
-#### 3.2.1 流处理代码示例
+#### 3.2.1. 流处理代码示例
 
 ```python
 from pyspark.sql import SparkSession
@@ -41,12 +41,12 @@ query = df.writeStream.outputMode('append').format('console').start()
 query.awaitTermination()
 ```
 
-### 3.3 Lambda架构
+### 3.3. Lambda架构
 
 - 批处理+流处理融合，兼顾历史与实时
 - 层次结构：批层、速度层、服务层
 
-### 3.4 Kappa架构
+### 3.4. Kappa架构
 
 - 纯流式架构，简化数据处理流程
 - 适用于无界数据流、实时分析

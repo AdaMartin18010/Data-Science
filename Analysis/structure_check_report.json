@@ -1,0 +1,22 @@
+{
+  "total_files": 375,
+  "files_with_issues": 1,
+  "total_issues": 1,
+  "numbering_stats": {
+    "numbered": 0,
+    "unnumbered": 269,
+    "mixed": 106
+  },
+  "toc_stats": {
+    "with_toc": 1,
+    "without_toc": 374
+  },
+  "issues": [
+    {
+      "file": "结构一致性修复最终报告.md",
+      "issues": [
+        "文件中同时存在编号和未编号的标题"
+      ]
+    }
+  ]
+}

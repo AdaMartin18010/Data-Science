@@ -7,9 +7,9 @@
 
 ## 2. 数据本质
 
-### 2.1 数据定义
+### 2.1. 数据定义
 
-#### 2.1.1 基本定义
+#### 2.1.1. 基本定义
 
 数据是对客观世界事实的记录和表示，具有以下基本特征：
 
@@ -18,7 +18,7 @@
 - **可处理性**: 能够被计算机系统处理和分析
 - **可解释性**: 具有明确的语义和含义
 
-#### 2.1.2 数据层次结构
+#### 2.1.2. 数据层次结构
 
 ```python
 class DataHierarchy:
@@ -30,37 +30,37 @@ class DataHierarchy:
             'knowledge': '知识',
             'wisdom': '智慧'
         }
-    
+
     def data_to_information(self, raw_data):
         """将数据转换为信息"""
-        # 数据清洗和预处理
+# 数据清洗和预处理
         cleaned_data = self.clean_data(raw_data)
-        
-        # 数据组织和结构化
+
+# 数据组织和结构化
         structured_data = self.structure_data(cleaned_data)
-        
-        # 添加上下文和语义
+
+# 添加上下文和语义
         information = self.add_context(structured_data)
-        
+
         return information
-    
+
     def information_to_knowledge(self, information):
         """将信息转换为知识"""
-        # 模式识别
+# 模式识别
         patterns = self.identify_patterns(information)
-        
-        # 关系发现
+
+# 关系发现
         relationships = self.discover_relationships(information)
-        
-        # 知识构建
+
+# 知识构建
         knowledge = self.build_knowledge(patterns, relationships)
-        
+
         return knowledge
 ```
 
-### 2.2 数据属性
+## 3. 数据属性
 
-#### 2.2.1 基本属性
+### 3.1. 基本属性
 
 ```python
 class DataAttributes:
@@ -73,17 +73,17 @@ class DataAttributes:
             'relevance': '相关性',
             'reliability': '可靠性'
         }
-    
+
     def assess_data_quality(self, data):
         """评估数据质量"""
         quality_scores = {}
-        
+
         for attr_name, attr_desc in self.attributes.items():
             score = self.evaluate_attribute(data, attr_name)
             quality_scores[attr_name] = score
-            
+
         return quality_scores
-    
+
     def evaluate_attribute(self, data, attribute):
         """评估特定属性"""
         if attribute == 'accuracy':
@@ -92,16 +92,16 @@ class DataAttributes:
             return self.evaluate_completeness(data)
         elif attribute == 'consistency':
             return self.evaluate_consistency(data)
-        # 其他属性评估...
-        
+# 其他属性评估...
+
         return 0.0
 ```
 
-## 3. 数据类型理论
+## 4. 数据类型理论
 
-### 3.1 基本数据类型
+### 4.1. 基本数据类型
 
-#### 3.1.1 数值型数据
+#### 4.1.1. 数值型数据
 
 ```python
 class NumericDataTypes:
@@ -112,7 +112,7 @@ class NumericDataTypes:
             'decimal': '定点型',
             'complex': '复数型'
         }
-    
+
     def classify_numeric_data(self, data):
         """分类数值型数据"""
         if isinstance(data, int):
@@ -123,13 +123,13 @@ class NumericDataTypes:
             return 'complex'
         else:
             return 'unknown'
-    
+
     def validate_numeric_range(self, data, min_val, max_val):
         """验证数值范围"""
         return min_val <= data <= max_val
 ```
 
-#### 3.1.2 文本型数据
+#### 4.1.2. 文本型数据
 
 ```python
 class TextDataTypes:
@@ -140,7 +140,7 @@ class TextDataTypes:
             'char': '字符',
             'varchar': '变长字符串'
         }
-    
+
     def analyze_text_pattern(self, text):
         """分析文本模式"""
         patterns = {
@@ -150,14 +150,14 @@ class TextDataTypes:
             'language': self.detect_language(text)
         }
         return patterns
-    
+
     def count_characters(self, text):
         """统计字符频率"""
         from collections import Counter
         return Counter(text)
 ```
 
-#### 3.1.3 时间型数据
+#### 4.1.3. 时间型数据
 
 ```python
 class TemporalDataTypes:
@@ -169,28 +169,28 @@ class TemporalDataTypes:
             'timestamp': '时间戳',
             'interval': '时间间隔'
         }
-    
+
     def parse_temporal_data(self, data):
         """解析时间数据"""
         import datetime
-        
+
         if isinstance(data, str):
-            # 尝试多种时间格式
+# 尝试多种时间格式
             formats = [
                 '%Y-%m-%d %H:%M:%S',
                 '%Y-%m-%d',
                 '%H:%M:%S',
                 '%Y-%m-%dT%H:%M:%S'
             ]
-            
+
             for fmt in formats:
                 try:
                     return datetime.datetime.strptime(data, fmt)
                 except ValueError:
                     continue
-                    
+
         return data
-    
+
     def extract_temporal_features(self, temporal_data):
         """提取时间特征"""
         features = {
@@ -206,9 +206,9 @@ class TemporalDataTypes:
         return features
 ```
 
-### 3.2 复合数据类型
+## 5. 复合数据类型
 
-#### 3.2.1 数组和列表
+### 5.1. 数组和列表
 
 ```python
 class ArrayDataTypes:
@@ -219,7 +219,7 @@ class ArrayDataTypes:
             'tuple': '元组',
             'set': '集合'
         }
-    
+
     def analyze_array_structure(self, array_data):
         """分析数组结构"""
         structure = {
@@ -229,7 +229,7 @@ class ArrayDataTypes:
             'is_homogeneous': self.is_homogeneous(array_data)
         }
         return structure
-    
+
     def get_dimensions(self, array_data):
         """获取数组维度"""
         if isinstance(array_data, (list, tuple)):
@@ -240,7 +240,7 @@ class ArrayDataTypes:
         return []
 ```
 
-#### 3.2.2 对象和字典
+#### 5.1.1. 对象和字典
 
 ```python
 class ObjectDataTypes:
@@ -251,7 +251,7 @@ class ObjectDataTypes:
             'record': '记录',
             'struct': '结构体'
         }
-    
+
     def analyze_object_structure(self, obj):
         """分析对象结构"""
         if isinstance(obj, dict):
@@ -263,7 +263,7 @@ class ObjectDataTypes:
             }
             return structure
         return None
-    
+
     def get_nesting_level(self, obj, current_level=0):
         """获取嵌套层级"""
         if isinstance(obj, dict):
@@ -276,11 +276,11 @@ class ObjectDataTypes:
         return current_level
 ```
 
-## 4. 数据结构理论
+## 6. 数据结构理论
 
-### 4.1 线性结构
+### 6.1. 线性结构
 
-#### 4.1.1 数组结构
+#### 6.1.1. 数组结构
 
 ```python
 class ArrayStructure:
@@ -288,46 +288,46 @@ class ArrayStructure:
         self.capacity = capacity
         self.data = [None] * capacity
         self.size = 0
-    
+
     def insert(self, index, element):
         """在指定位置插入元素"""
         if index < 0 or index > self.size:
             raise IndexError("Index out of range")
-        
+
         if self.size >= self.capacity:
             self.resize()
-        
-        # 移动元素
+
+# 移动元素
         for i in range(self.size, index, -1):
             self.data[i] = self.data[i-1]
-        
+
         self.data[index] = element
         self.size += 1
-    
+
     def delete(self, index):
         """删除指定位置的元素"""
         if index < 0 or index >= self.size:
             raise IndexError("Index out of range")
-        
-        # 移动元素
+
+# 移动元素
         for i in range(index, self.size - 1):
             self.data[i] = self.data[i+1]
-        
+
         self.size -= 1
-    
+
     def resize(self):
         """调整数组大小"""
         new_capacity = self.capacity * 2
         new_data = [None] * new_capacity
-        
+
         for i in range(self.size):
             new_data[i] = self.data[i]
-        
+
         self.data = new_data
         self.capacity = new_capacity
 ```
 
-#### 4.1.2 链表结构
+## 7. 链表结构
 
 ```python
 class LinkedListNode:
@@ -339,18 +339,18 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.size = 0
-    
+
     def insert_at_beginning(self, data):
         """在链表开头插入节点"""
         new_node = LinkedListNode(data)
         new_node.next = self.head
         self.head = new_node
         self.size += 1
-    
+
     def insert_at_end(self, data):
         """在链表末尾插入节点"""
         new_node = LinkedListNode(data)
-        
+
         if self.head is None:
             self.head = new_node
         else:
@@ -358,19 +358,19 @@ class LinkedList:
             while current.next:
                 current = current.next
             current.next = new_node
-        
+
         self.size += 1
-    
+
     def delete_node(self, data):
         """删除指定数据的节点"""
         if self.head is None:
             return
-        
+
         if self.head.data == data:
             self.head = self.head.next
             self.size -= 1
             return
-        
+
         current = self.head
         while current.next:
             if current.next.data == data:
@@ -380,9 +380,9 @@ class LinkedList:
             current = current.next
 ```
 
-### 4.2 非线性结构
+### 7.1. 非线性结构
 
-#### 4.2.1 树结构
+#### 7.1.1. 树结构
 
 ```python
 class TreeNode:
@@ -395,55 +395,55 @@ class Tree:
     def __init__(self):
         self.root = None
         self.size = 0
-    
+
     def add_node(self, parent_data, child_data):
         """添加节点"""
         if self.root is None:
             self.root = TreeNode(child_data)
             self.size += 1
             return
-        
+
         parent = self.find_node(self.root, parent_data)
         if parent:
             child = TreeNode(child_data)
             child.parent = parent
             parent.children.append(child)
             self.size += 1
-    
+
     def find_node(self, node, data):
         """查找节点"""
         if node.data == data:
             return node
-        
+
         for child in node.children:
             result = self.find_node(child, data)
             if result:
                 return result
-        
+
         return None
-    
+
     def traverse_preorder(self, node=None):
         """前序遍历"""
         if node is None:
             node = self.root
-        
+
         if node:
             yield node.data
             for child in node.children:
                 yield from self.traverse_preorder(child)
-    
+
     def traverse_postorder(self, node=None):
         """后序遍历"""
         if node is None:
             node = self.root
-        
+
         if node:
             for child in node.children:
                 yield from self.traverse_postorder(child)
             yield node.data
 ```
 
-#### 4.2.2 图结构
+#### 7.1.2. 图结构
 
 ```python
 class GraphNode:
@@ -455,124 +455,124 @@ class Graph:
     def __init__(self):
         self.nodes = {}
         self.size = 0
-    
+
     def add_node(self, data):
         """添加节点"""
         if data not in self.nodes:
             self.nodes[data] = GraphNode(data)
             self.size += 1
-    
+
     def add_edge(self, from_data, to_data, weight=1):
         """添加边"""
         if from_data not in self.nodes:
             self.add_node(from_data)
         if to_data not in self.nodes:
             self.add_node(to_data)
-        
+
         self.nodes[from_data].neighbors[to_data] = weight
-    
+
     def remove_edge(self, from_data, to_data):
         """删除边"""
         if from_data in self.nodes and to_data in self.nodes[from_data].neighbors:
             del self.nodes[from_data].neighbors[to_data]
-    
+
     def get_neighbors(self, data):
         """获取邻居节点"""
         if data in self.nodes:
             return list(self.nodes[data].neighbors.keys())
         return []
-    
+
     def depth_first_search(self, start_data, visited=None):
         """深度优先搜索"""
         if visited is None:
             visited = set()
-        
+
         if start_data not in self.nodes:
             return
-        
+
         visited.add(start_data)
         yield start_data
-        
+
         for neighbor in self.get_neighbors(start_data):
             if neighbor not in visited:
                 yield from self.depth_first_search(neighbor, visited)
-    
+
     def breadth_first_search(self, start_data):
         """广度优先搜索"""
         if start_data not in self.nodes:
             return
-        
+
         visited = set()
         queue = [start_data]
         visited.add(start_data)
-        
+
         while queue:
             current = queue.pop(0)
             yield current
-            
+
             for neighbor in self.get_neighbors(current):
                 if neighbor not in visited:
                     visited.add(neighbor)
                     queue.append(neighbor)
 ```
 
-## 5. 数据关系理论
+## 8. 数据关系理论
 
-### 5.1 数据依赖关系
+### 8.1. 数据依赖关系
 
-#### 5.1.1 函数依赖
+#### 8.1.1. 函数依赖
 
 ```python
 class FunctionalDependency:
     def __init__(self):
         self.dependencies = {}
-    
+
     def add_dependency(self, determinant, dependent):
         """添加函数依赖"""
         if determinant not in self.dependencies:
             self.dependencies[determinant] = set()
         self.dependencies[determinant].add(dependent)
-    
+
     def check_dependency(self, data, determinant, dependent):
         """检查函数依赖是否满足"""
-        # 检查数据中是否存在违反函数依赖的情况
+# 检查数据中是否存在违反函数依赖的情况
         value_map = {}
-        
+
         for row in data:
             det_value = tuple(row[attr] for attr in determinant)
             dep_value = tuple(row[attr] for attr in dependent)
-            
+
             if det_value in value_map:
                 if value_map[det_value] != dep_value:
                     return False
             else:
                 value_map[det_value] = dep_value
-        
+
         return True
 ```
 
-#### 5.1.2 多值依赖
+## 9. 多值依赖
 
 ```python
 class MultivaluedDependency:
     def __init__(self):
         self.dependencies = {}
-    
+
     def add_multivalued_dependency(self, determinant, dependent):
         """添加多值依赖"""
         if determinant not in self.dependencies:
             self.dependencies[determinant] = set()
         self.dependencies[determinant].add(dependent)
-    
+
     def check_multivalued_dependency(self, data, determinant, dependent):
         """检查多值依赖是否满足"""
-        # 实现多值依赖检查算法
+# 实现多值依赖检查算法
         pass
 ```
 
-### 5.2 数据关联关系
+## 10. 数据关联关系
 
-#### 5.2.1 一对一关系
+### 10.1. 一对一关系
 
 ```python
 class OneToOneRelation:
@@ -580,17 +580,17 @@ class OneToOneRelation:
         self.entity1 = entity1
         self.entity2 = entity2
         self.mappings = {}
-    
+
     def add_mapping(self, key1, key2):
         """添加一对一映射"""
         self.mappings[key1] = key2
-    
+
     def get_related(self, key):
         """获取关联实体"""
         return self.mappings.get(key)
 ```
 
-#### 5.2.2 一对多关系
+#### 10.1.1. 一对多关系
 
 ```python
 class OneToManyRelation:
@@ -598,57 +598,57 @@ class OneToManyRelation:
         self.parent_entity = parent_entity
         self.child_entity = child_entity
         self.mappings = {}
-    
+
     def add_mapping(self, parent_key, child_key):
         """添加一对多映射"""
         if parent_key not in self.mappings:
             self.mappings[parent_key] = set()
         self.mappings[parent_key].add(child_key)
-    
+
     def get_children(self, parent_key):
         """获取子实体"""
         return self.mappings.get(parent_key, set())
 ```
 
-## 6. 数据完整性理论
+## 11. 数据完整性理论
 
-### 6.1 实体完整性
+### 11.1. 实体完整性
 
 ```python
 class EntityIntegrity:
     def __init__(self):
         self.primary_keys = {}
         self.constraints = {}
-    
+
     def add_primary_key(self, entity, key_attributes):
         """添加主键约束"""
         self.primary_keys[entity] = key_attributes
-    
+
     def check_primary_key(self, data, entity):
         """检查主键完整性"""
         if entity not in self.primary_keys:
             return True
-        
+
         key_attrs = self.primary_keys[entity]
         key_values = set()
-        
+
         for row in data:
             key_value = tuple(row[attr] for attr in key_attrs)
             if key_value in key_values:
                 return False  # 主键重复
             key_values.add(key_value)
-        
+
         return True
 ```
 
-### 6.2 参照完整性
+### 11.2. 参照完整性
 
 ```python
 class ReferentialIntegrity:
     def __init__(self):
         self.foreign_keys = {}
         self.references = {}
-    
+
     def add_foreign_key(self, child_entity, child_attrs, parent_entity, parent_attrs):
         """添加外键约束"""
         self.foreign_keys[child_entity] = {
@@ -656,49 +656,49 @@ class ReferentialIntegrity:
             'parent_entity': parent_entity,
             'parent_attrs': parent_attrs
         }
-    
+
     def check_foreign_key(self, child_data, parent_data, child_entity):
         """检查外键完整性"""
         if child_entity not in self.foreign_keys:
             return True
-        
+
         fk_info = self.foreign_keys[child_entity]
         child_attrs = fk_info['child_attrs']
         parent_attrs = fk_info['parent_attrs']
-        
-        # 构建父表主键集合
+
+# 构建父表主键集合
         parent_keys = set()
         for row in parent_data:
             key_value = tuple(row[attr] for attr in parent_attrs)
             parent_keys.add(key_value)
-        
-        # 检查子表外键
+
+# 检查子表外键
         for row in child_data:
             fk_value = tuple(row[attr] for attr in child_attrs)
             if fk_value not in parent_keys:
                 return False  # 外键引用不存在
-        
+
         return True
 ```
 
-## 7. 数据语义理论
+## 12. 数据语义理论
 
-### 7.1 数据语义模型
+### 12.1. 数据语义模型
 
 ```python
 class DataSemantics:
     def __init__(self):
         self.semantic_mappings = {}
         self.ontologies = {}
-    
+
     def add_semantic_mapping(self, data_element, concept):
         """添加语义映射"""
         self.semantic_mappings[data_element] = concept
-    
+
     def get_concept(self, data_element):
         """获取数据元素的语义概念"""
         return self.semantic_mappings.get(data_element)
-    
+
     def build_ontology(self, domain):
         """构建领域本体"""
         ontology = {
@@ -710,62 +710,62 @@ class DataSemantics:
         return ontology
 ```
 
-### 7.2 数据上下文
+### 12.2. 数据上下文
 
 ```python
 class DataContext:
     def __init__(self):
         self.contexts = {}
-    
+
     def add_context(self, data_id, context_info):
         """添加数据上下文"""
         self.contexts[data_id] = context_info
-    
+
     def get_context(self, data_id):
         """获取数据上下文"""
         return self.contexts.get(data_id, {})
-    
+
     def analyze_context_influence(self, data, context):
         """分析上下文对数据的影响"""
-        # 实现上下文影响分析
+# 实现上下文影响分析
         pass
 ```
 
-## 8. 学习路径
+## 13. 学习路径
 
-### 8.1 基础阶段 (2-3周)
+### 13.1. 基础阶段 (2-3周)
 
 1. **数据基本概念** (3天)
 2. **数据类型分类** (1周)
 3. **基本数据结构** (1周)
 
-### 8.2 进阶阶段 (3-4周)
+### 13.2. 进阶阶段 (3-4周)
 
 1. **高级数据结构** (1-2周)
 2. **数据关系理论** (1周)
 3. **数据完整性** (1周)
 
-### 8.3 专业阶段 (2-3周)
+### 13.3. 专业阶段 (2-3周)
 
 1. **数据语义理论** (1周)
 2. **数据质量评估** (1周)
 3. **综合应用实践** (1周)
 
-## 9. 前沿研究方向
+## 14. 前沿研究方向
 
-### 9.1 理论方向
+### 14.1. 理论方向
 
 - **量子数据结构**: 量子计算环境下的数据结构
 - **生物启发数据结构**: 基于生物系统的数据结构设计
 - **语义数据结构**: 基于语义的数据组织方法
 
-### 9.2 应用方向
+### 14.2. 应用方向
 
 - **大数据结构**: 海量数据的组织结构
 - **实时数据结构**: 实时处理的数据结构
 - **分布式数据结构**: 分布式环境下的数据结构
 
-## 10. 总结
+## 15. 总结
 
 数据理论基础为整个数据模型理论体系提供了坚实的理论基础。通过深入理解数据的本质、类型、结构和关系，我们可以：
 

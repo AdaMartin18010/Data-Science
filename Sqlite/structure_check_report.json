@@ -1,0 +1,28 @@
+{
+  "total_files": 111,
+  "files_with_issues": 2,
+  "total_issues": 2,
+  "numbering_stats": {
+    "numbered": 70,
+    "unnumbered": 38,
+    "mixed": 3
+  },
+  "toc_stats": {
+    "with_toc": 0,
+    "without_toc": 111
+  },
+  "issues": [
+    {
+      "file": "00-项目导航\\03-规范模板\\文档格式规范.md",
+      "issues": [
+        "文件中同时存在编号和未编号的标题"
+      ]
+    },
+    {
+      "file": "00-项目导航\\03-规范模板\\章节编号规范.md",
+      "issues": [
+        "文件中同时存在编号和未编号的标题"
+      ]
+    }
+  ]
+}
