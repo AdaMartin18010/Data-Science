@@ -67,3 +67,7 @@ _site/
 # 其他
 *.orig
 *.rej
+
+# 归档目录
+_archive/
+.structure_backup/
