@@ -131,6 +131,7 @@ Design/
 - [PostgreSQL扩展总览](./05-项目集成/05.01-PostgreSQL扩展-专门数据库类型与应用场景.md) ✅ - PostgreSQL专门数据库类型与应用场景扩展计划
 
 **PostgreSQL专门数据库类型扩展**（6个）：
+
 - [向量数据库](./05-项目集成/05.01-PostgreSQL扩展-向量数据库.md) ✅ - pgvector形式化理论分析（HNSW、IVFFlat、SP-GiST索引）
 - [知识图谱数据库](./05-项目集成/05.01-PostgreSQL扩展-知识图谱数据库.md) ✅ - Apache AGE形式化理论分析（Cypher查询语义）
 - [时序数据库](./05-项目集成/05.01-PostgreSQL扩展-时序数据库.md) ✅ - TimescaleDB形式化理论分析（超表、连续聚合）
@@ -139,6 +140,7 @@ Design/
 - [分布式数据库](./05-项目集成/05.01-PostgreSQL扩展-分布式数据库.md) ✅ - PostgreSQL集群形式化理论分析（Citus、分布式事务）
 
 **PostgreSQL应用场景扩展**（6个）：
+
 - [AI应用](./05-项目集成/05.01-PostgreSQL扩展-AI应用.md) ✅ - 向量+知识图谱融合设计（RAG系统、多模态数据）
 - [推荐系统](./05-项目集成/05.01-PostgreSQL扩展-推荐系统.md) ✅ - 协同过滤+内容推荐设计（pgvector应用）
 - [IoT应用](./05-项目集成/05.01-PostgreSQL扩展-IoT应用.md) ✅ - 时序+列式数据库融合设计（TimescaleDB应用）
