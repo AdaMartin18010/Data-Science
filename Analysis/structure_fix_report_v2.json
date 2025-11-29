@@ -1,6 +1,13 @@
 {
-  "total": 375,
-  "fixed": 0,
+  "total": 377,
+  "fixed": 1,
   "errors": [],
-  "fixed_files": []
+  "fixed_files": [
+    {
+      "file": "7-持续集成与演进\\7.2-自动化测试\\7.2.9-自动化测试框架.md",
+      "issues": [
+        "修复层级跳跃（行445）"
+      ]
+    }
+  ]
 }

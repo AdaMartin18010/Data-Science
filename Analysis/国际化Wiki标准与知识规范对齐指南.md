@@ -1,5 +1,41 @@
 # 国际化Wiki标准与知识规范对齐指南
 
+## 📑 目录
+
+- [国际化Wiki标准与知识规范对齐指南](#国际化wiki标准与知识规范对齐指南)
+  - [📑 目录](#-目录)
+- [1. 概述](#1-概述)
+  - [1.1. 目标与范围](#11-目标与范围)
+  - [1.2. 参考标准](#12-参考标准)
+- [2. 多语言支持框架](#2-多语言支持框架)
+  - [2.1. 语言策略](#21-语言策略)
+    - [2.1.1. 主要语言](#211-主要语言)
+    - [2.1.2. 翻译策略](#212-翻译策略)
+- [3. 国际化技术实现](#3-国际化技术实现)
+  - [3.1. 文件组织](#31-文件组织)
+    - [3.1.1. 语言标识](#311-语言标识)
+- [4. 标准化格式规范](#4-标准化格式规范)
+  - [4.1. 文档结构标准](#41-文档结构标准)
+    - [4.1.1. 统一文档模板](#411-统一文档模板)
+    - [4.1.2. 数学公式标准](#412-数学公式标准)
+  - [4.2. 代码示例标准](#42-代码示例标准)
+    - [4.2.1. 代码块规范](#421-代码块规范)
+  - [5.2. 键盘导航支持](#52-键盘导航支持)
+- [6. 知识管理规范](#6-知识管理规范)
+  - [6.1. 知识分类体系](#61-知识分类体系)
+    - [6.1.1. 主题分类](#611-主题分类)
+    - [6.1.2. 难度分级](#612-难度分级)
+- [7. 变更历史](#7-变更历史)
+  - [7.1. v1.2.0 (2025-01-13)](#71-v120-(2025-01-13))
+  - [7.2. v1.1.0 (2024-12-20)](#72-v110-(2024-12-20))
+  - [7.3. v1.0.0 (2024-11-15)](#73-v100-(2024-11-15))
+  - [8.2. 文化适应性要求](#82-文化适应性要求)
+  - [8.3. 示例实现](#83-示例实现)
+- [9. 多语言SEO优化](#9-多语言seo优化)
+- [.github/workflows/quality-check.yml](#githubworkflowsquality-checkyml)
+---
+
+
 ## 1. 概述
 
 ### 1.1. 目标与范围
@@ -201,7 +237,7 @@ impl Point {
     fn new(x: f64, y: f64) -> Self {
         Point { x, y }
     }
-    
+
     // 计算距离
     fn distance(&self, other: &Point) -> f64 {
         ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
@@ -219,7 +255,7 @@ SQL 代码示例（节选）
 
 ```sql
 -- PostgreSQL代码示例 - 窗口函数
-SELECT 
+SELECT
     product_name,
     category,
     price,
@@ -275,7 +311,7 @@ ORDER BY category, price DESC;
 
 ```html
 <!-- 信息性图像 -->
-<img src="postgresql-architecture.png" 
+<img src="postgresql-architecture.png"
      alt="PostgreSQL架构图，显示连接池、查询处理器、存储引擎等组件的关系"
      title="PostgreSQL系统架构">
 
@@ -284,7 +320,7 @@ ORDER BY category, price DESC;
 
 <!-- 复杂图表 -->
 <figure>
-    <img src="performance-chart.png" 
+    <img src="performance-chart.png"
          alt="性能对比图表，显示PostgreSQL与MySQL在不同负载下的TPS对比"
          title="数据库性能对比">
     <figcaption>
@@ -327,19 +363,19 @@ knowledge_categories:
     - mathematical_foundations: "数学基础"
     - computational_theory: "计算理论"
     - system_theory: "系统理论"
-  
+
   practice:
     - software_engineering: "软件工程"
     - data_engineering: "数据工程"
     - machine_learning: "机器学习"
     - system_architecture: "系统架构"
-  
+
   tools:
     - programming_languages: "编程语言"
     - frameworks: "框架工具"
     - databases: "数据库系统"
     - cloud_platforms: "云平台"
-  
+
   applications:
     - industry_solutions: "行业解决方案"
     - case_studies: "案例分析"
@@ -364,7 +400,7 @@ graph TD
     A[初级] --> B[中级]
     B --> C[高级]
     C --> D[专家]
-    
+
     A --> E[实践项目]
     B --> F[理论深化]
     C --> G[研究探索]
@@ -475,7 +511,7 @@ SEO优化要求
     <link rel="alternate" hreflang="zh-CN" href="https://example.com/zh-CN/">
     <link rel="alternate" hreflang="en-US" href="https://example.com/en-US/">
     <link rel="alternate" hreflang="x-default" href="https://example.com/">
-    
+
     <!-- 元数据 -->
     <meta name="description" content="数据科学知识库，涵盖数据库系统、机器学习、软件架构等领域">
     <meta name="keywords" content="数据科学,数据库,机器学习,PostgreSQL">
@@ -494,17 +530,17 @@ quality_tools:
     - markdownlint: "Markdown语法检查"
     - remark: "Markdown内容检查"
     - mdx: "MDX语法检查"
-  
+
   accessibility:
     - axe-core: "可访问性检查"
     - pa11y: "自动化可访问性测试"
     - lighthouse: "性能和质量检查"
-  
+
   internationalization:
     - i18n-lint: "国际化检查"
     - react-intl: "React国际化"
     - vue-i18n: "Vue国际化"
-  
+
   code_quality:
     - eslint: "JavaScript代码检查"
     - prettier: "代码格式化"
@@ -524,24 +560,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: npm install
-      
+
       - name: Run markdown lint
         run: npx markdownlint "**/*.md"
-      
+
       - name: Run accessibility check
         run: npx pa11y-ci
-      
+
       - name: Run i18n check
         run: npx i18n-lint
-      
+
       - name: Generate quality report
         run: npm run quality-report
 ```
