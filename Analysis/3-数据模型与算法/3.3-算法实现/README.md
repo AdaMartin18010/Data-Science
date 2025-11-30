@@ -475,44 +475,44 @@ from typing import List
 def parallel_merge_sort(data: List[int], num_processes: int = None) -> List[int]:
     """
     并行归并排序实现
-    
+
     Args:
         data: 待排序数据
         num_processes: 进程数，默认使用CPU核心数
-    
+
     Returns:
         排序后的数据
     """
     if num_processes is None:
         num_processes = cpu_count()
-    
+
     if len(data) <= 1:
         return data
-    
+
     # 如果数据量小或只有一个进程，使用串行排序
     if len(data) < 1000 or num_processes == 1:
         return merge_sort_sequential(data)
-    
+
     # 分割数据
     chunk_size = len(data) // num_processes
     chunks = [data[i:i + chunk_size] for i in range(0, len(data), chunk_size)]
-    
+
     # 并行排序各个块
     with Pool(processes=num_processes) as pool:
         sorted_chunks = pool.map(merge_sort_sequential, chunks)
-    
+
     # 合并排序后的块
     result = sorted_chunks[0]
     for chunk in sorted_chunks[1:]:
         result = merge(result, chunk)
-    
+
     return result
 
 def merge_sort_sequential(data: List[int]) -> List[int]:
     """串行归并排序"""
     if len(data) <= 1:
         return data
-    
+
     mid = len(data) // 2
     left = merge_sort_sequential(data[:mid])
     right = merge_sort_sequential(data[mid:])
@@ -522,7 +522,7 @@ def merge(left: List[int], right: List[int]) -> List[int]:
     """合并两个有序数组"""
     result = []
     i = j = 0
-    
+
     while i < len(left) and j < len(right):
         if left[i] <= right[j]:
             result.append(left[i])
@@ -530,7 +530,7 @@ def merge(left: List[int], right: List[int]) -> List[int]:
         else:
             result.append(right[j])
             j += 1
-    
+
     result.extend(left[i:])
     result.extend(right[j:])
     return result
@@ -539,18 +539,18 @@ def merge(left: List[int], right: List[int]) -> List[int]:
 if __name__ == '__main__':
     # 生成测试数据
     data = np.random.randint(0, 1000000, size=1000000).tolist()
-    
+
     # 并行排序
     import time
     start = time.time()
     sorted_data = parallel_merge_sort(data)
     parallel_time = time.time() - start
-    
+
     # 串行排序对比
     start = time.time()
     sorted_data_seq = merge_sort_sequential(data.copy())
     sequential_time = time.time() - start
-    
+
     print(f"并行排序时间: {parallel_time:.4f}秒")
     print(f"串行排序时间: {sequential_time:.4f}秒")
     print(f"加速比: {sequential_time / parallel_time:.2f}x")
@@ -566,24 +566,24 @@ import time
 def gpu_matrix_multiplication(A, B):
     """
     GPU加速矩阵乘法
-    
+
     Args:
         A: 矩阵A (numpy数组)
         B: 矩阵B (numpy数组)
-    
+
     Returns:
         矩阵乘积结果
     """
     # 将数据转移到GPU
     A_gpu = cp.asarray(A)
     B_gpu = cp.asarray(B)
-    
+
     # GPU矩阵乘法
     C_gpu = cp.dot(A_gpu, B_gpu)
-    
+
     # 将结果转回CPU
     C = cp.asnumpy(C_gpu)
-    
+
     return C
 
 # 使用示例
@@ -592,17 +592,17 @@ if __name__ == '__main__':
     size = 5000
     A = np.random.rand(size, size).astype(np.float32)
     B = np.random.rand(size, size).astype(np.float32)
-    
+
     # CPU计算
     start = time.time()
     C_cpu = np.dot(A, B)
     cpu_time = time.time() - start
-    
+
     # GPU计算
     start = time.time()
     C_gpu = gpu_matrix_multiplication(A, B)
     gpu_time = time.time() - start
-    
+
     print(f"CPU时间: {cpu_time:.4f}秒")
     print(f"GPU时间: {gpu_time:.4f}秒")
     print(f"加速比: {cpu_time / gpu_time:.2f}x")
@@ -625,71 +625,71 @@ import random
 def greedy_set_cover(universe: Set, subsets: List[Set]) -> List[Set]:
     """
     贪心算法求解集合覆盖问题（近似算法）
-    
+
     近似比：H(n)，其中n是最大子集大小，H(n)是第n个调和数
-    
+
     Args:
         universe: 全集
         subsets: 子集列表
-    
+
     Returns:
         覆盖全集的子集列表
     """
     uncovered = set(universe)
     cover = []
-    
+
     while uncovered:
         # 选择覆盖最多未覆盖元素的子集
         best_subset = None
         best_covered = set()
-        
+
         for subset in subsets:
             covered = subset & uncovered
             if len(covered) > len(best_covered):
                 best_covered = covered
                 best_subset = subset
-        
+
         if best_subset:
             cover.append(best_subset)
             uncovered -= best_covered
         else:
             break  # 无法完全覆盖
-    
+
     return cover
 
-def randomized_set_cover(universe: Set, subsets: List[Set], 
+def randomized_set_cover(universe: Set, subsets: List[Set],
                         num_iterations: int = 100) -> List[Set]:
     """
     随机算法求解集合覆盖问题
-    
+
     Args:
         universe: 全集
         subsets: 子集列表
         num_iterations: 迭代次数
-    
+
     Returns:
         覆盖全集的子集列表（可能不是最优解）
     """
     best_cover = None
     best_size = float('inf')
-    
+
     for _ in range(num_iterations):
         # 随机选择子集
         random.shuffle(subsets)
         cover = []
         covered = set()
-        
+
         for subset in subsets:
             if not (subset <= covered):
                 cover.append(subset)
                 covered |= subset
                 if covered >= universe:
                     break
-        
+
         if covered >= universe and len(cover) < best_size:
             best_cover = cover
             best_size = len(cover)
-    
+
     return best_cover
 
 # 使用示例
@@ -703,11 +703,11 @@ if __name__ == '__main__':
         {1, 5, 9},
         {2, 6, 10}
     ]
-    
+
     greedy_cover = greedy_set_cover(universe, subsets)
     print(f"贪心算法覆盖: {len(greedy_cover)} 个子集")
     print(f"子集: {greedy_cover}")
-    
+
     random_cover = randomized_set_cover(universe, subsets)
     if random_cover:
         print(f"\n随机算法覆盖: {len(random_cover)} 个子集")
@@ -732,7 +732,7 @@ from sklearn.datasets import make_classification
 import numpy as np
 
 # 生成示例数据
-X, y = make_classification(n_samples=10000, n_features=20, 
+X, y = make_classification(n_samples=10000, n_features=20,
                           n_informative=15, n_redundant=5,
                           random_state=42)
 
@@ -785,14 +785,14 @@ from typing import List, Tuple
 class StreamingKMeans:
     """
     流式K-means聚类算法
-    
+
     适用于大数据流式处理场景，不需要存储所有数据
     """
-    
+
     def __init__(self, k: int, decay_factor: float = 0.9):
         """
         初始化流式K-means
-        
+
         Args:
             k: 聚类数量
             decay_factor: 衰减因子，用于更新聚类中心
@@ -801,11 +801,11 @@ class StreamingKMeans:
         self.decay_factor = decay_factor
         self.centroids = None
         self.counts = np.zeros(k)  # 每个聚类的样本计数
-    
+
     def fit_partial(self, X: np.ndarray):
         """
         增量训练（处理新数据）
-        
+
         Args:
             X: 新数据点，形状为 (n_samples, n_features)
         """
@@ -813,33 +813,33 @@ class StreamingKMeans:
             # 初始化聚类中心（使用前k个点）
             self.centroids = X[:self.k].copy()
             self.counts[:len(X[:self.k])] = 1
-        
+
         for point in X:
             # 找到最近的聚类中心
             distances = np.linalg.norm(self.centroids - point, axis=1)
             closest_cluster = np.argmin(distances)
-            
+
             # 更新聚类中心（使用衰减因子）
             self.counts[closest_cluster] += 1
             learning_rate = 1.0 / self.counts[closest_cluster]
-            
+
             self.centroids[closest_cluster] = (
                 (1 - learning_rate) * self.centroids[closest_cluster] +
                 learning_rate * point
             )
-    
+
     def predict(self, X: np.ndarray) -> np.ndarray:
         """预测数据点所属的聚类"""
         if self.centroids is None:
             raise ValueError("模型尚未训练")
-        
+
         labels = []
         for point in X:
             distances = np.linalg.norm(self.centroids - point, axis=1)
             labels.append(np.argmin(distances))
-        
+
         return np.array(labels)
-    
+
     def get_centroids(self) -> np.ndarray:
         """获取当前聚类中心"""
         return self.centroids.copy()
@@ -854,20 +854,20 @@ if __name__ == '__main__':
         cluster_data = np.random.randn(1000, 2) + center
         data.append(cluster_data)
     all_data = np.vstack(data)
-    
+
     # 流式处理
     stream_kmeans = StreamingKMeans(k=3)
-    
+
     # 分批处理数据（模拟流式数据）
     batch_size = 100
     for i in range(0, len(all_data), batch_size):
         batch = all_data[i:i + batch_size]
         stream_kmeans.fit_partial(batch)
-    
+
     # 预测
     labels = stream_kmeans.predict(all_data)
     centroids = stream_kmeans.get_centroids()
-    
+
     print(f"学习到的聚类中心:\n{centroids}")
     print(f"\n真实聚类中心:\n{true_centroids}")
 ```
@@ -882,31 +882,31 @@ import numpy as np
 
 def distributed_kmeans_example():
     """分布式K-means聚类示例"""
-    
+
     # 创建Spark会话
     spark = SparkSession.builder \
         .appName("DistributedKMeans") \
         .master("local[*]") \
         .getOrCreate()
-    
+
     # 生成大规模数据
     np.random.seed(42)
     n_samples = 1000000
     n_features = 10
     data = np.random.randn(n_samples, n_features)
-    
+
     # 转换为Spark DataFrame
     from pyspark.sql.types import StructType, StructField, DoubleType
     from pyspark.sql import Row
-    
+
     schema = StructType([
-        StructField(f"feature_{i}", DoubleType(), True) 
+        StructField(f"feature_{i}", DoubleType(), True)
         for i in range(n_features)
     ])
-    
+
     rows = [Row(*row) for row in data]
     df = spark.createDataFrame(rows, schema)
-    
+
     # 特征向量化
     feature_cols = [f"feature_{i}" for i in range(n_features)]
     assembler = VectorAssembler(
@@ -914,21 +914,21 @@ def distributed_kmeans_example():
         outputCol="features"
     )
     df_vectorized = assembler.transform(df).select("features")
-    
+
     # 分布式K-means聚类
     kmeans = KMeans(k=5, seed=42, maxIter=20)
     model = kmeans.fit(df_vectorized)
-    
+
     # 预测
     predictions = model.transform(df_vectorized)
-    
+
     # 显示结果
     print(f"聚类中心数量: {len(model.clusterCenters())}")
     print(f"总成本: {model.summary.trainingCost}")
-    
+
     # 统计每个聚类的样本数
     predictions.groupBy("prediction").count().show()
-    
+
     spark.stop()
 
 # 运行示例
