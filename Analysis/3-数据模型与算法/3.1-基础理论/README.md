@@ -47,6 +47,20 @@
     - [17.1. 数据隐私](#171-数据隐私)
     - [17.2. 算法公平性](#172-算法公平性)
     - [17.3. 可解释性](#173-可解释性)
+  - [深入学习建议](#深入学习建议)
+    - [理论基础强化](#理论基础强化)
+    - [实践能力提升](#实践能力提升)
+  - [学习资源汇总](#学习资源汇总)
+    - [在线课程](#在线课程)
+    - [书籍推荐](#书籍推荐)
+    - [学术资源](#学术资源)
+  - [实践项目建议](#实践项目建议)
+    - [基础项目](#基础项目)
+    - [进阶项目](#进阶项目)
+    - [高级项目](#高级项目)
+  - [职业发展路径](#职业发展路径)
+    - [学术研究](#学术研究)
+    - [工业应用](#工业应用)
 
 ---
 
@@ -464,6 +478,81 @@ flowchart TD
 - 特征重要性
 - 模型可视化
 
+**LIME可解释性示例**：
+
+```python
+from lime import lime_tabular
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+import numpy as np
+
+# 加载数据
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.2, random_state=42
+)
+
+# 训练模型
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+# 创建LIME解释器
+explainer = lime_tabular.LimeTabularExplainer(
+    X_train,
+    feature_names=iris.feature_names,
+    class_names=iris.target_names,
+    mode='classification'
+)
+
+# 解释单个预测
+instance_idx = 0
+explanation = explainer.explain_instance(
+    X_test[instance_idx],
+    model.predict_proba,
+    num_features=4
+)
+
+# 显示解释结果
+print(f"真实标签: {iris.target_names[y_test[instance_idx]]}")
+print(f"预测标签: {iris.target_names[model.predict([X_test[instance_idx]])[0]]}")
+explanation.show_in_notebook(show_table=True)
+```
+
+**SHAP可解释性示例**：
+
+```python
+import shap
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+import pandas as pd
+
+# 加载数据
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+y = iris.target
+
+# 训练模型
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+
+# 创建SHAP解释器
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X)
+
+# 可视化SHAP值
+shap.summary_plot(shap_values, X, plot_type="bar")
+shap.summary_plot(shap_values[0], X)  # 对于类别0
+
+# 单个样本的解释
+shap.force_plot(
+    explainer.expected_value[0],
+    shap_values[0][0],
+    X.iloc[0],
+    matplotlib=True
+)
+```
+
 ---
 
 ## 深入学习建议
@@ -493,12 +582,261 @@ flowchart TD
 - **SQL**：数据查询和处理
 - **大数据工具**：Spark、Hadoop
 
+**Python数据科学完整示例**：
+
+```python
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+class DataSciencePipeline:
+    """
+    数据科学完整流程示例
+
+    包含：数据加载、探索性分析、特征工程、模型训练、评估
+    """
+
+    def __init__(self, data_path):
+        """初始化数据科学流程"""
+        self.data_path = data_path
+        self.data = None
+        self.X_train = None
+        self.X_test = None
+        self.y_train = None
+        self.y_test = None
+        self.scaler = StandardScaler()
+        self.model = None
+
+    def load_data(self):
+        """加载数据"""
+        self.data = pd.read_csv(self.data_path)
+        print(f"数据形状: {self.data.shape}")
+        print(f"缺失值:\n{self.data.isnull().sum()}")
+        return self.data
+
+    def exploratory_analysis(self):
+        """探索性数据分析"""
+        # 基本统计信息
+        print("基本统计信息:")
+        print(self.data.describe())
+
+        # 数据分布可视化
+        if self.data.select_dtypes(include=[np.number]).shape[1] > 0:
+            numeric_cols = self.data.select_dtypes(include=[np.number]).columns
+            fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+            for idx, col in enumerate(numeric_cols[:4]):
+                ax = axes[idx // 2, idx % 2]
+                self.data[col].hist(bins=30, ax=ax)
+                ax.set_title(f'{col} 分布')
+            plt.tight_layout()
+            plt.show()
+
+        # 相关性分析
+        if self.data.select_dtypes(include=[np.number]).shape[1] > 1:
+            corr_matrix = self.data.select_dtypes(include=[np.number]).corr()
+            plt.figure(figsize=(10, 8))
+            sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0)
+            plt.title('特征相关性矩阵')
+            plt.show()
+
+    def preprocess_data(self, target_column, test_size=0.2):
+        """数据预处理"""
+        # 处理缺失值
+        self.data = self.data.fillna(self.data.mean())
+
+        # 分离特征和目标
+        X = self.data.drop(columns=[target_column])
+        y = self.data[target_column]
+
+        # 编码分类变量
+        X = pd.get_dummies(X, drop_first=True)
+
+        # 划分训练集和测试集
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+            X, y, test_size=test_size, random_state=42, stratify=y
+        )
+
+        # 特征缩放
+        self.X_train = self.scaler.fit_transform(self.X_train)
+        self.X_test = self.scaler.transform(self.X_test)
+
+        return self.X_train, self.X_test, self.y_train, self.y_test
+
+    def train_model(self, model_type='random_forest', **kwargs):
+        """训练模型"""
+        if model_type == 'random_forest':
+            self.model = RandomForestClassifier(
+                n_estimators=kwargs.get('n_estimators', 100),
+                max_depth=kwargs.get('max_depth', None),
+                random_state=42
+            )
+
+        self.model.fit(self.X_train, self.y_train)
+        return self.model
+
+    def evaluate_model(self):
+        """评估模型"""
+        # 训练集预测
+        y_train_pred = self.model.predict(self.X_train)
+        train_accuracy = (y_train_pred == self.y_train).mean()
+
+        # 测试集预测
+        y_test_pred = self.model.predict(self.X_test)
+        test_accuracy = (y_test_pred == self.y_test).mean()
+
+        print(f"训练集准确率: {train_accuracy:.4f}")
+        print(f"测试集准确率: {test_accuracy:.4f}")
+
+        # 分类报告
+        print("\n分类报告:")
+        print(classification_report(self.y_test, y_test_pred))
+
+        # 混淆矩阵
+        cm = confusion_matrix(self.y_test, y_test_pred)
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+        plt.title('混淆矩阵')
+        plt.ylabel('真实标签')
+        plt.xlabel('预测标签')
+        plt.show()
+
+        return {
+            'train_accuracy': train_accuracy,
+            'test_accuracy': test_accuracy,
+            'confusion_matrix': cm
+        }
+
+    def feature_importance(self):
+        """特征重要性分析"""
+        if hasattr(self.model, 'feature_importances_'):
+            importances = self.model.feature_importances_
+            feature_names = pd.get_dummies(
+                self.data.drop(columns=[self.data.columns[-1]]),
+                drop_first=True
+            ).columns
+
+            # 创建特征重要性DataFrame
+            feature_importance_df = pd.DataFrame({
+                'feature': feature_names,
+                'importance': importances
+            }).sort_values('importance', ascending=False)
+
+            # 可视化
+            plt.figure(figsize=(10, 6))
+            sns.barplot(data=feature_importance_df.head(10),
+                       x='importance', y='feature')
+            plt.title('Top 10 特征重要性')
+            plt.xlabel('重要性')
+            plt.tight_layout()
+            plt.show()
+
+            return feature_importance_df
+
+# 使用示例
+# pipeline = DataSciencePipeline('data.csv')
+# pipeline.load_data()
+# pipeline.exploratory_analysis()
+# pipeline.preprocess_data('target_column')
+# pipeline.train_model()
+# pipeline.evaluate_model()
+# pipeline.feature_importance()
+```
+
 **工具使用**：
 
 - **数据工具**：Jupyter、Tableau
 - **机器学习**：TensorFlow、PyTorch
 - **数据存储**：数据库、数据仓库
 - **可视化工具**：Matplotlib、D3.js
+
+**Jupyter Notebook数据分析示例**：
+
+```python
+# 完整的数据分析工作流
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import GradientBoostingRegressor
+
+# 1. 数据加载和初步探索
+df = pd.read_csv('sales_data.csv')
+print("数据概览:")
+print(df.head())
+print(f"\n数据形状: {df.shape}")
+print(f"缺失值统计:\n{df.isnull().sum()}")
+
+# 2. 数据清洗
+# 处理缺失值
+df['price'] = df['price'].fillna(df['price'].median())
+df['category'] = df['category'].fillna('Unknown')
+
+# 处理异常值
+Q1 = df['sales'].quantile(0.25)
+Q3 = df['sales'].quantile(0.75)
+IQR = Q3 - Q1
+df = df[(df['sales'] >= Q1 - 1.5*IQR) & (df['sales'] <= Q3 + 1.5*IQR)]
+
+# 3. 特征工程
+# 编码分类变量
+le = LabelEncoder()
+df['category_encoded'] = le.fit_transform(df['category'])
+
+# 创建时间特征
+df['date'] = pd.to_datetime(df['date'])
+df['year'] = df['date'].dt.year
+df['month'] = df['date'].dt.month
+df['day_of_week'] = df['date'].dt.dayofweek
+
+# 4. 数据可视化
+fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+# 销售额时间序列
+axes[0, 0].plot(df.groupby('date')['sales'].sum())
+axes[0, 0].set_title('销售额时间序列')
+axes[0, 0].set_xlabel('日期')
+axes[0, 0].set_ylabel('销售额')
+
+# 类别分布
+df['category'].value_counts().plot(kind='bar', ax=axes[0, 1])
+axes[0, 1].set_title('类别分布')
+axes[0, 1].set_xlabel('类别')
+axes[0, 1].set_ylabel('数量')
+
+# 价格与销售额关系
+axes[1, 0].scatter(df['price'], df['sales'], alpha=0.5)
+axes[1, 0].set_title('价格 vs 销售额')
+axes[1, 0].set_xlabel('价格')
+axes[1, 0].set_ylabel('销售额')
+
+# 销售额分布
+axes[1, 1].hist(df['sales'], bins=50)
+axes[1, 1].set_title('销售额分布')
+axes[1, 1].set_xlabel('销售额')
+axes[1, 1].set_ylabel('频数')
+
+plt.tight_layout()
+plt.show()
+
+# 5. 模型训练和评估
+features = ['price', 'category_encoded', 'year', 'month', 'day_of_week']
+X = df[features]
+y = df['sales']
+
+model = GradientBoostingRegressor(n_estimators=100, random_state=42)
+scores = cross_val_score(model, X, y, cv=5, scoring='r2')
+print(f"\n模型R²得分: {scores.mean():.4f} (+/- {scores.std() * 2:.4f})")
+
+model.fit(X, y)
+print(f"特征重要性:\n{pd.Series(model.feature_importances_, index=features).sort_values(ascending=False)}")
+```
 
 ---
 

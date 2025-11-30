@@ -307,17 +307,692 @@ $$Architecture = (Components, Connectors, Constraints, Configuration)$$
 
 **技术栈**：Spring Cloud、Redis、RabbitMQ、MySQL
 
+**完整架构实现示例**：
+
+```python
+# 电商系统微服务架构示例
+from flask import Flask, request, jsonify
+from flask_restful import Api, Resource
+import redis
+import pika
+import mysql.connector
+from functools import wraps
+import json
+import time
+
+# Redis缓存服务
+class CacheService:
+    """缓存服务类"""
+    def __init__(self, host='localhost', port=6379, db=0):
+        self.redis_client = redis.Redis(host=host, port=port, db=db, decode_responses=True)
+
+    def get(self, key):
+        """获取缓存"""
+        return self.redis_client.get(key)
+
+    def set(self, key, value, expire=3600):
+        """设置缓存"""
+        return self.redis_client.setex(key, expire, json.dumps(value) if isinstance(value, dict) else value)
+
+    def delete(self, key):
+        """删除缓存"""
+        return self.redis_client.delete(key)
+
+    def cache_decorator(self, expire=3600):
+        """缓存装饰器"""
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                cache_key = f"{func.__name__}:{str(args)}:{str(kwargs)}"
+                cached = self.get(cache_key)
+                if cached:
+                    return json.loads(cached)
+                result = func(*args, **kwargs)
+                self.set(cache_key, result, expire)
+                return result
+            return wrapper
+        return decorator
+
+# 消息队列服务
+class MessageQueueService:
+    """消息队列服务"""
+    def __init__(self, host='localhost'):
+        self.connection = pika.BlockingConnection(
+            pika.ConnectionParameters(host=host)
+        )
+        self.channel = self.connection.channel()
+
+    def publish(self, exchange, routing_key, message):
+        """发布消息"""
+        self.channel.basic_publish(
+            exchange=exchange,
+            routing_key=routing_key,
+            body=json.dumps(message)
+        )
+
+    def consume(self, queue, callback):
+        """消费消息"""
+        self.channel.queue_declare(queue=queue)
+        self.channel.basic_consume(
+            queue=queue,
+            on_message_callback=callback,
+            auto_ack=True
+        )
+        self.channel.start_consuming()
+
+# 数据库服务
+class DatabaseService:
+    """数据库服务"""
+    def __init__(self, host, user, password, database):
+        self.connection = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database
+        )
+        self.cursor = self.connection.cursor(dictionary=True)
+
+    def execute_query(self, query, params=None):
+        """执行查询"""
+        self.cursor.execute(query, params or ())
+        return self.cursor.fetchall()
+
+    def execute_update(self, query, params=None):
+        """执行更新"""
+        self.cursor.execute(query, params or ())
+        self.connection.commit()
+        return self.cursor.rowcount
+
+# 商品服务（微服务示例）
+class ProductService:
+    """商品服务"""
+    def __init__(self):
+        self.app = Flask(__name__)
+        self.api = Api(self.app)
+        self.cache = CacheService()
+        self.db = DatabaseService('localhost', 'user', 'password', 'ecommerce')
+        self.mq = MessageQueueService()
+
+        # 注册路由
+        self.api.add_resource(ProductResource, '/api/products/<int:product_id>')
+        self.api.add_resource(ProductListResource, '/api/products')
+
+    def get_product(self, product_id):
+        """获取商品信息（带缓存）"""
+        cache_key = f"product:{product_id}"
+        cached = self.cache.get(cache_key)
+        if cached:
+            return json.loads(cached)
+
+        query = "SELECT * FROM products WHERE id = %s"
+        result = self.db.execute_query(query, (product_id,))
+        if result:
+            product = result[0]
+            self.cache.set(cache_key, product, expire=1800)
+            return product
+        return None
+
+    def create_product(self, product_data):
+        """创建商品"""
+        query = """
+        INSERT INTO products (name, price, description, stock)
+        VALUES (%s, %s, %s, %s)
+        """
+        self.db.execute_update(
+            query,
+            (product_data['name'], product_data['price'],
+             product_data['description'], product_data['stock'])
+        )
+
+        # 发送消息通知其他服务
+        self.mq.publish(
+            exchange='product_events',
+            routing_key='product.created',
+            message=product_data
+        )
+
+        return {'status': 'success', 'message': 'Product created'}
+
+# RESTful API资源
+class ProductResource(Resource):
+    def __init__(self):
+        self.service = ProductService()
+
+    def get(self, product_id):
+        """获取商品详情"""
+        product = self.service.get_product(product_id)
+        if product:
+            return jsonify(product)
+        return {'error': 'Product not found'}, 404
+
+    def put(self, product_id):
+        """更新商品"""
+        data = request.get_json()
+        # 实现更新逻辑
+        return {'status': 'success'}
+
+class ProductListResource(Resource):
+    def __init__(self):
+        self.service = ProductService()
+
+    def get(self):
+        """获取商品列表"""
+        query = "SELECT * FROM products LIMIT 100"
+        products = self.service.db.execute_query(query)
+        return jsonify(products)
+
+    def post(self):
+        """创建商品"""
+        data = request.get_json()
+        return self.service.create_product(data)
+
+# 订单服务（另一个微服务）
+class OrderService:
+    """订单服务"""
+    def __init__(self):
+        self.app = Flask(__name__)
+        self.cache = CacheService()
+        self.db = DatabaseService('localhost', 'user', 'password', 'ecommerce')
+        self.mq = MessageQueueService()
+
+        # 监听商品事件
+        self.mq.consume('product_events', self.handle_product_event)
+
+    def create_order(self, order_data):
+        """创建订单"""
+        # 1. 检查库存
+        product = self.get_product_from_service(order_data['product_id'])
+        if product['stock'] < order_data['quantity']:
+            return {'error': 'Insufficient stock'}, 400
+
+        # 2. 创建订单
+        query = """
+        INSERT INTO orders (user_id, product_id, quantity, total_price, status)
+        VALUES (%s, %s, %s, %s, 'pending')
+        """
+        total_price = product['price'] * order_data['quantity']
+        self.db.execute_update(
+            query,
+            (order_data['user_id'], order_data['product_id'],
+             order_data['quantity'], total_price)
+        )
+
+        # 3. 发送订单创建事件
+        self.mq.publish(
+            exchange='order_events',
+            routing_key='order.created',
+            message=order_data
+        )
+
+        return {'status': 'success', 'message': 'Order created'}
+
+    def handle_product_event(self, ch, method, properties, body):
+        """处理商品事件"""
+        event = json.loads(body)
+        print(f"Received product event: {event}")
+
+# 运行服务
+if __name__ == '__main__':
+    product_service = ProductService()
+    product_service.app.run(host='0.0.0.0', port=5001, debug=True)
+
+    order_service = OrderService()
+    order_service.app.run(host='0.0.0.0', port=5002, debug=True)
+```
+
 ### 15.2. 金融系统架构
 
 **架构特点**：高可用性、强一致性、安全性、合规性
 
 **技术栈**：分布式事务、数据加密、审计日志、容灾备份
 
+**金融系统安全架构示例**：
+
+```python
+# 金融系统安全架构实现
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+import hashlib
+import hmac
+import time
+from datetime import datetime
+import json
+
+class SecurityService:
+    """安全服务类"""
+
+    def __init__(self):
+        self.symmetric_key = Fernet.generate_key()
+        self.cipher = Fernet(self.symmetric_key)
+        self.private_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048
+        )
+        self.public_key = self.private_key.public_key()
+
+    def encrypt_symmetric(self, data):
+        """对称加密"""
+        return self.cipher.encrypt(data.encode())
+
+    def decrypt_symmetric(self, encrypted_data):
+        """对称解密"""
+        return self.cipher.decrypt(encrypted_data).decode()
+
+    def encrypt_asymmetric(self, data):
+        """非对称加密"""
+        return self.public_key.encrypt(
+            data.encode(),
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None
+            )
+        )
+
+    def sign_data(self, data):
+        """数字签名"""
+        signature = self.private_key.sign(
+            data.encode(),
+            padding.PSS(
+                mgf=padding.MGF1(hashes.SHA256()),
+                salt_length=padding.PSS.MAX_LENGTH
+            ),
+            hashes.SHA256()
+        )
+        return signature
+
+    def verify_signature(self, data, signature):
+        """验证签名"""
+        try:
+            self.public_key.verify(
+                signature,
+                data.encode(),
+                padding.PSS(
+                    mgf=padding.MGF1(hashes.SHA256()),
+                    salt_length=padding.PSS.MAX_LENGTH
+                ),
+                hashes.SHA256()
+            )
+            return True
+        except:
+            return False
+
+class AuditLogger:
+    """审计日志服务"""
+
+    def __init__(self, log_file='audit.log'):
+        self.log_file = log_file
+
+    def log(self, user_id, action, resource, result, details=None):
+        """记录审计日志"""
+        log_entry = {
+            'timestamp': datetime.now().isoformat(),
+            'user_id': user_id,
+            'action': action,
+            'resource': resource,
+            'result': result,
+            'details': details
+        }
+
+        with open(self.log_file, 'a') as f:
+            f.write(json.dumps(log_entry) + '\n')
+
+    def query_logs(self, user_id=None, action=None, start_time=None, end_time=None):
+        """查询审计日志"""
+        logs = []
+        with open(self.log_file, 'r') as f:
+            for line in f:
+                log = json.loads(line)
+                if user_id and log['user_id'] != user_id:
+                    continue
+                if action and log['action'] != action:
+                    continue
+                if start_time and log['timestamp'] < start_time:
+                    continue
+                if end_time and log['timestamp'] > end_time:
+                    continue
+                logs.append(log)
+        return logs
+
+class TransactionService:
+    """事务服务（支持分布式事务）"""
+
+    def __init__(self):
+        self.security = SecurityService()
+        self.audit = AuditLogger()
+        self.transactions = {}
+
+    def begin_transaction(self, transaction_id, user_id):
+        """开始事务"""
+        self.transactions[transaction_id] = {
+            'user_id': user_id,
+            'start_time': time.time(),
+            'operations': [],
+            'status': 'active'
+        }
+        self.audit.log(user_id, 'TRANSACTION_BEGIN', transaction_id, 'SUCCESS')
+
+    def commit_transaction(self, transaction_id):
+        """提交事务"""
+        if transaction_id in self.transactions:
+            transaction = self.transactions[transaction_id]
+            transaction['status'] = 'committed'
+            transaction['end_time'] = time.time()
+
+            # 执行所有操作
+            for operation in transaction['operations']:
+                # 执行操作逻辑
+                pass
+
+            self.audit.log(
+                transaction['user_id'],
+                'TRANSACTION_COMMIT',
+                transaction_id,
+                'SUCCESS'
+            )
+            return True
+        return False
+
+    def rollback_transaction(self, transaction_id):
+        """回滚事务"""
+        if transaction_id in self.transactions:
+            transaction = self.transactions[transaction_id]
+            transaction['status'] = 'rolled_back'
+            transaction['end_time'] = time.time()
+
+            self.audit.log(
+                transaction['user_id'],
+                'TRANSACTION_ROLLBACK',
+                transaction_id,
+                'SUCCESS'
+            )
+            return True
+        return False
+```
+
 ### 15.3. IoT系统架构
 
 **架构特点**：边缘计算、设备管理、数据采集、云端集成
 
 **技术栈**：MQTT、边缘网关、时序数据库、云平台
+
+**IoT系统完整实现示例**：
+
+```python
+# IoT系统架构实现
+import paho.mqtt.client as mqtt
+import json
+import time
+from datetime import datetime
+from typing import Dict, List
+import threading
+import sqlite3
+
+class IoTDevice:
+    """IoT设备基类"""
+
+    def __init__(self, device_id, device_type, mqtt_broker='localhost', mqtt_port=1883):
+        self.device_id = device_id
+        self.device_type = device_type
+        self.mqtt_client = mqtt.Client(client_id=device_id)
+        self.mqtt_client.on_connect = self.on_connect
+        self.mqtt_client.on_message = self.on_message
+        self.mqtt_client.connect(mqtt_broker, mqtt_port, 60)
+        self.running = False
+
+    def on_connect(self, client, userdata, flags, rc):
+        """MQTT连接回调"""
+        if rc == 0:
+            print(f"设备 {self.device_id} 连接成功")
+            client.subscribe(f"device/{self.device_id}/command")
+        else:
+            print(f"连接失败，错误码: {rc}")
+
+    def on_message(self, client, userdata, msg):
+        """MQTT消息回调"""
+        try:
+            command = json.loads(msg.payload.decode())
+            self.handle_command(command)
+        except Exception as e:
+            print(f"处理命令错误: {e}")
+
+    def handle_command(self, command):
+        """处理命令（子类实现）"""
+        pass
+
+    def publish_data(self, data):
+        """发布数据"""
+        topic = f"device/{self.device_id}/data"
+        payload = json.dumps({
+            'device_id': self.device_id,
+            'device_type': self.device_type,
+            'timestamp': datetime.now().isoformat(),
+            'data': data
+        })
+        self.mqtt_client.publish(topic, payload)
+
+    def start(self):
+        """启动设备"""
+        self.running = True
+        self.mqtt_client.loop_start()
+        self.run()
+
+    def run(self):
+        """设备运行逻辑（子类实现）"""
+        pass
+
+class TemperatureSensor(IoTDevice):
+    """温度传感器设备"""
+
+    def __init__(self, device_id, mqtt_broker='localhost', mqtt_port=1883):
+        super().__init__(device_id, 'temperature_sensor', mqtt_broker, mqtt_port)
+        self.temperature = 20.0
+        self.interval = 5  # 5秒采集一次
+
+    def run(self):
+        """传感器数据采集循环"""
+        while self.running:
+            # 模拟温度变化
+            import random
+            self.temperature += random.uniform(-0.5, 0.5)
+            self.temperature = max(15, min(30, self.temperature))
+
+            # 发布数据
+            self.publish_data({
+                'temperature': round(self.temperature, 2),
+                'unit': 'celsius'
+            })
+
+            time.sleep(self.interval)
+
+    def handle_command(self, command):
+        """处理命令"""
+        if command.get('action') == 'set_interval':
+            self.interval = command.get('interval', 5)
+            print(f"采集间隔设置为: {self.interval}秒")
+
+class EdgeGateway:
+    """边缘网关"""
+
+    def __init__(self, gateway_id, mqtt_broker='localhost', mqtt_port=1883):
+        self.gateway_id = gateway_id
+        self.mqtt_client = mqtt.Client(client_id=gateway_id)
+        self.mqtt_client.on_connect = self.on_connect
+        self.mqtt_client.on_message = self.on_message
+        self.mqtt_client.connect(mqtt_broker, mqtt_port, 60)
+        self.devices = {}
+        self.local_db = sqlite3.connect('edge_data.db')
+        self.init_local_db()
+
+    def init_local_db(self):
+        """初始化本地数据库"""
+        cursor = self.local_db.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS sensor_data (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                device_id TEXT,
+                timestamp TEXT,
+                data TEXT
+            )
+        ''')
+        self.local_db.commit()
+
+    def on_connect(self, client, userdata, flags, rc):
+        """MQTT连接回调"""
+        if rc == 0:
+            print(f"网关 {self.gateway_id} 连接成功")
+            client.subscribe("device/+/data")
+            client.subscribe("cloud/+/command")
+        else:
+            print(f"连接失败，错误码: {rc}")
+
+    def on_message(self, client, userdata, msg):
+        """MQTT消息回调"""
+        try:
+            if msg.topic.startswith("device/"):
+                data = json.loads(msg.payload.decode())
+                self.process_device_data(data)
+            elif msg.topic.startswith("cloud/"):
+                command = json.loads(msg.payload.decode())
+                self.handle_cloud_command(command)
+        except Exception as e:
+            print(f"处理消息错误: {e}")
+
+    def process_device_data(self, data):
+        """处理设备数据"""
+        # 1. 存储到本地数据库
+        cursor = self.local_db.cursor()
+        cursor.execute(
+            'INSERT INTO sensor_data (device_id, timestamp, data) VALUES (?, ?, ?)',
+            (data['device_id'], data['timestamp'], json.dumps(data['data']))
+        )
+        self.local_db.commit()
+
+        # 2. 边缘计算处理（例如：异常检测）
+        if self.detect_anomaly(data):
+            print(f"检测到异常数据: {data}")
+            # 立即上报云端
+            self.publish_to_cloud(data, priority='high')
+        else:
+            # 批量上报
+            self.batch_publish_to_cloud(data)
+
+    def detect_anomaly(self, data):
+        """异常检测（边缘计算）"""
+        if data['device_type'] == 'temperature_sensor':
+            temperature = data['data'].get('temperature', 0)
+            # 简单异常检测：温度超出正常范围
+            return temperature < 10 or temperature > 35
+        return False
+
+    def publish_to_cloud(self, data, priority='normal'):
+        """上报数据到云端"""
+        topic = f"gateway/{self.gateway_id}/data"
+        payload = json.dumps({
+            'gateway_id': self.gateway_id,
+            'priority': priority,
+            'data': data
+        })
+        self.mqtt_client.publish(topic, payload)
+
+    def batch_publish_to_cloud(self, data):
+        """批量上报（实现批量逻辑）"""
+        # 可以在这里实现批量上报逻辑
+        self.publish_to_cloud(data, priority='normal')
+
+    def handle_cloud_command(self, command):
+        """处理云端命令"""
+        if command.get('action') == 'query_local_data':
+            # 查询本地数据
+            cursor = self.local_db.cursor()
+            cursor.execute(
+                'SELECT * FROM sensor_data WHERE device_id = ? ORDER BY timestamp DESC LIMIT ?',
+                (command.get('device_id'), command.get('limit', 100))
+            )
+            results = cursor.fetchall()
+            # 发送结果回云端
+            self.mqtt_client.publish(
+                f"gateway/{self.gateway_id}/query_result",
+                json.dumps(results)
+            )
+
+class CloudPlatform:
+    """云平台服务"""
+
+    def __init__(self, mqtt_broker='localhost', mqtt_port=1883):
+        self.mqtt_client = mqtt.Client(client_id='cloud_platform')
+        self.mqtt_client.on_connect = self.on_connect
+        self.mqtt_client.on_message = self.on_message
+        self.mqtt_client.connect(mqtt_broker, mqtt_port, 60)
+        self.time_series_db = {}  # 简化的时序数据库
+
+    def on_connect(self, client, userdata, flags, rc):
+        """MQTT连接回调"""
+        if rc == 0:
+            print("云平台连接成功")
+            client.subscribe("gateway/+/data")
+            client.subscribe("gateway/+/query_result")
+        else:
+            print(f"连接失败，错误码: {rc}")
+
+    def on_message(self, client, userdata, msg):
+        """MQTT消息回调"""
+        try:
+            if msg.topic.startswith("gateway/") and msg.topic.endswith("/data"):
+                data = json.loads(msg.payload.decode())
+                self.store_time_series_data(data)
+            elif msg.topic.endswith("/query_result"):
+                result = json.loads(msg.payload.decode())
+                self.handle_query_result(result)
+        except Exception as e:
+            print(f"处理消息错误: {e}")
+
+    def store_time_series_data(self, data):
+        """存储时序数据"""
+        device_id = data['data']['device_id']
+        if device_id not in self.time_series_db:
+            self.time_series_db[device_id] = []
+
+        self.time_series_db[device_id].append({
+            'timestamp': data['data']['timestamp'],
+            'data': data['data']['data']
+        })
+
+        # 保持最近1000条记录
+        if len(self.time_series_db[device_id]) > 1000:
+            self.time_series_db[device_id] = self.time_series_db[device_id][-1000:]
+
+    def send_command_to_gateway(self, gateway_id, command):
+        """向网关发送命令"""
+        topic = f"cloud/{gateway_id}/command"
+        self.mqtt_client.publish(topic, json.dumps(command))
+
+    def handle_query_result(self, result):
+        """处理查询结果"""
+        print(f"收到查询结果: {result}")
+
+# 使用示例
+if __name__ == '__main__':
+    # 启动云平台
+    cloud = CloudPlatform()
+    cloud.mqtt_client.loop_start()
+
+    # 启动边缘网关
+    gateway = EdgeGateway('gateway_001')
+    gateway.mqtt_client.loop_start()
+
+    # 启动传感器设备
+    sensor = TemperatureSensor('sensor_001')
+    sensor.start()
+
+    # 运行
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("系统关闭")
+```
 
 ---
 
